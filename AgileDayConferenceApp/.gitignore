@@ -1,0 +1,9 @@
+#common junk
+.DS_Store
+*~
+
+#binary directory
+bin
+
+#android auto generated files directory
+gen

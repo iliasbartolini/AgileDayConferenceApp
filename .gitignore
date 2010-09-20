@@ -1,0 +1,6 @@
+#common junk
+.DS_Store
+*~
+
+#binary directory
+bin
