@@ -1,6 +1,11 @@
-#common junk
+
+# common junk
 .DS_Store
 *~
+Thumbs.db
 
-#binary directory
-bin
+# binary directory
+bin/
+
+# android auto generated files directory
+gen/
