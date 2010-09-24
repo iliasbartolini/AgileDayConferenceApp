@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-</LinearLayout>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#24709e" android:stretchColumns="*">
+	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/banner" android:paddingTop="20dip" android:paddingBottom="40dip" />
+	<TableRow android:paddingBottom="40dip">
+		<ImageButton android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+		<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+	</TableRow>
+	<TableRow android:paddingBottom="40dip">
+		<ImageButton android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+		<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+	</TableRow>
+</TableLayout>
