@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:gravity="center">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Agile Day 2010"
+			android:textSize="24sp" android:gravity="center"
+			android:layout_marginBottom="15dp" />
+		<TableLayout android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_gravity="center"
+			android:stretchColumns="*"
+			android:padding="20dp">
+			<TableRow>
+				<Button android:id="@+id/button_sessions" android:text="Sessioni"/>
+				<Button android:id="@+id/button_map" android:text="Mappa"/>
+			</TableRow>
+			<TableRow>
+				<Button android:id="@+id/button_tweets" android:text="LiveTweets" />
+				<Button android:id="@+id/button_feedback" android:text="Feedback" />
+			</TableRow>
+			<TableRow>
+				<Button android:id="@+id/button_sync" android:text="Sync" />
+				<Button android:id="@+id/button_donate" android:text="Donate" />
+			</TableRow>			
+		</TableLayout>
+	</LinearLayout>
