@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#24709e" android:stretchColumns="*">
-	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/banner" android:paddingTop="20dip" android:paddingBottom="40dip" />
-	<TableRow android:paddingBottom="40dip">
-		<ImageButton android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
-		<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+<!--
+    Copyright 2010 Ilias Bartolini
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="#F2F2F2" android:stretchColumns="*">
+	<ImageView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:src="@drawable/banner"
+		android:paddingTop="20dip" android:paddingBottom="40dip" />
+	<TableRow android:paddingBottom="20dip">
+		<ImageButton android:id="@+id/button_sessions"
+			android:text="Sessioni" android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:src="@drawable/home_btn_sessions_default"
+			android:background="#00000000" />
+		<ImageButton android:id="@+id/button_map" android:text="Mappa"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/home_btn_map_default" android:background="#00000000" />
 	</TableRow>
-	<TableRow android:paddingBottom="40dip">
-		<ImageButton android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
-		<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_icon" android:background="#00000000" />
+	<TableRow android:paddingBottom="20dip">
+		<ImageButton android:id="@+id/button_tweets" android:text="LiveTweets"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:src="@drawable/menu_icon" android:background="#00000000" />
+		<ImageButton android:id="@+id/button_feedback"
+			android:text="Feedback" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/menu_icon"
+			android:background="#00000000" />
+	</TableRow>
+	<TableRow android:paddingBottom="20dip">
+		<ImageButton android:id="@+id/button_sync" android:text="Sync"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:src="@drawable/menu_icon" android:background="#00000000" />
+		<ImageButton android:id="@+id/button_donate" android:text="Donate"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/menu_icon" android:background="#00000000" />
 	</TableRow>
 </TableLayout>
