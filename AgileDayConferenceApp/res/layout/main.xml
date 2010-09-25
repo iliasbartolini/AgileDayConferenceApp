@@ -14,36 +14,37 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:background="#F2F2F2" android:stretchColumns="*">
-	<ImageView android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:src="@drawable/banner"
-		android:paddingTop="20dip" android:paddingBottom="40dip" />
-	<TableRow android:paddingBottom="20dip">
-		<ImageButton android:id="@+id/button_sessions"
-			android:text="Sessioni" android:layout_width="match_parent"
-			android:layout_height="wrap_content" android:src="@drawable/home_btn_sessions_default"
-			android:background="#00000000" />
-		<ImageButton android:id="@+id/button_map" android:text="Mappa"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:src="@drawable/home_btn_map_default" android:background="#00000000" />
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#FFFFFF">
+	<LinearLayout a:layout_width="fill_parent" a:layout_height="wrap_content">
+		<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:scaleType="centerCrop" a:src="@drawable/banner" />
+	</LinearLayout>
+	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
+		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Sessioni" a:drawableTop="@drawable/home_btn_sessions_default" />
+			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="Mappa" a:drawableTop="@drawable/home_btn_map_default" />
+		</LinearLayout>
+		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Twitter" a:drawableTop="@drawable/menu_icon" />
+			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="About" a:drawableTop="@drawable/menu_icon" />
+		</LinearLayout>
+		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Speakers" a:drawableTop="@drawable/menu_icon" />
+			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="WTF?" a:drawableTop="@drawable/menu_icon" />
+		</LinearLayout>
+	</LinearLayout>
+<!-- 
+	<ImageView a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/banner" a:paddingTop="20dip" a:paddingBottom="40dip" />
+	<TableRow a:paddingBottom="20dip">
+		<ImageButton a:id="@+id/button_sessions" a:text="Sessioni" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/home_btn_sessions_default" a:background="#00000000" />
+		<ImageButton a:id="@+id/button_map" a:text="Mappa" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/home_btn_map_default" a:background="#00000000" />
 	</TableRow>
-	<TableRow android:paddingBottom="20dip">
-		<ImageButton android:id="@+id/button_tweets" android:text="LiveTweets"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:src="@drawable/menu_icon" android:background="#00000000" />
-		<ImageButton android:id="@+id/button_feedback"
-			android:text="Feedback" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:src="@drawable/menu_icon"
-			android:background="#00000000" />
+	<TableRow a:paddingBottom="20dip">
+		<ImageButton a:id="@+id/button_tweets" a:text="LiveTweets" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
+		<ImageButton a:id="@+id/button_feedback" a:text="Feedback" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
 	</TableRow>
-	<TableRow android:paddingBottom="20dip">
-		<ImageButton android:id="@+id/button_sync" android:text="Sync"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:src="@drawable/menu_icon" android:background="#00000000" />
-		<ImageButton android:id="@+id/button_donate" android:text="Donate"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:src="@drawable/menu_icon" android:background="#00000000" />
+	<TableRow a:paddingBottom="20dip">
+		<ImageButton a:id="@+id/button_sync" a:text="Sync" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
+		<ImageButton a:id="@+id/button_donate" a:text="Donate" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
 	</TableRow>
-</TableLayout>
+ -->
+</LinearLayout>
