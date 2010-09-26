@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, ConferenceApp!</string>
     <string name="app_name">ConferenceApp</string>
+    <string name="hash_tag">#allsmiles</string>
 </resources>

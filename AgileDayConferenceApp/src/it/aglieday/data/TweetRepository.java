@@ -1,6 +1,5 @@
 package it.aglieday.data;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +18,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class TweetRepository {
-	public Iterable<Tweet> getTweets() {
-		String uri = String.format("http://search.twitter.com/search.json?result_type=recent&rpp=10&q=%s", URLEncoder.encode("#iad10"));
+	
+	
+	private final String hashTag;
+
+	public TweetRepository(String hashTag) {
+		this.hashTag = hashTag;
+	}
+
+	public List<Tweet> getTweets() {
+		String uri = String.format("http://search.twitter.com/search.json?result_type=recent&rpp=20&q=%s", URLEncoder.encode(hashTag));
 		JSONObject json = httpGetJsonObject(uri);
 		JSONArray results;
 		try {
