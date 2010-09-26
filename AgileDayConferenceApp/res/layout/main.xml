@@ -24,7 +24,7 @@
 			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="Mappa" a:drawableTop="@drawable/home_btn_map_default" />
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Twitter" a:drawableTop="@drawable/menu_icon" />
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="#iad10" a:drawableTop="@drawable/home_btn_twitter" />
 			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="About" a:drawableTop="@drawable/menu_icon" />
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
