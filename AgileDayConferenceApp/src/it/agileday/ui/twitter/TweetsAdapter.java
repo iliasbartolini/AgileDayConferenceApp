@@ -6,10 +6,13 @@ import it.aglieday.data.Tweet;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 class TweetsAdapter extends BaseAdapter {
 	private final List<Tweet> tweets;
@@ -42,10 +45,19 @@ class TweetsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Tweet tweet = getItem(position);
-		TweetViewGroup ret = (TweetViewGroup) (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
-		ret.setText(tweet.text);
-		ret.setImageDrawable(tweet.profileImage);
+		View ret = (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
+		setText(ret, tweet.text);
+		setImageDrawable(ret, tweet.profileImage);
 		return ret;
 	}
 
+	public void setText(View view, String text) {
+		TextView tv = (TextView) view.findViewById(R.id.text);
+		tv.setText(text);
+	}
+
+	public void setImageDrawable(View view, Drawable drawable) {
+		ImageView tv = (ImageView) view.findViewById(R.id.image);
+		tv.setImageDrawable(drawable);
+	}
 }

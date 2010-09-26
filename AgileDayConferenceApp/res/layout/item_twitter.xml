@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<it.agileday.ui.twitter.TweetViewGroup xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="horizontal" a:layout_width="wrap_content" a:layout_height="wrap_content">
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="horizontal" a:layout_width="wrap_content" a:layout_height="wrap_content">
 	<ImageView a:id="@+id/image" a:layout_width="58dip" a:layout_height="48dip" a:paddingRight="10dip" />
 	<TextView a:id="@+id/text" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:textColor="@color/text" />
-</it.agileday.ui.twitter.TweetViewGroup>
+</LinearLayout>
