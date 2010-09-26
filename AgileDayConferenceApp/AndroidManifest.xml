@@ -11,6 +11,5 @@
                   android:label="Sessioni">
         </activity>
 	</application>
-	<uses-sdk android:minSdkVersion="8" />
-
+	<uses-sdk android:minSdkVersion="4" />
 </manifest> 
