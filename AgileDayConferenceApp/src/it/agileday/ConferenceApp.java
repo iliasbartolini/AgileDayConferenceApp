@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.agileday;
 
@@ -23,20 +23,27 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class ConferenceApp extends Activity implements OnClickListener {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        View sessionButtonView = findViewById(R.id.button_sessions);
-        sessionButtonView.setOnClickListener(this);
-        
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		findViewById(R.id.button_sessions).setOnClickListener(this);
+		findViewById(R.id.button_twitter).setOnClickListener(this);
+	}
 
 	@Override
 	public void onClick(View v) {
-		Intent sessionIntent = new Intent(this,SessionActivity.class);
-		startActivity(sessionIntent);
+		switch (v.getId()) {
+		case R.id.button_sessions:
+			startActivity(new Intent(this, SessionActivity.class));
+			break;
+		case R.id.button_twitter:
+			startActivity(new Intent(this, TwitterActivity.class));
+			break;
+		default:
+			break;
+		}
 	}
-    
+
 }

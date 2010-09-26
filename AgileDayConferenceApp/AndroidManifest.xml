@@ -7,9 +7,10 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-        <activity android:name=".SessionActivity"
-                  android:label="Sessioni">
-        </activity>
+		<activity android:name=".SessionActivity" android:label="Sessioni">
+		</activity>
+		<activity android:name=".TwitterActivity" android:label="Twitter">
+		</activity>
 	</application>
 	<uses-sdk android:minSdkVersion="4" />
 </manifest> 
