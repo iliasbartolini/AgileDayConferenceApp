@@ -14,8 +14,9 @@
    limitations under the License.
 */
 
-package it.agileday;
+package it.agileday.ui;
 
+import it.agileday.R;
 import android.app.Activity;
 import android.os.Bundle;
 
