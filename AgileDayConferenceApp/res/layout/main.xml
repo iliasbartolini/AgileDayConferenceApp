@@ -14,7 +14,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#FFFFFF">
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
 	<LinearLayout a:layout_width="fill_parent" a:layout_height="wrap_content">
 		<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:scaleType="centerCrop" a:src="@drawable/banner" />
 	</LinearLayout>
