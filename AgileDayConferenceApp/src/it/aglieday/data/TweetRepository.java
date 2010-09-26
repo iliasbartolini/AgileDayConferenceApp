@@ -15,11 +15,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.drawable.Drawable;
+
 public class TweetRepository {
-	
-	
+
 	private final String hashTag;
 
 	public TweetRepository(String hashTag) {
@@ -41,9 +43,33 @@ public class TweetRepository {
 	private List<Tweet> fromJson(JSONArray ary) throws Exception {
 		List<Tweet> tweets = new ArrayList<Tweet>(ary.length());
 		for (int i = 0; i < ary.length(); i++) {
-			tweets.add(Tweet.fromJson(ary.getJSONObject(i)));
+			tweets.add(buildTweet(ary.getJSONObject(i)));
 		}
 		return tweets;
+	}
+
+	public static Tweet buildTweet(JSONObject json) {
+		Tweet ret = new Tweet();
+		try {
+			ret.id = json.getLong("id");
+			ret.text = json.getString("text");
+			ret.fromUser = json.getString("from_user");
+			ret.profileImage = httpGetDrawable(json.getString("profile_image_url"));
+		} catch (JSONException e) {
+			throw new RuntimeException(e);
+		}
+		return ret;
+	}
+
+	public static Drawable httpGetDrawable(String uri) {
+		try {
+			HttpGet request = new HttpGet(uri);
+			HttpResponse response = new DefaultHttpClient().execute(request);
+			InputStream stream = response.getEntity().getContent();
+			return Drawable.createFromStream(stream, "src");
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static JSONObject httpGetJsonObject(String uri) {
