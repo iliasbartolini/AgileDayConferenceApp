@@ -15,9 +15,7 @@
     limitations under the License.
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
-	<LinearLayout a:layout_width="fill_parent" a:layout_height="wrap_content">
-		<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:scaleType="centerCrop" a:src="@drawable/banner" />
-	</LinearLayout>
+	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner" a:adjustViewBounds="true" />
 	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
 			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Sessioni" a:drawableTop="@drawable/home_btn_sessions_default" />
@@ -32,19 +30,4 @@
 			<Button style="@style/HomeButton" a:text="WTF?" a:drawableTop="@drawable/menu_icon" />
 		</LinearLayout>
 	</LinearLayout>
-<!-- 
-	<ImageView a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/banner" a:paddingTop="20dip" a:paddingBottom="40dip" />
-	<TableRow a:paddingBottom="20dip">
-		<ImageButton a:id="@+id/button_sessions" a:text="Sessioni" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/home_btn_sessions_default" a:background="#00000000" />
-		<ImageButton a:id="@+id/button_map" a:text="Mappa" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/home_btn_map_default" a:background="#00000000" />
-	</TableRow>
-	<TableRow a:paddingBottom="20dip">
-		<ImageButton a:id="@+id/button_tweets" a:text="LiveTweets" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
-		<ImageButton a:id="@+id/button_feedback" a:text="Feedback" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
-	</TableRow>
-	<TableRow a:paddingBottom="20dip">
-		<ImageButton a:id="@+id/button_sync" a:text="Sync" a:layout_width="match_parent" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
-		<ImageButton a:id="@+id/button_donate" a:text="Donate" a:layout_width="wrap_content" a:layout_height="wrap_content" a:src="@drawable/menu_icon" a:background="#00000000" />
-	</TableRow>
- -->
 </LinearLayout>
