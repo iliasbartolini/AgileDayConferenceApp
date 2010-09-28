@@ -1,8 +1,6 @@
 package it.agileday.ui.twitter;
 
 import it.agileday.R;
-import it.agileday.util.Task;
-import it.agileday.util.TaskRunner;
 import it.aglieday.data.Tweet;
 import it.aglieday.data.TweetRepository;
 
@@ -10,6 +8,7 @@ import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class TwitterActivity extends ListActivity {
@@ -17,26 +16,26 @@ public class TwitterActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_twitter);
-		TaskRunner.run(new Task<List<Tweet>>() {
-			@Override
-			public List<Tweet> run() {
-				return new TweetRepository(getResources().getString(R.string.hash_tag)).getTweets();
-			}
-
-			@Override
-			public void success(List<Tweet> ret) {
-				TweetsAdapter adapter = new TweetsAdapter(getContext(), ret);
-				setListAdapter(adapter);
-			}
-
-			@Override
-			public void failure(Exception e) {
-				throw new RuntimeException(e);
-			}
-		});
+		new GetTweetsTask(this).execute(new TweetRepository(getResources().getString(R.string.hash_tag)));
 	}
 
-	private Context getContext() {
-		return this;
+	private class GetTweetsTask extends AsyncTask<TweetRepository, Integer, List<Tweet>> {
+		private final Context context;
+
+		public GetTweetsTask(Context context) {
+			super();
+			this.context = context;
+		}
+
+		@Override
+		protected void onPostExecute(List<Tweet> result) {
+			TweetsAdapter adapter = new TweetsAdapter(context, result);
+			setListAdapter(adapter);
+		}
+
+		@Override
+		protected List<Tweet> doInBackground(TweetRepository... params) {
+			return params[0].getTweets();
+		}
 	}
 }
