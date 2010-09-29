@@ -6,7 +6,7 @@ import it.aglieday.data.Tweet;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +56,8 @@ class TweetsAdapter extends BaseAdapter {
 		tv.setText(text);
 	}
 
-	public void setImageDrawable(View view, Drawable drawable) {
+	public void setImageDrawable(View view, Bitmap bitmap) {
 		ImageView tv = (ImageView) view.findViewById(R.id.image);
-		tv.setImageDrawable(drawable);
+		tv.setImageBitmap(bitmap);
 	}
 }
