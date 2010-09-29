@@ -16,7 +16,6 @@
 
 package it.agileday.ui.sessions;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import it.agileday.R;
@@ -30,8 +29,9 @@ public class SessionActivity extends ListActivity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.sessions);
 	        
-	        String spreadsheetURL = "https://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
-			List<Session> mySessions = new SessionsRepository(spreadsheetURL).getSessions();  
+	        //String spreadsheetURL = "http://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
+	        String spreadsheetFeedURL = "http://spreadsheets.google.com/feeds/cells/0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc/od6/private/full";
+			List<Session> mySessions = new SessionsRepository(spreadsheetFeedURL).getSessions();  
 	        	
 	        SessionAdapter adapter = new SessionAdapter(this, mySessions);
 			setListAdapter(adapter);

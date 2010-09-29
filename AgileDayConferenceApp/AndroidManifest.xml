@@ -7,7 +7,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".ui.SessionActivity" android:label="Sessioni">
+		<activity android:name=".ui.sessions.SessionActivity" android:label="Sessioni">
 		</activity>
 		<activity android:name=".ui.twitter.TwitterActivity" android:label="Twitter">
 		</activity>
