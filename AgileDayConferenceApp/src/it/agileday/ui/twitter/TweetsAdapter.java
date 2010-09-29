@@ -1,6 +1,7 @@
 package it.agileday.ui.twitter;
 
 import it.agileday.R;
+import it.agileday.utils.BitmapCache;
 import it.aglieday.data.Tweet;
 
 import java.util.List;
@@ -17,10 +18,12 @@ import android.widget.TextView;
 class TweetsAdapter extends BaseAdapter {
 	private final List<Tweet> tweets;
 	private final Context context;
+	private final BitmapCache bitmapCache;
 
-	public TweetsAdapter(Context context, List<Tweet> tweets) {
+	public TweetsAdapter(Context context, List<Tweet> tweets, BitmapCache bitmapCache) {
 		this.context = context;
 		this.tweets = tweets;
+		this.bitmapCache = bitmapCache;
 	}
 
 	private LayoutInflater getLayoutInflater() {
@@ -47,7 +50,7 @@ class TweetsAdapter extends BaseAdapter {
 		Tweet tweet = getItem(position);
 		View ret = (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
 		setText(ret, tweet.text);
-		setImageDrawable(ret, tweet.profileImage);
+		setImageDrawable(ret, bitmapCache.get(tweet.profileImageUrl));
 		return ret;
 	}
 

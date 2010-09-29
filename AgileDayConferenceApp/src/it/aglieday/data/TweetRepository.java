@@ -44,7 +44,7 @@ public class TweetRepository {
 			ret.id = json.getLong("id");
 			ret.text = json.getString("text");
 			ret.fromUser = json.getString("from_user");
-			ret.profileImage = HttpRestUtil.httpGetBitmap(json.getString("profile_image_url"));
+			ret.profileImageUrl = json.getString("profile_image_url");
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
