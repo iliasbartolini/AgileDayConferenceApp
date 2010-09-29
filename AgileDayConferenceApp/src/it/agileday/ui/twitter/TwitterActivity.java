@@ -3,7 +3,7 @@ package it.agileday.ui.twitter;
 import it.agileday.R;
 import it.agileday.utils.BitmapCache;
 import it.aglieday.data.Tweet;
-import it.aglieday.data.TweetRepository;
+import it.aglieday.data.TweetsRepository;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class TwitterActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_twitter);
-		new GetTweetsTask(this, new BitmapCache()).execute(new TweetRepository(getResources().getString(R.string.hash_tag)));
+		new GetTweetsTask(this, new BitmapCache()).execute(new TweetsRepository(getResources().getString(R.string.hash_tag)));
 	}
 
-	private class GetTweetsTask extends AsyncTask<TweetRepository, Integer, List<Tweet>> {
+	private class GetTweetsTask extends AsyncTask<TweetsRepository, Integer, List<Tweet>> {
 		private final Context context;
 		private final BitmapCache bitmapCache;
 
@@ -36,7 +36,7 @@ public class TwitterActivity extends ListActivity {
 		}
 
 		@Override
-		protected List<Tweet> doInBackground(TweetRepository... params) {
+		protected List<Tweet> doInBackground(TweetsRepository... params) {
 			return params[0].getTweets();
 		}
 	}

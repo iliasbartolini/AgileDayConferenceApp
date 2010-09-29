@@ -1,6 +1,8 @@
 package it.agileday.ui.sessions;
 
 import it.agileday.R;
+import it.aglieday.data.Session;
+
 import java.util.List;
 
 import android.content.Context;

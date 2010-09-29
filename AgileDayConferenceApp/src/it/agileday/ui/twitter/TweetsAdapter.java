@@ -48,10 +48,10 @@ class TweetsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Tweet tweet = getItem(position);
-		View ret = (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
-		setText(ret, tweet.text);
-		setImageDrawable(ret, bitmapCache.get(tweet.profileImageUrl));
-		return ret;
+		View resultView = (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
+		setText(resultView, tweet.text);
+		setImageDrawable(resultView, bitmapCache.get(tweet.profileImageUrl));
+		return resultView;
 	}
 
 	public void setText(View view, String text) {

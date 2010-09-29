@@ -17,6 +17,7 @@
 package it.agileday.ui;
 
 import it.agileday.R;
+import it.agileday.ui.sessions.SessionActivity;
 import it.agileday.ui.twitter.TwitterActivity;
 import android.app.Activity;
 import android.content.Intent;

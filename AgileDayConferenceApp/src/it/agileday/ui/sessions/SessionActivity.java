@@ -20,6 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.agileday.R;
+import it.aglieday.data.Session;
+import it.aglieday.data.SessionsRepository;
 import android.app.ListActivity;
 import android.os.Bundle;
 
@@ -28,15 +30,9 @@ public class SessionActivity extends ListActivity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.sessions);
 	        
-	        List<Session> mySessions = new LinkedList<Session>();
-	        Session session1 = new Session();
-	        session1.id = 0;
-	        session1.title = "Geppo";
-	        mySessions.add(session1);
-	        Session session2 = new Session();
-	        session2.id = 1;
-	        session2.title = "Bart";
-	        mySessions.add(session2);
+	        String spreadsheetURL = "https://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
+			List<Session> mySessions = new SessionsRepository(spreadsheetURL).getSessions();  
+	        	
 	        SessionAdapter adapter = new SessionAdapter(this, mySessions);
 			setListAdapter(adapter);
        }
