@@ -12,10 +12,11 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.aglieday.data;
 
+import it.agileday.utils.BitmapCache;
 import it.agileday.utils.HttpRestUtil;
 
 import java.net.URLEncoder;
@@ -29,13 +30,15 @@ import org.json.JSONObject;
 public class TweetsRepository {
 
 	private final String hashTag;
+	private final BitmapCache bitmapCache;
 
-	public TweetsRepository(String hashTag) {
+	public TweetsRepository(String hashTag, BitmapCache bitmapCache) {
 		this.hashTag = hashTag;
+		this.bitmapCache = bitmapCache;
 	}
 
 	public List<Tweet> getTweets() {
-		String uri = String.format("http://search.twitter.com/search.json?result_type=recent&rpp=20&q=%s", URLEncoder.encode(hashTag));
+		String uri = String.format("http://search.twitter.com/search.json?result_type=recent&rpp=10&q=%s", URLEncoder.encode(hashTag));
 		JSONObject json = HttpRestUtil.httpGetJsonObject(uri);
 		JSONArray results;
 		try {
@@ -54,13 +57,13 @@ public class TweetsRepository {
 		return tweets;
 	}
 
-	public static Tweet buildTweet(JSONObject json) {
+	public Tweet buildTweet(JSONObject json) {
 		Tweet ret = new Tweet();
 		try {
 			ret.id = json.getLong("id");
 			ret.text = json.getString("text");
 			ret.fromUser = json.getString("from_user");
-			ret.profileImageUrl = json.getString("profile_image_url");
+			ret.profileImage = bitmapCache.get(json.getString("profile_image_url"));
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}

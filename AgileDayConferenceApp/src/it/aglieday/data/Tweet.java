@@ -12,13 +12,15 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.aglieday.data;
+
+import android.graphics.Bitmap;
 
 public class Tweet {
 	public long id;
 	public String text;
 	public String fromUser;
-	public String profileImageUrl;
+	public Bitmap profileImage;
 }

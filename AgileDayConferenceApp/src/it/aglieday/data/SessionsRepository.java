@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.aglieday.data;
 
@@ -34,51 +34,47 @@ public class SessionsRepository {
 	}
 
 	public List<Session> getSessions() {
-		//return realSessionsListThatDoesNotWorkYet()
+		// return realSessionsListThatDoesNotWorkYet()
 		return dummySessionsList();
 	}
 
-	
-	private List<Session> realSessionsListThatDoesNotWorkYet() 
-	{
+	@SuppressWarnings("unused")
+	private List<Session> realSessionsListThatDoesNotWorkYet() {
 		List<Session> mySessions = new ArrayList<Session>();
 		HttpURLConnection connection = null;
-		
+
 		try {
 			if (Thread.interrupted())
 				throw new InterruptedException();
-	
-			//String encodedOriginalText = URLEncoder.encode(originalText, "UTF-8");
-			
+
+			// String encodedOriginalText = URLEncoder.encode(originalText, "UTF-8");
+
 			URL url = new URL(spreadsheetURL);
-			
-			connection = (HttpURLConnection) url.openConnection(); 
+
+			connection = (HttpURLConnection) url.openConnection();
 			connection.setReadTimeout(10000);
 			connection.setConnectTimeout(15000);
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Authorization", "GoogleLogin auth=COXmrYYB");
 			connection.setDoInput(true);
 			connection.connect();
-			
+
 			if (Thread.interrupted())
 				throw new InterruptedException();
-			
+
 			InputStream inputStream = connection.getInputStream();
-			
+
 			// Read results from the query
-			BufferedReader reader = new BufferedReader(	new InputStreamReader(inputStream, "UTF-8" ));
-	
-	
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+
 			String payload = reader.readLine();
-			Log.d("SpreadsheetFeed",payload);
-		}
-		catch(Exception e)
-		{
-			Log.d("SpreadsheetFeedError",e.toString());
+			Log.d("SpreadsheetFeed", payload);
+		} catch (Exception e) {
+			Log.d("SpreadsheetFeedError", e.toString());
 		}
 		return mySessions;
 	}
-	
+
 	private List<Session> dummySessionsList() {
 		List<Session> mySessions = new ArrayList<Session>();
 		Session session1 = new Session();

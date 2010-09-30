@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.agileday.ui.twitter;
 
@@ -33,21 +33,19 @@ public class TwitterActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_twitter);
-		new GetTweetsTask(this, new BitmapCache()).execute(new TweetsRepository(getResources().getString(R.string.hash_tag)));
+		new GetTweetsTask(this, new BitmapCache()).execute(new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache()));
 	}
 
 	private class GetTweetsTask extends AsyncTask<TweetsRepository, Integer, List<Tweet>> {
 		private final Context context;
-		private final BitmapCache bitmapCache;
 
 		public GetTweetsTask(Context context, BitmapCache bitmapCache) {
 			this.context = context;
-			this.bitmapCache = bitmapCache;
 		}
 
 		@Override
 		protected void onPostExecute(List<Tweet> result) {
-			TweetsAdapter adapter = new TweetsAdapter(context, result, bitmapCache);
+			TweetsAdapter adapter = new TweetsAdapter(context, result);
 			setListAdapter(adapter);
 		}
 
