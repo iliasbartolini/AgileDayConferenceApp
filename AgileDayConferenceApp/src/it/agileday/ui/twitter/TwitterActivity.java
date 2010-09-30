@@ -26,10 +26,15 @@ import java.util.List;
 import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 
-public class TwitterActivity extends ListActivity {
+public class TwitterActivity extends ListActivity implements OnScrollListener {
+	private static final String TAG = TwitterActivity.class.getName();
 	private TweetsRepository repository;
 	private TweetsAdapter adapter;
+	private GetTweetsTask task;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,20 +42,45 @@ public class TwitterActivity extends ListActivity {
 		repository = new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache());
 		adapter = new TweetsAdapter(this);
 		setListAdapter(adapter);
+		getListView().setOnScrollListener(this);
 
-		new GetTweetsTask().execute();
+		loadTweets();
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+		Log.i(TAG, "onScroll(firstVisibleItem=" + firstVisibleItem + ", visibleItemCount=" + visibleItemCount + ", totalItemCount=" + totalItemCount + ")");
+		boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
+		if (loadMore) {
+			loadTweets();
+		}
+	}
+
+	private void loadTweets() {
+		synchronized (this) {
+			if (task == null) {
+				task = new GetTweetsTask();
+				task.execute();
+			}
+		}
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
 	}
 
 	private class GetTweetsTask extends AsyncTask<Void, Void, List<Tweet>> {
 		@Override
 		protected List<Tweet> doInBackground(Void... params) {
-			return repository.getTweets();
+			Log.i(TAG, "Loading next tweet page");
+			return repository.getNextPage();
 		}
 
 		@Override
 		protected void onPostExecute(List<Tweet> result) {
 			adapter.addTweets(result);
 			adapter.notifyDataSetChanged();
+			task = null;
 		}
 	}
 }

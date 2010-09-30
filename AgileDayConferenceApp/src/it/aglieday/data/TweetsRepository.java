@@ -28,22 +28,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class TweetsRepository {
+	private static final String URL = "http://search.twitter.com/search.json";
 
-	private final String hashTag;
+	private String nextPageUrl;
 	private final BitmapCache bitmapCache;
 
 	public TweetsRepository(String hashTag, BitmapCache bitmapCache) {
-		this.hashTag = hashTag;
+		this.nextPageUrl = String.format("%s?q=%s&result_type=recent&rpp=10", URL, URLEncoder.encode(hashTag));
 		this.bitmapCache = bitmapCache;
 	}
 
-	public List<Tweet> getTweets() {
-		String uri = String.format("http://search.twitter.com/search.json?result_type=recent&rpp=10&q=%s", URLEncoder.encode(hashTag));
-		JSONObject json = HttpRestUtil.httpGetJsonObject(uri);
-		JSONArray results;
+	public List<Tweet> getNextPage() {
+		JSONObject json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
 		try {
-			results = json.getJSONArray("results");
-			return fromJson(results);
+			nextPageUrl = URL + json.getString("next_page");
+			return fromJson(json.getJSONArray("results"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
