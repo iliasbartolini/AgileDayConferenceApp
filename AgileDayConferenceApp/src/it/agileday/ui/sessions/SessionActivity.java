@@ -1,5 +1,5 @@
 /*
-   Copyright 2010 Ilias Bartolini
+   Copyright 2010 Ilias Bartolini, Luigi Bozzo, Andrea Chiarini
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
