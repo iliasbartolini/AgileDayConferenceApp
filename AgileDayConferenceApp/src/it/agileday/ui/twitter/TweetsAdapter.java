@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +38,16 @@ class TweetsAdapter extends BaseAdapter {
 	public TweetsAdapter(Context context) {
 		this.context = context;
 		this.tweets = new ArrayList<Tweet>();
+		this.tweets.add(null);
 	}
 
 	public void addTweets(Collection<Tweet> tweets) {
-		this.tweets.addAll(tweets);
+		this.tweets.addAll(this.tweets.size() - 1, tweets);
+		// this.tweets.addAll(tweets);
+	}
+
+	public void addLoading() {
+		this.tweets.add(null);
 	}
 
 	private LayoutInflater getLayoutInflater() {
@@ -67,19 +72,26 @@ class TweetsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Tweet tweet = getItem(position);
-		View resultView = (convertView == null ? getLayoutInflater().inflate(R.layout.item_twitter, parent, false) : convertView);
-		setText(resultView, tweet.text);
-		setImageDrawable(resultView, tweet.profileImage);
-		return resultView;
+		return tweet != null ? getTweetView(tweet, convertView, parent) : getLoadingView(convertView, parent);
 	}
 
-	public void setText(View view, String text) {
-		TextView tv = (TextView) view.findViewById(R.id.text);
-		tv.setText(text);
+	private View getLoadingView(View convertView, ViewGroup parent) {
+		View ret = convertView;
+		if (ret == null || ret.getId() != R.id.items_loading_twitter) {
+			ret = getLayoutInflater().inflate(R.layout.items_loading_twitter, parent, false);
+		}
+		return ret;
 	}
 
-	public void setImageDrawable(View view, Bitmap bitmap) {
-		ImageView tv = (ImageView) view.findViewById(R.id.image);
-		tv.setImageBitmap(bitmap);
+	private View getTweetView(Tweet tweet, View convertView, ViewGroup parent) {
+		View ret = convertView;
+		if (ret == null || ret.getId() != R.id.item_twitter) {
+			ret = getLayoutInflater().inflate(R.layout.item_twitter, parent, false);
+		}
+		TextView text = (TextView) ret.findViewById(R.id.text);
+		text.setText(tweet.text);
+		ImageView image = (ImageView) ret.findViewById(R.id.image);
+		image.setImageBitmap(tweet.profileImage);
+		return ret;
 	}
 }
