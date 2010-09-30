@@ -18,7 +18,7 @@ package it.agileday.tests;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ImageButton;
-import it.agileday.ConferenceApp;;
+import it.agileday.ui.ConferenceApp;;
 
 public class ConferenceAppTest extends
 		ActivityInstrumentationTestCase2<ConferenceApp> {
