@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.agileday.ui.sessions;
 
@@ -25,17 +25,18 @@ import android.app.ListActivity;
 import android.os.Bundle;
 
 public class SessionActivity extends ListActivity {
-	 public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.sessions);
-	        
-	        //String spreadsheetURL = "http://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
-	        String spreadsheetFeedURL = "http://spreadsheets.google.com/feeds/cells/0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc/od6/private/full";
-			List<Session> mySessions = new SessionsRepository(spreadsheetFeedURL).getSessions();  
-	        	
-	        SessionAdapter adapter = new SessionAdapter(this, mySessions);
-			setListAdapter(adapter);
-       }
-	        
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.sessions);
+
+		// String spreadsheetURL =
+		// "http://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
+		String spreadsheetFeedURL = "http://spreadsheets.google.com/feeds/cells/0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc/od6/private/full";
+		List<Session> mySessions = new SessionsRepository(spreadsheetFeedURL)
+				.getSessions();
+
+		SessionAdapter adapter = new SessionAdapter(this, mySessions);
+		setListAdapter(adapter);
+	}
 
 }

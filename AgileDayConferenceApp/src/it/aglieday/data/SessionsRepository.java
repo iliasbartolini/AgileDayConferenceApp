@@ -47,7 +47,8 @@ public class SessionsRepository {
 			if (Thread.interrupted())
 				throw new InterruptedException();
 
-			// String encodedOriginalText = URLEncoder.encode(originalText, "UTF-8");
+			// String encodedOriginalText = URLEncoder.encode(originalText,
+			// "UTF-8");
 
 			URL url = new URL(spreadsheetURL);
 
@@ -55,7 +56,8 @@ public class SessionsRepository {
 			connection.setReadTimeout(10000);
 			connection.setConnectTimeout(15000);
 			connection.setRequestMethod("GET");
-			connection.setRequestProperty("Authorization", "GoogleLogin auth=COXmrYYB");
+			connection.setRequestProperty("Authorization",
+					"GoogleLogin auth=COXmrYYB");
 			connection.setDoInput(true);
 			connection.connect();
 
@@ -65,7 +67,8 @@ public class SessionsRepository {
 			InputStream inputStream = connection.getInputStream();
 
 			// Read results from the query
-			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					inputStream, "UTF-8"));
 
 			String payload = reader.readLine();
 			Log.d("SpreadsheetFeed", payload);
