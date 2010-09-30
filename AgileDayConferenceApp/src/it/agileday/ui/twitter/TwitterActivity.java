@@ -24,34 +24,33 @@ import it.aglieday.data.TweetsRepository;
 import java.util.List;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class TwitterActivity extends ListActivity {
+	private TweetsRepository repository;
+	private TweetsAdapter adapter;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_twitter);
-		new GetTweetsTask(this, new BitmapCache()).execute(new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache()));
+		repository = new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache());
+		adapter = new TweetsAdapter(this);
+		setListAdapter(adapter);
+
+		new GetTweetsTask().execute();
 	}
 
-	private class GetTweetsTask extends AsyncTask<TweetsRepository, Integer, List<Tweet>> {
-		private final Context context;
-
-		public GetTweetsTask(Context context, BitmapCache bitmapCache) {
-			this.context = context;
+	private class GetTweetsTask extends AsyncTask<Void, Void, List<Tweet>> {
+		@Override
+		protected List<Tweet> doInBackground(Void... params) {
+			return repository.getTweets();
 		}
 
 		@Override
 		protected void onPostExecute(List<Tweet> result) {
-			TweetsAdapter adapter = new TweetsAdapter(context, result);
-			setListAdapter(adapter);
-		}
-
-		@Override
-		protected List<Tweet> doInBackground(TweetsRepository... params) {
-			return params[0].getTweets();
+			adapter.addTweets(result);
+			adapter.notifyDataSetChanged();
 		}
 	}
 }

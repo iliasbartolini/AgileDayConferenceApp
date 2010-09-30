@@ -12,13 +12,15 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+ */
 
 package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.aglieday.data.Tweet;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import android.content.Context;
@@ -34,9 +36,13 @@ class TweetsAdapter extends BaseAdapter {
 	private final List<Tweet> tweets;
 	private final Context context;
 
-	public TweetsAdapter(Context context, List<Tweet> tweets) {
+	public TweetsAdapter(Context context) {
 		this.context = context;
-		this.tweets = tweets;
+		this.tweets = new ArrayList<Tweet>();
+	}
+
+	public void addTweets(Collection<Tweet> tweets) {
+		this.tweets.addAll(tweets);
 	}
 
 	private LayoutInflater getLayoutInflater() {
