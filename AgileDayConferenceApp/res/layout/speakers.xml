@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-	<ScrollView android:id="@+id/ScrollView01" android:layout_height="110px" android:layout_width="wrap_content" android:scrollbars="horizontal|vertical">
-		<HorizontalScrollView android:id="@+id/HorizontalScrollView01" android:layout_height="fill_parent" android:layout_width="wrap_content">
-			<LinearLayout android:id="@+id/LinearLayout02" android:layout_width="wrap_content" android:orientation="vertical" android:layout_height="fill_parent">
-				<Button android:text="1" android:id="@+id/Button01" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-				<Button android:text="2" android:id="@+id/Button02" android:layout_height="wrap_content" android:layout_width="400px" />
-				<Button android:text="3" android:id="@+id/Button03" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-			</LinearLayout>
-		</HorizontalScrollView>
-	</ScrollView>
-</LinearLayout>
+<Gallery xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/gallery" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/background" />
