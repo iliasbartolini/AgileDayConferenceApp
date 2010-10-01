@@ -18,6 +18,7 @@ package it.agileday.ui;
 
 import it.agileday.R;
 import it.agileday.ui.sessions.SessionActivity;
+import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 
 		findViewById(R.id.button_sessions).setOnClickListener(this);
 		findViewById(R.id.button_twitter).setOnClickListener(this);
+		findViewById(R.id.button_speakers).setOnClickListener(this);
 	}
 
 	@Override
@@ -43,6 +45,9 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			break;
 		case R.id.button_twitter:
 			startActivity(new Intent(this, TwitterActivity.class));
+			break;
+		case R.id.button_speakers:
+			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
 		default:
 			break;
