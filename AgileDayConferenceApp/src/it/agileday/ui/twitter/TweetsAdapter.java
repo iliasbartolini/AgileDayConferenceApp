@@ -90,6 +90,8 @@ class TweetsAdapter extends BaseAdapter {
 		}
 		TextView text = (TextView) ret.findViewById(R.id.text);
 		text.setText(tweet.text);
+		// TODO use Html.fromHtml()
+		// TODO use http://developer.android.com/reference/android/text/util/Linkify.html
 		ImageView image = (ImageView) ret.findViewById(R.id.image);
 		image.setImageBitmap(tweet.profileImage);
 		return ret;
