@@ -21,6 +21,6 @@ public class SpeakersActivity extends Activity {
 		startManagingCursor(speakers);
 
 		Gallery g = (Gallery) findViewById(R.id.gallery);
-		g.setAdapter(new SimpleCursorAdapter(this, R.layout.speakers_item, speakers, new String[] { "name" }, new int[] { R.id.name }));
+		g.setAdapter(new SimpleCursorAdapter(this, R.layout.speakers_item, speakers, new String[] { "name", "bio" }, new int[] { R.id.name, R.id.bio }));
 	}
 }
