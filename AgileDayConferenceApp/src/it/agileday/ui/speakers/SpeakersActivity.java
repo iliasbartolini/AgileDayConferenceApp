@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -37,7 +39,8 @@ public class SpeakersActivity extends Activity {
 			TextView name = (TextView) view.findViewById(R.id.name);
 			name.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
 			TextView bio = (TextView) view.findViewById(R.id.bio);
-			bio.setText(cursor.getString(cursor.getColumnIndexOrThrow("bio")));
+			bio.setMovementMethod(LinkMovementMethod.getInstance()); // http://code.google.com/p/android/issues/detail?id=2219
+			bio.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndexOrThrow("bio"))));
 		}
 
 		@Override
