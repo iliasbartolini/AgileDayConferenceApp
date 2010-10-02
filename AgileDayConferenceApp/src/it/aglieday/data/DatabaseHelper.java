@@ -2,18 +2,18 @@ package it.aglieday.data;
 
 import it.agileday.R;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.Scanner;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String TAG = DatabaseHelper.class.getName();
-	private static final String DATABASE_NAME = "data";
-	private static final int DATABASE_VERSION = 2;
+	private static final String DATABASE_NAME = "data.db";
+	private static final int DATABASE_VERSION = 1;
 	private final Context context;
 
 	public DatabaseHelper(Context context) {
@@ -23,8 +23,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = toString(context.getResources().openRawResource(R.raw.database));
-		db.execSQL(sql);
+		InputStream stream = context.getResources().openRawResource(R.raw.database);
+		execScript(stream, db);
 	}
 
 	@Override
@@ -33,16 +33,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	private static String toString(InputStream in) {
-		try {
-			StringBuffer ret = new StringBuffer();
-			byte[] b = new byte[4096];
-			for (int n; (n = in.read(b)) != -1;) {
-				ret.append(new String(b, 0, n));
-			}
-			return ret.toString();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+	private static void execScript(InputStream stream, SQLiteDatabase db) {
+		Scanner scanner = new Scanner(stream);
+		scanner.useDelimiter(";\\s*(\\n|\\r\\n|\\r)");
+		while (scanner.hasNext()) {
+			String sql = scanner.next();
+			db.execSQL(sql);
 		}
 	}
 }

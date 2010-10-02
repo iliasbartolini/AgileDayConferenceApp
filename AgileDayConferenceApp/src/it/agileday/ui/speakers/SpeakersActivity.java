@@ -1,15 +1,13 @@
 package it.agileday.ui.speakers;
 
 import it.agileday.R;
+import it.aglieday.data.Dao;
+import it.aglieday.data.DatabaseHelper;
 import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.Color;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Gallery;
+import android.widget.SimpleCursorAdapter;
 
 public class SpeakersActivity extends Activity {
 
@@ -17,35 +15,12 @@ public class SpeakersActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speakers);
+
+		Dao dao = new Dao(new DatabaseHelper(this).getReadableDatabase());
+		Cursor speakers = dao.fetchAllSpeakers();
+		startManagingCursor(speakers);
+
 		Gallery g = (Gallery) findViewById(R.id.gallery);
-		g.setAdapter(new SpeakersAdapter());
-		
-		
-	}
-
-	public class SpeakersAdapter extends BaseAdapter {
-		private final int[] colors = new int[] { Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.GRAY, Color.BLACK };
-
-		@Override
-		public int getCount() {
-			return colors.length;
-		}
-
-		@Override
-		public Object getItem(int arg0) {
-			return colors[arg0];
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View ret = (convertView == null ? getLayoutInflater().inflate(R.layout.speakers_item, parent, false) : convertView);
-			ret.setBackgroundColor(colors[position]);
-			return ret;
-		}
+		g.setAdapter(new SimpleCursorAdapter(this, R.layout.speakers_item, speakers, new String[] { "name" }, new int[] { R.id.name }));
 	}
 }
