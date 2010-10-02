@@ -2,8 +2,10 @@ package it.agileday.ui.speakers;
 
 import it.agileday.R;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,10 +19,12 @@ public class SpeakersActivity extends Activity {
 		setContentView(R.layout.speakers);
 		Gallery g = (Gallery) findViewById(R.id.gallery);
 		g.setAdapter(new SpeakersAdapter());
+		
+		
 	}
 
 	public class SpeakersAdapter extends BaseAdapter {
-		private final int[] colors = new int[] { Color.RED, Color.GREEN, Color.BLUE };
+		private final int[] colors = new int[] { Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.GRAY, Color.BLACK };
 
 		@Override
 		public int getCount() {
