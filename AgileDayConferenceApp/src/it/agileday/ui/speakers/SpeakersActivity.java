@@ -11,11 +11,16 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.Gallery;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
-public class SpeakersActivity extends Activity {
+public class SpeakersActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,8 +30,17 @@ public class SpeakersActivity extends Activity {
 		Cursor speakers = dao.fetchAllSpeakers();
 		startManagingCursor(speakers);
 
-		Gallery g = (Gallery) findViewById(R.id.gallery);
-		g.setAdapter(new SpeakersCursorAdapter(this, speakers));
+		// Gallery g = (Gallery) findViewById(R.id.gallery);
+		// g.setAdapter(new SpeakersCursorAdapter(this, speakers));
+
+		ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
+
+		Animation s_in = AnimationUtils.loadAnimation(this, R.anim.slidein);
+		Animation s_out = AnimationUtils.loadAnimation(this, R.anim.slideout);
+		flipper.setInAnimation(s_in);
+		flipper.setOutAnimation(s_out);
+
+		((Button) findViewById(R.id.button)).setOnClickListener(this);
 	}
 
 	private class SpeakersCursorAdapter extends CursorAdapter {
@@ -49,5 +63,11 @@ public class SpeakersActivity extends Activity {
 			bindView(ret, context, cursor);
 			return ret;
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
+		flipper.showNext();
 	}
 }

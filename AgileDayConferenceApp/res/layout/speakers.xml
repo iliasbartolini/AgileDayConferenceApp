@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Gallery xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/gallery" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/background" />
+<ViewFlipper a:id="@+id/flipper" xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent">
+	<Button a:id="@+id/button" a:text="1" a:layout_width="fill_parent" a:layout_height="fill_parent" />
+	<TextView a:text="2" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#00FF00"/>
+</ViewFlipper>
