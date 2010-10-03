@@ -16,10 +16,10 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ViewFlipper;
+import android.widget.ViewAnimator;
 
 public class SpeakersActivity extends Activity {
-	private ViewFlipper vf;
+	private ViewAnimator viewAnimator;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,29 +33,29 @@ public class SpeakersActivity extends Activity {
 		// Gallery g = (Gallery) findViewById(R.id.gallery);
 		// g.setAdapter(new SpeakersCursorAdapter(this, speakers));
 
-		vf = (ViewFlipper) findViewById(R.id.flipper);
+		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
 		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		vf.setOnTouchListener(new TouchListener(vf, display.getWidth()));
-		vf.setDisplayedChild(1);
+		viewAnimator.setOnTouchListener(new TouchListener(viewAnimator, display.getWidth()));
+		viewAnimator.setDisplayedChild(1);
 
 	}
 
 	private static class TouchListener implements OnTouchListener {
 		private static final String TAG = TouchListener.class.getName();
-		private final ViewFlipper viewFlipper;
+		private final ViewAnimator viewAnimator;
 		private float downXValue;
 		private final int displayWidth;
 
-		public TouchListener(ViewFlipper viewFlipper, int displayWidth) {
-			this.viewFlipper = viewFlipper;
+		public TouchListener(ViewAnimator viewAnimator, int displayWidth) {
+			this.viewAnimator = viewAnimator;
 			this.displayWidth = displayWidth;
 		}
 
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			final View leftView = viewFlipper.getChildAt(viewFlipper.getDisplayedChild() - 1);
-			final View centerView = viewFlipper.getCurrentView();
-			final View rightView = viewFlipper.getChildAt(viewFlipper.getDisplayedChild() + 1);
+			final View leftView = viewAnimator.getChildAt(viewAnimator.getDisplayedChild() - 1);
+			final View centerView = viewAnimator.getCurrentView();
+			final View rightView = viewAnimator.getChildAt(viewAnimator.getDisplayedChild() + 1);
 			final float currentX = event.getX();
 			final boolean isRightDrag = downXValue < currentX;
 			final boolean isLeftDrag = downXValue > currentX;
@@ -78,13 +78,13 @@ public class SpeakersActivity extends Activity {
 				}
 			} else if (action == MotionEvent.ACTION_UP) {
 				if (isRightDrag && leftView != null) {
-					this.viewFlipper.setInAnimation(buildTranslateAnimation(normalizedXOffset - 1.0f, 0.0f));
-					this.viewFlipper.setOutAnimation(buildTranslateAnimation(0.0f, 1.0f - normalizedXOffset));
-					viewFlipper.showPrevious();
+					this.viewAnimator.setInAnimation(buildTranslateAnimation(normalizedXOffset - 1.0f, 0.0f));
+					this.viewAnimator.setOutAnimation(buildTranslateAnimation(0.0f, 1.0f - normalizedXOffset));
+					viewAnimator.showPrevious();
 				} else if (isLeftDrag && rightView != null) {
-					this.viewFlipper.setInAnimation(buildTranslateAnimation(1.0f - normalizedXOffset, 0.0f));
-					this.viewFlipper.setOutAnimation(buildTranslateAnimation(0.0f, normalizedXOffset - 1.0f));
-					viewFlipper.showNext();
+					this.viewAnimator.setInAnimation(buildTranslateAnimation(1.0f - normalizedXOffset, 0.0f));
+					this.viewAnimator.setOutAnimation(buildTranslateAnimation(0.0f, normalizedXOffset - 1.0f));
+					viewAnimator.showNext();
 				}
 			}
 			return true;
