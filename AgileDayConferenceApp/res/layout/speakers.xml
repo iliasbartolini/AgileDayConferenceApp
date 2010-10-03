@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewFlipper a:id="@+id/flipper" xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent">
+<ViewAnimator a:id="@+id/flipper" xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent">
 	<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#550000" a:padding="10dip">
 		<TextView a:text="1" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#FF0000" />
 	</LinearLayout>
@@ -9,4 +9,4 @@
 	<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#005500" a:padding="10dip">
 		<TextView a:text="3" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="#0000FF" />
 	</LinearLayout>
-</ViewFlipper>
+</ViewAnimator>
