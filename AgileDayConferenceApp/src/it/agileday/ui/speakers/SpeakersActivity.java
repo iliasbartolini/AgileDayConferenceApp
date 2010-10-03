@@ -7,20 +7,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.util.Log;
+import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.CursorAdapter;
-import android.widget.Gallery;
-import android.widget.TextView;
+import android.view.animation.TranslateAnimation;
 import android.widget.ViewFlipper;
 
-public class SpeakersActivity extends Activity implements OnClickListener {
+public class SpeakersActivity extends Activity {
+	private ViewFlipper vf;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,41 +33,77 @@ public class SpeakersActivity extends Activity implements OnClickListener {
 		// Gallery g = (Gallery) findViewById(R.id.gallery);
 		// g.setAdapter(new SpeakersCursorAdapter(this, speakers));
 
-		ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
+		vf = (ViewFlipper) findViewById(R.id.flipper);
+		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		vf.setOnTouchListener(new TouchListener(vf, display.getWidth()));
+		vf.setDisplayedChild(1);
 
-		Animation s_in = AnimationUtils.loadAnimation(this, R.anim.slidein);
-		Animation s_out = AnimationUtils.loadAnimation(this, R.anim.slideout);
-		flipper.setInAnimation(s_in);
-		flipper.setOutAnimation(s_out);
-
-		((Button) findViewById(R.id.button)).setOnClickListener(this);
 	}
 
-	private class SpeakersCursorAdapter extends CursorAdapter {
-		public SpeakersCursorAdapter(Context context, Cursor c) {
-			super(context, c);
+	private static class TouchListener implements OnTouchListener {
+		private static final String TAG = TouchListener.class.getName();
+		private final ViewFlipper viewFlipper;
+		private float downXValue;
+		private final int displayWidth;
+
+		public TouchListener(ViewFlipper viewFlipper, int displayWidth) {
+			this.viewFlipper = viewFlipper;
+			this.displayWidth = displayWidth;
 		}
 
 		@Override
-		public void bindView(View view, Context context, Cursor cursor) {
-			TextView name = (TextView) view.findViewById(R.id.name);
-			name.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
-			TextView bio = (TextView) view.findViewById(R.id.bio);
-			bio.setMovementMethod(LinkMovementMethod.getInstance()); // http://code.google.com/p/android/issues/detail?id=2219
-			bio.setText(Html.fromHtml(cursor.getString(cursor.getColumnIndexOrThrow("bio"))));
+		public boolean onTouch(View v, MotionEvent event) {
+			final View leftView = viewFlipper.getChildAt(viewFlipper.getDisplayedChild() - 1);
+			final View centerView = viewFlipper.getCurrentView();
+			final View rightView = viewFlipper.getChildAt(viewFlipper.getDisplayedChild() + 1);
+			final float currentX = event.getX();
+			final boolean isRightDrag = downXValue < currentX;
+			final boolean isLeftDrag = downXValue > currentX;
+			final float xOffset = Math.abs(currentX - downXValue);
+			final float normalizedXOffset = xOffset / displayWidth;
+			final int action = event.getAction();
+
+			Log.d(TAG, "Touch action " + action + " on x=" + currentX + ", downXValue=" + downXValue);
+			if (action == MotionEvent.ACTION_DOWN) {
+				downXValue = event.getX();
+			} else if (action == MotionEvent.ACTION_MOVE) {
+				if (isLeftDrag && rightView != null) {
+					setViewXOffset(centerView, (int) -xOffset);
+					setViewXOffset(rightView, displayWidth - (int) xOffset);
+					rightView.setVisibility(View.VISIBLE);
+				} else if (isRightDrag && leftView != null) {
+					setViewXOffset(centerView, (int) xOffset);
+					setViewXOffset(leftView, (int) xOffset - displayWidth);
+					leftView.setVisibility(View.VISIBLE);
+				}
+			} else if (action == MotionEvent.ACTION_UP) {
+				if (isRightDrag && leftView != null) {
+					this.viewFlipper.setInAnimation(buildTranslateAnimation(normalizedXOffset - 1.0f, 0.0f));
+					this.viewFlipper.setOutAnimation(buildTranslateAnimation(0.0f, 1.0f - normalizedXOffset));
+					viewFlipper.showPrevious();
+				} else if (isLeftDrag && rightView != null) {
+					this.viewFlipper.setInAnimation(buildTranslateAnimation(1.0f - normalizedXOffset, 0.0f));
+					this.viewFlipper.setOutAnimation(buildTranslateAnimation(0.0f, normalizedXOffset - 1.0f));
+					viewFlipper.showNext();
+				}
+			}
+			return true;
 		}
 
-		@Override
-		public View newView(Context context, Cursor cursor, ViewGroup parent) {
-			View ret = getLayoutInflater().inflate(R.layout.speakers_item, parent, false);
-			bindView(ret, context, cursor);
+		private void setViewXOffset(View view, int offset) {
+			view.layout(offset, view.getTop(), view.getRight(), view.getBottom());
+		}
+
+		private TranslateAnimation buildTranslateAnimation(float fromXValue, float toXValue) {
+			TranslateAnimation ret = new TranslateAnimation(
+					Animation.RELATIVE_TO_PARENT, fromXValue,
+					Animation.RELATIVE_TO_PARENT, toXValue,
+					Animation.RELATIVE_TO_PARENT, 0.0f,
+					Animation.RELATIVE_TO_PARENT, 0.0f);
+			ret.setDuration(250);
+			ret.setInterpolator(new AccelerateDecelerateInterpolator());
 			return ret;
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
-		flipper.showNext();
-	}
 }
