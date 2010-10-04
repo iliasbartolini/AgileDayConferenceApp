@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent" a:orientation="vertical">
+<LinearLayout a:id="@+id/speaker" xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent" a:orientation="vertical">
 	<TextView a:id="@+id/name" a:layout_width="fill_parent" a:layout_height="wrap_content" />
+	<Button a:id="@+id/button" a:layout_width="fill_parent" a:layout_height="wrap_content" a:text="Button" />
 	<TextView a:id="@+id/bio" a:layout_width="fill_parent" a:layout_height="fill_parent" />
 </LinearLayout>
