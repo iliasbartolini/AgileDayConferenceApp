@@ -1,5 +1,5 @@
 drop table if exists speakers;
-create table speakers(_id integer primary key autoincrement, name text not null, bio text not null);
-insert into speakers(name, bio) values('Stanley Kubrick', 'Stanley Kubrick (New York, 26 luglio 1928 – Harpenden, 7 marzo 1999) è stato un regista, fotografo e sceneggiatore statunitense naturalizzato britannico, considerato tra i maggiori cineasti del XX secolo.');
-insert into speakers(name, bio) values('Steven Spielberg', 'Steven Allan Spielberg (Cincinnati, 18 dicembre 1946) è un regista, sceneggiatore e produttore cinematografico statunitense.');
-insert into speakers(name, bio) values('Woody Allen', 'Formatting: <b>bold</b>, <i>italic</i>.<br /> Link: <a href="http://www.google.com">click</a>');
+create table speakers(_id integer primary key autoincrement, name text not null, bio text not null, image text not null);
+insert into speakers(name, image, bio) values('Stanley Kubrick', 'banner', 'Stanley Kubrick (New York, 26 luglio 1928 – Harpenden, 7 marzo 1999) è stato un regista, fotografo e sceneggiatore statunitense naturalizzato britannico, considerato tra i maggiori cineasti del XX secolo.');
+insert into speakers(name, image, bio) values('Steven Spielberg', 'banner', 'Steven Allan Spielberg (Cincinnati, 18 dicembre 1946) è un regista, sceneggiatore e produttore cinematografico statunitense.');
+insert into speakers(name, image, bio) values('Woody Allen', 'banner', '<img src="menu_icon" /> Formatting: <b>bold</b>, <i>italic</i>.<br /> Link: <a href="http://www.google.com">click</a>');
