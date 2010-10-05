@@ -3,6 +3,8 @@ package it.aglieday.data;
 import it.agileday.R;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 import android.content.Context;
@@ -13,7 +15,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String TAG = DatabaseHelper.class.getName();
 	private static final String DATABASE_NAME = "data.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 5;
 	private final Context context;
 
 	public DatabaseHelper(Context context) {
@@ -34,7 +36,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private static void execScript(InputStream stream, SQLiteDatabase db) {
-		Scanner scanner = new Scanner(stream);
+		Scanner scanner;
+		try {
+			scanner = new Scanner(new InputStreamReader(stream, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 		scanner.useDelimiter(";\\s*(\\n|\\r\\n|\\r)");
 		while (scanner.hasNext()) {
 			String sql = scanner.next();

@@ -26,22 +26,27 @@ public class SpeakersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speakers);
 		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
+		fillData();
+	}
 
+	private void fillData() {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
-		SpeakerRepository repo = new SpeakerRepository(database, this);
-		List<Speaker> speakers = repo.getAll();
-		for (Speaker speaker : speakers) {
-			View view = getLayoutInflater().inflate(R.layout.speakers_item, viewAnimator, false);
-			TextView name = (TextView) view.findViewById(R.id.name);
-			name.setText(speaker.name);
-			TextView bio = (TextView) view.findViewById(R.id.bio);
-			setHtmlText(speaker, bio);
-			ImageView image = (ImageView) view.findViewById(R.id.image);
-			image.setImageDrawable(speaker.image);
-			viewAnimator.addView(view);
+		try {
+			SpeakerRepository repo = new SpeakerRepository(database, this);
+			List<Speaker> speakers = repo.getAll();
+			for (Speaker speaker : speakers) {
+				View view = getLayoutInflater().inflate(R.layout.speakers_item, viewAnimator, false);
+				TextView name = (TextView) view.findViewById(R.id.name);
+				name.setText(speaker.name);
+				TextView bio = (TextView) view.findViewById(R.id.bio);
+				setHtmlText(speaker, bio);
+				ImageView image = (ImageView) view.findViewById(R.id.image);
+				image.setImageDrawable(speaker.image);
+				viewAnimator.addView(view);
+			}
+		} finally {
+			database.close();
 		}
-		database.close();
-		viewAnimator.setDisplayedChild(2);
 	}
 
 	private void setHtmlText(Speaker speaker, TextView bio) {
