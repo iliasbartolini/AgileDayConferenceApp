@@ -3,12 +3,16 @@ package it.agileday.ui.speakers;
 import it.agileday.R;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.widget.ViewAnimator;
 
 public class FlingViewAnimator extends ViewAnimator {
+	private final float FLING_THRESHOLD = 500.0f;
+	private final String TAG = FlingViewAnimator.class.getName();
+
 	private GestureDetector gestureDetector;
 
 	public FlingViewAnimator(Context context) {
@@ -39,8 +43,9 @@ public class FlingViewAnimator extends ViewAnimator {
 
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			boolean flingRight = velocityX > 0;
-			boolean flingLeft = velocityX < 0;
+			Log.d(TAG, Float.valueOf(velocityX).toString());
+			boolean flingRight = velocityX > FLING_THRESHOLD;
+			boolean flingLeft = velocityX < -FLING_THRESHOLD;
 			int currentItem = viewAnimator.getDisplayedChild();
 			boolean hasNextItem = (viewAnimator.getChildCount() - 1 > currentItem);
 			boolean hasPrevItem = (currentItem > 0);

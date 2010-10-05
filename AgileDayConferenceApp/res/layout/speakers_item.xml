@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
-	<LinearLayout a:id="@+id/speaker" xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="vertical" a:paddingLeft="10dip" a:paddingRight="10dip">
+	<LinearLayout a:id="@+id/speaker" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="vertical" a:paddingLeft="10dip" a:paddingRight="10dip">
 		<TextView a:id="@+id/name" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textStyle="bold" a:gravity="center_horizontal" a:padding="10dip" a:textColor="@color/text" />
 		<ImageView a:id="@+id/image" a:layout_width="fill_parent" a:layout_height="150dip" a:scaleType="centerCrop" a:paddingBottom="10dip" />
 		<TextView a:id="@+id/bio" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" />
