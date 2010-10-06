@@ -38,7 +38,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_twitter);
+		setContentView(R.layout.twitter);
 		repository = new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache());
 		adapter = new TweetsAdapter(this);
 		setListAdapter(adapter);

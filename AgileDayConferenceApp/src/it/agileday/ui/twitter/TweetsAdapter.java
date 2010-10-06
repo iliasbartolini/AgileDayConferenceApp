@@ -78,7 +78,7 @@ class TweetsAdapter extends BaseAdapter {
 	private View getLoadingView(View convertView, ViewGroup parent) {
 		View ret = convertView;
 		if (ret == null || ret.getId() != R.id.items_loading_twitter) {
-			ret = getLayoutInflater().inflate(R.layout.items_loading_twitter, parent, false);
+			ret = getLayoutInflater().inflate(R.layout.twitter_item_loading, parent, false);
 		}
 		return ret;
 	}
@@ -86,7 +86,7 @@ class TweetsAdapter extends BaseAdapter {
 	private View getTweetView(Tweet tweet, View convertView, ViewGroup parent) {
 		View ret = convertView;
 		if (ret == null || ret.getId() != R.id.item_twitter) {
-			ret = getLayoutInflater().inflate(R.layout.item_twitter, parent, false);
+			ret = getLayoutInflater().inflate(R.layout.twitter_item, parent, false);
 		}
 		TextView text = (TextView) ret.findViewById(R.id.text);
 		text.setText(tweet.text);

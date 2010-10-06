@@ -58,7 +58,7 @@ public class SessionAdapter extends BaseAdapter {
 		LayoutInflater layoutInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View ret = (convertView == null ? layoutInflater.inflate(
-				R.layout.item_session, parent, false) : convertView);
+				R.layout.sessions_item, parent, false) : convertView);
 
 		TextView tv = (TextView) ret.findViewById(R.id.title);
 		tv.setText(session.title);
