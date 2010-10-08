@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:id="@+id/items_loading_twitter" a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="48dip" a:background="@null">
 	<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:layout_weight="1" />
-	<ProgressBar a:layout_width="wrap_content" a:layout_height="wrap_content" />
+	<LinearLayout a:layout_width="wrap_content" a:layout_height="fill_parent" a:orientation="vertical" a:paddingRight="5dip">
+		<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:layout_weight="1" />
+		<ProgressBar a:layout_height="20dip" a:layout_width="20dip" />
+		<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:layout_weight="1" />
+	</LinearLayout>
 	<TextView a:layout_width="wrap_content" a:layout_height="fill_parent" a:textColor="@color/text" a:gravity="center_vertical" a:text="Loading..." a:background="@null" />
 	<LinearLayout a:layout_width="fill_parent" a:layout_height="fill_parent" a:layout_weight="1" />
 </LinearLayout>
