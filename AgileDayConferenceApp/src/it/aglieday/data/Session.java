@@ -14,12 +14,65 @@
    limitations under the License.
 */
 
-
 package it.aglieday.data;
 
+import it.agileday.utils.Dates;
+
+import java.util.Date;
+
 public class Session {
-	public long id;
+	private static final String TAG = Session.class.getSimpleName();
+
+	private int id;
 	public String title;
 	public String description;
 	public String speakers;
+	private Date start;
+	private Date end;
+
+	public Session() {
+	}
+
+	public Session setStart(Date start) {
+		this.start = start;
+		return this;
+	}
+
+	public Session setEnd(Date end) {
+		this.end = end;
+		return this;
+	}
+
+	public Date getStart() {
+		return start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public boolean isValid() {
+		return validationMessage() == null;
+	}
+
+	public String validationMessage() {
+		if (Dates.afterOrEqual(start, end)) {
+			return "End date must be greater than start date";
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s#%s", TAG, id);
+	}
+
+	public Session setId(int id) {
+		this.id = id;
+		return this;
+	}
+
+	public long getId() {
+		return id;
+	}
 }

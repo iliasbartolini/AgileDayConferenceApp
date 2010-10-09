@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.ViewAnimator;
 
 public class SessionActivity extends Activity {
+	@SuppressWarnings("unused")
 	private static final String TAG = SessionActivity.class.getName();
 	private ViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
@@ -57,11 +58,14 @@ public class SessionActivity extends Activity {
 		try {
 			Collection<Track> tracks = new TrackRepository(database).getAll();
 			for (Track track : tracks) {
+				if (!track.isValid()) {
+					throw new RuntimeException(track.validationMessage());
+				}
 				View view = getLayoutInflater().inflate(R.layout.track, viewAnimator, false);
 				TextView title = (TextView) view.findViewById(R.id.title);
 				title.setText(track.title);
 				ListView listView = (ListView) view.findViewById(R.id.list);
-				listView.setAdapter(new SessionAdapter(this, track.sessions));
+				listView.setAdapter(new SessionAdapter(this, track));
 				viewAnimator.addView(view);
 			}
 		} finally {

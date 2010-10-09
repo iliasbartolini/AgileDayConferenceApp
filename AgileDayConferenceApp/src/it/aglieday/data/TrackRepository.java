@@ -16,6 +16,8 @@
 
 package it.aglieday.data;
 
+import it.agileday.utils.Dates;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,14 +37,16 @@ public class TrackRepository {
 		String sql = new StringBuilder()
 				.append("SELECT track_id, ")
 				.append("  tracks.title AS track_title, ")
-				.append("  sessions.title AS session_title ")
+				.append("  sessions.title AS session_title, ")
+				.append("  sessions.start AS session_start, ")
+				.append("  sessions.end AS session_end ")
 				.append("FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ")
-				.append("ORDER BY tracks._id, sessions.start ")
+				.append("ORDER BY sessions.start ")
 				.toString();
 		Cursor cursor = db.rawQuery(sql, null);
 
 		while (cursor.moveToNext()) {
-			getTrack(ret, cursor).sessions.add(buildSession(cursor));
+			getTrack(ret, cursor).addSession(buildSession(cursor));
 		}
 		return ret.values();
 	}
@@ -64,6 +68,8 @@ public class TrackRepository {
 	private Session buildSession(Cursor c) {
 		Session ret = new Session();
 		ret.title = c.getString(c.getColumnIndexOrThrow("session_title"));
+		ret.setStart(Dates.fromString(c.getString(c.getColumnIndexOrThrow("session_start"))));
+		ret.setEnd(Dates.fromString(c.getString(c.getColumnIndexOrThrow("session_end"))));
 		return ret;
 	}
 }

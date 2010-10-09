@@ -2,9 +2,7 @@ package it.agileday.ui.sessions;
 
 import it.agileday.R;
 import it.aglieday.data.Session;
-
-import java.util.List;
-
+import it.aglieday.data.Track;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +12,22 @@ import android.widget.TextView;
 
 public class SessionAdapter extends BaseAdapter {
 	private final Context context;
-	private final List<Session> sessions;
+	private final Track track;
 
-	public SessionAdapter(Context context, List<Session> sessions) {
+	public SessionAdapter(Context context, Track track) {
 		super();
 		this.context = context;
-		this.sessions = sessions;
+		this.track = track;
 	}
 
 	@Override
 	public int getCount() {
-		return sessions.size();
+		return track.getSessions().size();
 	}
 
 	@Override
 	public Session getItem(int position) {
-		return sessions.get(position);
+		return track.getSessions().get(position);
 	}
 
 	@Override
