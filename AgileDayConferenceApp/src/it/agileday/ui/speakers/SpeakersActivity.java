@@ -1,6 +1,7 @@
 package it.agileday.ui.speakers;
 
 import it.agileday.R;
+import it.agileday.utils.GestureListener;
 import it.aglieday.data.DatabaseHelper;
 import it.aglieday.data.Speaker;
 import it.aglieday.data.SpeakerRepository;
@@ -8,14 +9,11 @@ import it.aglieday.data.SpeakerRepository;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +21,7 @@ import android.widget.TextView;
 import android.widget.ViewAnimator;
 
 public class SpeakersActivity extends Activity {
-	private static final String TAG = SpeakersActivity.class.getName();
+	static final String TAG = SpeakersActivity.class.getName();
 	private ViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
 
@@ -32,42 +30,13 @@ public class SpeakersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speakers);
 		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
-		gestureDetector = new GestureDetector(this, new GestureListener());
+		gestureDetector = new GestureDetector(this, new GestureListener(this, viewAnimator));
 		fillData();
 	}
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		return gestureDetector.onTouchEvent(ev) || super.dispatchTouchEvent(ev);
-	}
-
-	private Context getContext() {
-		return this;
-	}
-
-	private class GestureListener extends SimpleOnGestureListener {
-		private final float FLING_THRESHOLD = 500.0f;
-
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			Log.d(TAG, Float.valueOf(velocityX).toString());
-			boolean flingRight = velocityX > FLING_THRESHOLD;
-			boolean flingLeft = velocityX < -FLING_THRESHOLD;
-			int currentItem = viewAnimator.getDisplayedChild();
-			boolean hasNextItem = (viewAnimator.getChildCount() - 1 > currentItem);
-			boolean hasPrevItem = (currentItem > 0);
-
-			if (flingRight && hasPrevItem) {
-				viewAnimator.setOutAnimation(getContext(), R.anim.slideout_toright);
-				viewAnimator.setInAnimation(getContext(), R.anim.slidein_fromleft);
-				viewAnimator.setDisplayedChild(currentItem - 1);
-			} else if (flingLeft && hasNextItem) {
-				viewAnimator.setOutAnimation(getContext(), R.anim.slideout_toleft);
-				viewAnimator.setInAnimation(getContext(), R.anim.slidein_fromright);
-				viewAnimator.setDisplayedChild(currentItem + 1);
-			}
-			return true;
-		}
 	}
 
 	private void fillData() {

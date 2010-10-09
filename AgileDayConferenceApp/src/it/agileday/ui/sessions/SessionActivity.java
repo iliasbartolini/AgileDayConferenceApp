@@ -16,27 +16,53 @@
 
 package it.agileday.ui.sessions;
 
-import java.util.List;
-
 import it.agileday.R;
-import it.aglieday.data.Session;
-import it.aglieday.data.SessionsRepository;
-import android.app.ListActivity;
-import android.os.Bundle;
+import it.agileday.utils.GestureListener;
+import it.aglieday.data.DatabaseHelper;
+import it.aglieday.data.Track;
+import it.aglieday.data.TrackRepository;
 
-public class SessionActivity extends ListActivity {
+import java.util.Collection;
+
+import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.ViewAnimator;
+
+public class SessionActivity extends Activity {
+	private static final String TAG = SessionActivity.class.getName();
+	private ViewAnimator viewAnimator;
+	private GestureDetector gestureDetector;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sessions);
-
-		// String spreadsheetURL =
-		// "http://spreadsheets.google.com/ccc?key=0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc&hl=en&authkey=COXmrYYB";
-		String spreadsheetFeedURL = "http://spreadsheets.google.com/feeds/cells/0AjjBWmINdN4HdDdickI3TWd5al9PMzdJQTUya1VtbXc/od6/private/full";
-		List<Session> mySessions = new SessionsRepository(spreadsheetFeedURL)
-				.getSessions();
-
-		SessionAdapter adapter = new SessionAdapter(this, mySessions);
-		setListAdapter(adapter);
+		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
+		gestureDetector = new GestureDetector(this, new GestureListener(this, viewAnimator));
+		fillData();
 	}
 
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		return gestureDetector.onTouchEvent(ev) || super.dispatchTouchEvent(ev);
+	}
+
+	private void fillData() {
+		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
+		try {
+			Collection<Track> tracks = new TrackRepository(database).getAll();
+			for (Track track : tracks) {
+				View view = getLayoutInflater().inflate(R.layout.track, viewAnimator, false);
+				TextView title = (TextView) view.findViewById(R.id.title);
+				title.setText(track.title);
+				viewAnimator.addView(view);
+			}
+		} finally {
+			database.close();
+		}
+	}
 }
