@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
@@ -59,6 +60,8 @@ public class SessionActivity extends Activity {
 				View view = getLayoutInflater().inflate(R.layout.track, viewAnimator, false);
 				TextView title = (TextView) view.findViewById(R.id.title);
 				title.setText(track.title);
+				ListView listView = (ListView) view.findViewById(R.id.list);
+				listView.setAdapter(new SessionAdapter(this, track.sessions));
 				viewAnimator.addView(view);
 			}
 		} finally {
