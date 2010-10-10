@@ -18,7 +18,8 @@ package it.agileday.ui.sessions;
 
 import it.agileday.R;
 import it.agileday.utils.Dates;
-import it.agileday.utils.GestureListener;
+import it.agileday.utils.FlingViewGestureListener;
+import it.agileday.utils.HookableViewAnimator;
 import it.aglieday.data.DatabaseHelper;
 import it.aglieday.data.Session;
 import it.aglieday.data.Track;
@@ -33,8 +34,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 
 public class SessionActivity extends Activity {
 	@SuppressWarnings("unused")
@@ -42,14 +43,15 @@ public class SessionActivity extends Activity {
 	private static final String TIME_FORMAT = "H:mm";
 	private static final float DIP_PER_MINUTE = 1.0f;
 
-	private ViewAnimator viewAnimator;
+	private HookableViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sessions);
-		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
-		gestureDetector = new GestureDetector(this, new GestureListener(this, viewAnimator));
+		viewAnimator = (HookableViewAnimator) findViewById(R.id.flipper);
+		viewAnimator.setOnChildDisplayingListener(new OnChildDisplayingListener());
+		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(this, viewAnimator));
 		fillData();
 	}
 
@@ -102,5 +104,43 @@ public class SessionActivity extends Activity {
 	private View buildView(int id, ViewGroup parent) {
 		return getLayoutInflater().inflate(id, parent, false);
 	}
+
+	private class OnChildDisplayingListener implements HookableViewAnimator.OnChildDisplayingListener {
+		@Override
+		public boolean onChildDisplayedChanging(HookableViewAnimator sender, int newChild) {
+			ScrollView oldView = (ScrollView) sender.getChildAt(sender.getDisplayedChild()).findViewById(R.id.scroll);
+			ScrollView newView = (ScrollView) sender.getChildAt(newChild).findViewById(R.id.scroll);
+			newView.scrollTo(newView.getScrollX(), oldView.getScrollY());
+			return true;
+		}
+
+		@Override
+		public void onChildDisplayedChanged(HookableViewAnimator sender, int newChild) {
+		}
+	}
+
+//	private class MyGestureListener extends GestureListener{
+//
+//		public MyGestureListener(Context context, ViewAnimator viewAnimator) {
+//			super(context, viewAnimator);
+//		}
+//
+//		@Override
+//		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//			boolean ret = super.onFling(e1, e2, velocityX, velocityY);
+//			if(ret) {
+//				View view = viewAnimator.getChildAt(viewAnimator.getDisplayedChild());
+//				
+//				ScrollView sv = null;
+//				
+//				sv.scrollTo(sv.getScrollX(), sv.getScrollY());
+//				sessionsViewGroup.getTop();
+//			}
+//			return ret;
+//		}
+//		
+//		
+//		
+//	}
 
 }

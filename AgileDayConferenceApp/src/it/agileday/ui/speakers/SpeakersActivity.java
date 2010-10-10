@@ -1,7 +1,7 @@
 package it.agileday.ui.speakers;
 
 import it.agileday.R;
-import it.agileday.utils.GestureListener;
+import it.agileday.utils.FlingViewGestureListener;
 import it.aglieday.data.DatabaseHelper;
 import it.aglieday.data.Speaker;
 import it.aglieday.data.SpeakerRepository;
@@ -30,7 +30,7 @@ public class SpeakersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speakers);
 		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
-		gestureDetector = new GestureDetector(this, new GestureListener(this, viewAnimator));
+		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(this, viewAnimator));
 		fillData();
 	}
 

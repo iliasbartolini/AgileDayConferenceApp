@@ -14,4 +14,4 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<ViewAnimator xmlns:a="http://schemas.android.com/apk/res/android" a:id="@+id/flipper" a:layout_width="fill_parent" a:layout_height="fill_parent" />
+<it.agileday.utils.HookableViewAnimator xmlns:a="http://schemas.android.com/apk/res/android" a:id="@+id/flipper" a:layout_width="fill_parent" a:layout_height="fill_parent" />

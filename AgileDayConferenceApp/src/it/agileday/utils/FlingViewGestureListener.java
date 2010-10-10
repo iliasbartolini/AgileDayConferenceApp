@@ -7,13 +7,13 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.widget.ViewAnimator;
 
-public class GestureListener extends SimpleOnGestureListener {
-	private static final String TAG = GestureListener.class.getName();
+public class FlingViewGestureListener extends SimpleOnGestureListener {
+	private static final String TAG = FlingViewGestureListener.class.getName();
 	private static final float FLING_THRESHOLD = 500.0f;
 	private final ViewAnimator viewAnimator;
 	private final Context context;
 
-	public GestureListener(Context context, ViewAnimator viewAnimator) {
+	public FlingViewGestureListener(Context context, ViewAnimator viewAnimator) {
 		this.context = context;
 		this.viewAnimator = viewAnimator;
 	}
