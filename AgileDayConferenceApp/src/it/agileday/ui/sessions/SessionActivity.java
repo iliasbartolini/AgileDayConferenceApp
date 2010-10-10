@@ -17,8 +17,10 @@
 package it.agileday.ui.sessions;
 
 import it.agileday.R;
+import it.agileday.utils.Dates;
 import it.agileday.utils.GestureListener;
 import it.aglieday.data.DatabaseHelper;
+import it.aglieday.data.Session;
 import it.aglieday.data.Track;
 import it.aglieday.data.TrackRepository;
 
@@ -30,13 +32,16 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ListView;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
 public class SessionActivity extends Activity {
 	@SuppressWarnings("unused")
 	private static final String TAG = SessionActivity.class.getName();
+	private static final String TIME_FORMAT = "H:mm";
+	private static final float DIP_PER_MINUTE = 1.0f;
+
 	private ViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
 
@@ -61,15 +66,41 @@ public class SessionActivity extends Activity {
 				if (!track.isValid()) {
 					throw new RuntimeException(track.validationMessage());
 				}
-				View view = getLayoutInflater().inflate(R.layout.track, viewAnimator, false);
-				TextView title = (TextView) view.findViewById(R.id.title);
-				title.setText(track.title);
-				ListView listView = (ListView) view.findViewById(R.id.list);
-				listView.setAdapter(new SessionAdapter(this, track));
+				View view = buildView(R.layout.track, viewAnimator);
+				setText(view, R.id.title, track.title);
+				ViewGroup sessionsViewGroup = (ViewGroup) view.findViewById(R.id.sessions);
+				for (Session session : track.getSessions()) {
+					sessionsViewGroup.addView(getSessionView(sessionsViewGroup, session));
+				}
 				viewAnimator.addView(view);
 			}
 		} finally {
 			database.close();
 		}
 	}
+
+	public View getSessionView(ViewGroup parent, Session session) {
+		View ret = buildView(R.layout.sessions_item, parent);
+		setSessionViewHeight(ret, session);
+		setText(ret, R.id.title, session.title);
+		setText(ret, R.id.start, Dates.toString(session.getStart(), TIME_FORMAT));
+		setText(ret, R.id.end, Dates.toString(session.getEnd(), TIME_FORMAT));
+		return ret;
+	}
+
+	private void setSessionViewHeight(View view, Session session) {
+		float scale = getResources().getDisplayMetrics().density;
+		int height = (int) (Dates.differenceMinutes(session.getStart(), session.getEnd()) * scale * DIP_PER_MINUTE);
+		view.getLayoutParams().height = height;
+	}
+
+	private void setText(View view, int id, String text) {
+		TextView txt = (TextView) view.findViewById(id);
+		txt.setText(text);
+	}
+
+	private View buildView(int id, ViewGroup parent) {
+		return getLayoutInflater().inflate(id, parent, false);
+	}
+
 }
