@@ -23,12 +23,12 @@ public class DatesTest extends TestCase {
 	
 	public void test_string_conversion() {
 		Date d1 = Dates.newDate(2010, 1, 1, 10, 0, 0);
-		assertEquals("2010-01-01 10:00:00", Dates.toString(d1));
+		assertEquals("2010-01-01 10:00:00", Dates.toDbString(d1));
 		
-		assertTrue(Dates.equal(d1, Dates.fromString("2010-01-01 10:00:00")));
+		assertTrue(Dates.equal(d1, Dates.fromDbString("2010-01-01 10:00:00")));
 		
 		try {
-			Dates.fromString("today");
+			Dates.fromDbString("today");
 			fail();
 		} catch (Exception e) {
 			assertEquals("Cannot parse 'today' as date", e.getMessage());

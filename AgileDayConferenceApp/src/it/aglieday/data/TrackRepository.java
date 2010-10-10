@@ -68,8 +68,8 @@ public class TrackRepository {
 	private Session buildSession(Cursor c) {
 		Session ret = new Session();
 		ret.title = c.getString(c.getColumnIndexOrThrow("session_title"));
-		ret.setStart(Dates.fromString(c.getString(c.getColumnIndexOrThrow("session_start"))));
-		ret.setEnd(Dates.fromString(c.getString(c.getColumnIndexOrThrow("session_end"))));
+		ret.setStart(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_start"))));
+		ret.setEnd(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_end"))));
 		return ret;
 	}
 }

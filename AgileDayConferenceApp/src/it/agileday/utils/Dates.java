@@ -56,7 +56,7 @@ public class Dates {
 		return c1.compareTo(c2);
 	}
 
-	public static Date fromString(String date) {
+	public static Date fromDbString(String date) {
 		try {
 			return dateFormat.parse(date);
 		} catch (ParseException e) {
@@ -64,7 +64,11 @@ public class Dates {
 		}
 	}
 
-	public static String toString(Date date) {
+	public static String toDbString(Date date) {
 		return dateFormat.format(date);
+	}
+	
+	public static String toString(Date date, String format) {
+		return new SimpleDateFormat(format).format(date);
 	}
 }
