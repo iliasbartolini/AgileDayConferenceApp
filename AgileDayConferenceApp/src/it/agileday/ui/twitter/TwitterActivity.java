@@ -51,15 +51,18 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 		Log.i(TAG, "onScroll(firstVisibleItem=" + firstVisibleItem + ", visibleItemCount=" + visibleItemCount + ", totalItemCount=" + totalItemCount + ")");
 		boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
-		if (loadMore) {
+		if (loadMore && repository.hasNextPage()) {
 			loadTweets();
 		}
 	}
 
 	private void loadTweets() {
+		Log.i(TAG, "loadTweets");
 		synchronized (this) {
 			if (task == null) {
 				task = new GetTweetsTask();
+				adapter.addLoadingRow();
+				adapter.notifyDataSetChanged();
 				task.execute();
 			}
 		}
@@ -78,6 +81,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 
 		@Override
 		protected void onPostExecute(List<Tweet> result) {
+			adapter.removeLoadingRow();
 			adapter.addTweets(result);
 			adapter.notifyDataSetChanged();
 			task = null;

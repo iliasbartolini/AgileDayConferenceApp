@@ -38,16 +38,18 @@ class TweetsAdapter extends BaseAdapter {
 	public TweetsAdapter(Context context) {
 		this.context = context;
 		this.tweets = new ArrayList<Tweet>();
-		this.tweets.add(null);
 	}
 
 	public void addTweets(Collection<Tweet> tweets) {
-		this.tweets.addAll(this.tweets.size() - 1, tweets);
-		// this.tweets.addAll(tweets);
+		this.tweets.addAll(tweets);
 	}
 
-	public void addLoading() {
+	public void addLoadingRow() {
 		this.tweets.add(null);
+	}
+
+	public void removeLoadingRow() {
+		tweets.remove(null);
 	}
 
 	private LayoutInflater getLayoutInflater() {
@@ -72,7 +74,11 @@ class TweetsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Tweet tweet = getItem(position);
-		return tweet != null ? getTweetView(tweet, convertView, parent) : getLoadingView(convertView, parent);
+		if (tweet != null) {
+			return getTweetView(tweet, convertView, parent);
+		} else {
+			return getLoadingView(convertView, parent);
+		}
 	}
 
 	private View getLoadingView(View convertView, ViewGroup parent) {
@@ -96,4 +102,5 @@ class TweetsAdapter extends BaseAdapter {
 		image.setImageBitmap(tweet.profileImage);
 		return ret;
 	}
+
 }

@@ -39,13 +39,32 @@ public class TweetsRepository {
 	}
 
 	public List<Tweet> getNextPage() {
+
+		if (!hasNextPage())
+			return noMoreTweetResults();
+
 		JSONObject json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
+
+		if (!json.has("next_page")) {
+			nextPageUrl = null;
+		} else {
+			nextPageUrl = URL + json.optString("next_page");
+		}
+
 		try {
-			nextPageUrl = URL + json.getString("next_page");
-			return fromJson(json.getJSONArray("results"));
+			List<Tweet> result = fromJson(json.getJSONArray("results"));
+			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public boolean hasNextPage() {
+		return nextPageUrl != null;
+	}
+
+	private List<Tweet> noMoreTweetResults() {
+		return new ArrayList<Tweet>(0);
 	}
 
 	private List<Tweet> fromJson(JSONArray ary) throws Exception {
@@ -68,4 +87,5 @@ public class TweetsRepository {
 		}
 		return ret;
 	}
+
 }
