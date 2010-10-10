@@ -34,4 +34,10 @@ public class DatesTest extends TestCase {
 			assertEquals("Cannot parse 'today' as date", e.getMessage());
 		}
 	}
+	
+	public void test_difference_minutes() {
+		Date d1 = Dates.newDate(2010, 1, 1, 10, 0, 0);
+		Date d2 = Dates.newDate(2010, 1, 1, 10, 30, 0);
+		assertEquals(30, Dates.differenceMinutes(d1, d2));
+	}
 }

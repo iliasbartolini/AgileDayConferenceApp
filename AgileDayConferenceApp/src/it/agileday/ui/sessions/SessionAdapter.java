@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class SessionAdapter extends BaseAdapter {
 	private static final String TIME_FORMAT = "H:mm";
+	private static final float DIP_PER_MINUTE = 1.0f;
 
 	private final Context context;
 	private final Track track;
@@ -42,10 +43,17 @@ public class SessionAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Session session = getItem(position);
 		View ret = buildView(convertView, parent);
+		setViewHeight(ret, session);
 		setText(ret, R.id.title, session.title);
 		setText(ret, R.id.start, Dates.toString(session.getStart(), TIME_FORMAT));
 		setText(ret, R.id.end, Dates.toString(session.getEnd(), TIME_FORMAT));
 		return ret;
+	}
+
+	private void setViewHeight(View view, Session session) {
+		float scale = context.getResources().getDisplayMetrics().density;
+		int height = (int) (Dates.differenceMinutes(session.getStart(), session.getEnd()) * scale * DIP_PER_MINUTE);
+		view.getLayoutParams().height = height;
 	}
 
 	private void setText(View view, int id, String text) {

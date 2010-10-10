@@ -13,6 +13,7 @@ public class TrackTest extends TestCase {
 	private Date d2 = Dates.newDate(2010, 1, 1, 11);
 	private Date d3 = Dates.newDate(2010, 1, 1, 12);
 	private Date d4 = Dates.newDate(2010, 1, 1, 13);
+	private Date d5 = Dates.newDate(2010, 1, 1, 14);
 
 	public void setUp() {
 	}
@@ -27,7 +28,14 @@ public class TrackTest extends TestCase {
 		Track target = new Track()
 				.addSession(new Session().setStart(d1).setEnd(d3))
 				.addSession(new Session().setStart(d2).setEnd(d4));
-		assertEquals("Session overlap/bad order detected", target.validationMessage());
+		assertEquals("Session overlap/bad order/hole detected", target.validationMessage());
+	}
+
+	public void test_track_with_hole_is_invalid() {
+		Track target = new Track()
+				.addSession(new Session().setStart(d1).setEnd(d2))
+				.addSession(new Session().setStart(d4).setEnd(d5));
+		assertEquals("Session overlap/bad order/hole detected", target.validationMessage());
 	}
 
 	public void test_valid_track_cases() {

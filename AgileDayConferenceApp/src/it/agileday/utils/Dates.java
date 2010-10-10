@@ -67,8 +67,20 @@ public class Dates {
 	public static String toDbString(Date date) {
 		return dateFormat.format(date);
 	}
-	
+
 	public static String toString(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
+	}
+
+	public static int differenceMinutes(Date d1, Date d2) {
+		return differenceSeconds(d1, d2) / 60;
+	}
+
+	public static int differenceSeconds(Date d1, Date d2) {
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(d1);
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(d2);
+		return (int) ((c2.getTimeInMillis() - c1.getTimeInMillis()) / 1000);
 	}
 }

@@ -48,8 +48,8 @@ public class Track {
 			if (!session.isValid()) {
 				return String.format("%s: %s", session, session.validationMessage());
 			}
-			if (i > 0 && Dates.after(sessions.get(i - 1).getEnd(), session.getStart())) {
-				return "Session overlap/bad order detected";
+			if (i > 0 && !Dates.equal(sessions.get(i - 1).getEnd(), session.getStart())) {
+				return "Session overlap/bad order/hole detected";
 			}
 		}
 		return null;
