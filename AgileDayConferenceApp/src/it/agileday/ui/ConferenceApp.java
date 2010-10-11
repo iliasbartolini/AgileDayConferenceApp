@@ -52,8 +52,9 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
 		case R.id.button_www_agileday:
-		    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.agileday.it")));
-		    break;
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri
+					.parse("http://www.agileday.it")));
+			break;
 		default:
 			break;
 		}
