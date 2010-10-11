@@ -18,12 +18,10 @@ package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.agileday.utils.BitmapCache;
-import it.aglieday.data.Tweet;
+import it.aglieday.data.TweetList;
 import it.aglieday.data.TweetsRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -77,17 +75,17 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 	}
 
-	private class GetTweetsTask extends AsyncTask<Void, Void, List<Tweet>> {
+	private class GetTweetsTask extends AsyncTask<Void, Void, TweetList> {
 		@Override
-		protected List<Tweet> doInBackground(Void... params) {
-			Looper.prepare();
+		protected TweetList doInBackground(Void... params) {
 			Log.i(TAG, "Loading next tweet page");
 			try {
 				return repository.getNextPage();
 			} catch (IOException e) {
+				Looper.prepare();
 				displayConnectionErrorMessage();
 				Looper.loop();
-				return new ArrayList<Tweet>(0);
+				return TweetList.Empty();
 			}
 		}
 
@@ -100,7 +98,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 		}
 
 		@Override
-		protected void onPostExecute(List<Tweet> result) {
+		protected void onPostExecute(TweetList result) {
 			adapter.removeLoadingRow();
 			adapter.addTweets(result);
 			adapter.notifyDataSetChanged();

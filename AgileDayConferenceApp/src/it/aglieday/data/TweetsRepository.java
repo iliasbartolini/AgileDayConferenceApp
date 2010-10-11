@@ -21,8 +21,6 @@ import it.agileday.utils.HttpRestUtil;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,10 +37,10 @@ public class TweetsRepository {
 		this.bitmapCache = bitmapCache;
 	}
 
-	public List<Tweet> getNextPage() throws IOException {
+	public TweetList getNextPage() throws IOException {
 
 		if (!hasNextPage())
-			return noMoreTweetResults();
+			return TweetList.Empty();
 
 		JSONObject json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
 
@@ -53,7 +51,7 @@ public class TweetsRepository {
 		}
 
 		try {
-			List<Tweet> result = fromJson(json.getJSONArray("results"));
+			TweetList result = fromJson(json.getJSONArray("results"));
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -64,12 +62,8 @@ public class TweetsRepository {
 		return nextPageUrl != null;
 	}
 
-	private List<Tweet> noMoreTweetResults() {
-		return new ArrayList<Tweet>(0);
-	}
-
-	private List<Tweet> fromJson(JSONArray ary) throws Exception {
-		List<Tweet> tweets = new ArrayList<Tweet>(ary.length());
+	private TweetList fromJson(JSONArray ary) throws Exception {
+		TweetList tweets = new TweetList(ary.length());
 		for (int i = 0; i < ary.length(); i++) {
 			tweets.add(buildTweet(ary.getJSONObject(i)));
 		}
