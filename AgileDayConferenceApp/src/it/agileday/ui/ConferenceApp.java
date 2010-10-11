@@ -22,9 +22,11 @@ import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RemoteViews.ActionException;
 
 public class ConferenceApp extends Activity implements OnClickListener {
 	@Override
@@ -35,6 +37,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		findViewById(R.id.button_sessions).setOnClickListener(this);
 		findViewById(R.id.button_twitter).setOnClickListener(this);
 		findViewById(R.id.button_speakers).setOnClickListener(this);
+		findViewById(R.id.button_www_agileday).setOnClickListener(this);
 	}
 
 	@Override
@@ -49,6 +52,9 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		case R.id.button_speakers:
 			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
+		case R.id.button_www_agileday:
+		    startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.agileday.it")));
+		    break;
 		default:
 			break;
 		}

@@ -27,7 +27,7 @@
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
 			<Button a:id="@+id/button_speakers" style="@style/HomeButton" a:text="Speakers" a:drawableTop="@drawable/menu_icon" />
-			<Button style="@style/HomeButton" a:text="WTF?" a:drawableTop="@drawable/menu_icon" />
+			<Button a:id="@+id/button_www_agileday" style="@style/HomeButton" a:text="WWw... WTF?" a:drawableTop="@drawable/menu_icon" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
