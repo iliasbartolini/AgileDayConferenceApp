@@ -38,7 +38,7 @@ import android.util.Log;
 public class HttpRestUtil {
 	private static final String TAG = HttpRestUtil.class.getName();
 
-	public static JSONObject httpGetJsonObject(String uri) {
+	public static JSONObject httpGetJsonObject(String uri) throws IOException	{
 		try {
 			HttpGet httpGetRequest = new HttpGet(uri);
 			httpGetRequest.setHeader("Accept", "application/json");
@@ -60,7 +60,10 @@ public class HttpRestUtil {
 				}
 			}
 			return ret;
-		} catch (Exception e) {
+		} catch (IOException e) {
+			throw e;
+		} 
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

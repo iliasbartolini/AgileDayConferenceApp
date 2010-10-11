@@ -16,9 +16,9 @@
 
 package it.agileday.tests;
 
+import it.agileday.ui.ConferenceApp;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.ImageButton;
-import it.agileday.ui.ConferenceApp;;
+import android.widget.Button;
 
 public class ConferenceAppTest extends
 		ActivityInstrumentationTestCase2<ConferenceApp> {
@@ -40,8 +40,8 @@ public class ConferenceAppTest extends
 	}
 
 	public void testSessionButtonIsPresentOnHomeActivity() {
-		ImageButton sessionButton;
-		sessionButton = (ImageButton) mActivity.findViewById(it.agileday.R.id.button_sessions);
+		Button sessionButton;
+		sessionButton = (Button) mActivity.findViewById(it.agileday.R.id.button_sessions);
 		assertNotNull(sessionButton);
 	}	
 	

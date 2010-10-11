@@ -19,6 +19,7 @@ package it.aglieday.data;
 import it.agileday.utils.BitmapCache;
 import it.agileday.utils.HttpRestUtil;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class TweetsRepository {
 		this.bitmapCache = bitmapCache;
 	}
 
-	public List<Tweet> getNextPage() {
+	public List<Tweet> getNextPage() throws IOException {
 
 		if (!hasNextPage())
 			return noMoreTweetResults();
