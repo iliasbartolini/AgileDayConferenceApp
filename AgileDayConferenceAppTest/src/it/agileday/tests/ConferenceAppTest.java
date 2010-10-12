@@ -23,7 +23,7 @@ import android.widget.Button;
 public class ConferenceAppTest extends
 		ActivityInstrumentationTestCase2<ConferenceApp> {
 
-	private ConferenceApp mActivity;
+	private ConferenceApp homeActivity;
 	
 	public ConferenceAppTest() {
 		super("it.agileday",ConferenceApp.class);
@@ -32,28 +32,27 @@ public class ConferenceAppTest extends
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		mActivity = this.getActivity();
+		homeActivity = this.getActivity();
 	}
 
 	public void preconditionsTest() {
-		assertNotNull(mActivity);		
+		assertNotNull(homeActivity);		
 	}
 
 	public void checkButtonsOnHomeActivity() {
-		Button sessionButton = (Button) mActivity.findViewById(it.agileday.R.id.button_sessions);
+		Button sessionButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_sessions);
 		assertNotNull(sessionButton);
 		
-		Button donateButton = (Button) mActivity.findViewById(it.agileday.R.id.button_donate);
+		Button donateButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_donate);
 		assertNotNull(donateButton);
 		
-		Button speakersButton = (Button) mActivity.findViewById(it.agileday.R.id.button_speakers);
+		Button speakersButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_speakers);
 		assertNotNull(speakersButton);
 		
-		Button twitterButton = (Button) mActivity.findViewById(it.agileday.R.id.button_twitter);
+		Button twitterButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_twitter);
 		assertNotNull(twitterButton);
 		
-		Button agileDayButton = (Button) mActivity.findViewById(it.agileday.R.id.button_www_agileday);
+		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_www_agileday);
 		assertNotNull(agileDayButton);
 	}
-	
 }
