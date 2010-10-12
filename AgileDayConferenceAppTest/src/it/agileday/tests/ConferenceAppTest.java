@@ -39,10 +39,21 @@ public class ConferenceAppTest extends
 		assertNotNull(mActivity);		
 	}
 
-	public void testSessionButtonIsPresentOnHomeActivity() {
-		Button sessionButton;
-		sessionButton = (Button) mActivity.findViewById(it.agileday.R.id.button_sessions);
+	public void checkButtonsOnHomeActivity() {
+		Button sessionButton = (Button) mActivity.findViewById(it.agileday.R.id.button_sessions);
 		assertNotNull(sessionButton);
-	}	
+		
+		Button donateButton = (Button) mActivity.findViewById(it.agileday.R.id.button_donate);
+		assertNotNull(donateButton);
+		
+		Button speakersButton = (Button) mActivity.findViewById(it.agileday.R.id.button_speakers);
+		assertNotNull(speakersButton);
+		
+		Button twitterButton = (Button) mActivity.findViewById(it.agileday.R.id.button_twitter);
+		assertNotNull(twitterButton);
+		
+		Button agileDayButton = (Button) mActivity.findViewById(it.agileday.R.id.button_www_agileday);
+		assertNotNull(agileDayButton);
+	}
 	
 }
