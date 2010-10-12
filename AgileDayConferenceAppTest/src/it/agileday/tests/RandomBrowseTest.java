@@ -39,6 +39,11 @@ public class RandomBrowseTest extends ActivityInstrumentationTestCase2<Conferenc
 	 public void testClickOnSessions() throws Exception {
 		 Button button = solo.getButton(0);
 		 assertEquals(button.getId(), it.agileday.R.id.button_sessions);
+		 
+		 // ora qui bisogna provare a cliccare e fare un po' di assert
+		 
+		 
+		 
 //		 solo.clickOnMenuItem("Add note");
 //		 solo.assertCurrentActivity("Expected NoteEditor activity", "NoteEditor"); //Assert that NoteEditor activity is opened
 //		 solo.enterText(0, "Note 1"); //In text field 0, add Note 1
