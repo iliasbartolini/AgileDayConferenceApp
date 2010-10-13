@@ -18,20 +18,19 @@ package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.agileday.utils.BitmapCache;
-import it.aglieday.data.TweetList;
+import it.aglieday.data.Tweet;
 import it.aglieday.data.TweetsRepository;
 
-import java.io.IOException;
+import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.AbsListView;
-import android.widget.Toast;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.Toast;
 
 public class TwitterActivity extends ListActivity implements OnScrollListener {
 	private static final String TAG = TwitterActivity.class.getName();
@@ -65,44 +64,44 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 			if (task == null) {
 				task = new GetTweetsTask();
 				adapter.addLoadingRow();
-				adapter.notifyDataSetChanged();
 				task.execute();
 			}
 		}
+	}
+
+	private Context getContext() {
+		return this;
 	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 	}
 
-	private class GetTweetsTask extends AsyncTask<Void, Void, TweetList> {
+	private class GetTweetsTask extends AsyncTask<Void, Void, List<Tweet>> {
+		private Throwable exception = null;
+
 		@Override
-		protected TweetList doInBackground(Void... params) {
-			Log.i(TAG, "Loading next tweet page");
+		protected List<Tweet> doInBackground(Void... params) {
 			try {
 				return repository.getNextPage();
-			} catch (IOException e) {
-				Looper.prepare();
-				displayConnectionErrorMessage();
-				Looper.loop();
-				return TweetList.Empty();
+			} catch (Exception e) {
+				exception = e;
+				return null;
 			}
 		}
 
-		private void displayConnectionErrorMessage() {
-			Context context = getApplicationContext();
-			CharSequence text = "Connection error!";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
-		}
-
 		@Override
-		protected void onPostExecute(TweetList result) {
+		protected void onPostExecute(List<Tweet> result) {
 			adapter.removeLoadingRow();
-			adapter.addTweets(result);
-			adapter.notifyDataSetChanged();
+			if (exception != null) {
+				Log.w(TAG, exception);
+				Toast.makeText(getContext(), "Problemi di connessione", Toast.LENGTH_SHORT).show();
+				finish();
+			} else {
+				adapter.addTweets(result);
+			}
 			task = null;
 		}
+
 	}
 }

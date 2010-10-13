@@ -19,7 +19,6 @@ package it.aglieday.data;
 import it.agileday.utils.BitmapCache;
 import it.agileday.utils.HttpRestUtil;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 
 import org.json.JSONArray;
@@ -37,7 +36,7 @@ public class TweetsRepository {
 		this.bitmapCache = bitmapCache;
 	}
 
-	public TweetList getNextPage() throws IOException {
+	public TweetList getNextPage() {
 
 		if (!hasNextPage())
 			return TweetList.Empty();
@@ -51,8 +50,7 @@ public class TweetsRepository {
 		}
 
 		try {
-			TweetList result = fromJson(json.getJSONArray("results"));
-			return result;
+			return fromJson(json.getJSONArray("results"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

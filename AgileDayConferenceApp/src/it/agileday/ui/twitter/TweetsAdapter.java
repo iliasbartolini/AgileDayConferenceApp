@@ -42,14 +42,17 @@ class TweetsAdapter extends BaseAdapter {
 
 	public void addTweets(Collection<Tweet> tweets) {
 		this.tweets.addAll(tweets);
+		notifyDataSetChanged();
 	}
 
 	public void addLoadingRow() {
 		this.tweets.add(null);
+		notifyDataSetChanged();
 	}
 
 	public void removeLoadingRow() {
 		tweets.remove(null);
+		notifyDataSetChanged();
 	}
 
 	private LayoutInflater getLayoutInflater() {
