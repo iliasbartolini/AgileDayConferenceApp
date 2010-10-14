@@ -92,7 +92,7 @@ public class SessionActivity extends Activity {
 
 	private void setSessionViewHeight(View view, Session session) {
 		float scale = getResources().getDisplayMetrics().density;
-		int height = (int) (Dates.differenceMinutes(session.getStart(), session.getEnd()) * scale * DIP_PER_MINUTE);
+		int height = (int) (Dates.differenceMinutes(session.getEnd(), session.getStart()) * scale * DIP_PER_MINUTE);
 		view.getLayoutParams().height = height;
 	}
 

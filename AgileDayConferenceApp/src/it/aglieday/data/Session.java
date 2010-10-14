@@ -17,7 +17,6 @@
 package it.aglieday.data;
 
 import it.agileday.utils.Dates;
-
 import java.util.Date;
 
 public class Session {

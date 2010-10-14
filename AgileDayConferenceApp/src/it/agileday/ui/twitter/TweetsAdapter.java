@@ -17,10 +17,13 @@
 package it.agileday.ui.twitter;
 
 import it.agileday.R;
+import it.agileday.utils.Dates;
 import it.aglieday.data.Tweet;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -95,8 +98,11 @@ class TweetsAdapter extends BaseAdapter {
 		if (ret == null || ret.getId() != R.id.twitter_item) {
 			ret = getLayoutInflater().inflate(R.layout.twitter_item, parent, false);
 		}
+		Date now = Calendar.getInstance().getTime();
 		TextView user = (TextView) ret.findViewById(R.id.tweet_user);
 		user.setText("@"+tweet.fromUser);
+		TextView dateText = (TextView) ret.findViewById(R.id.tweet_date);
+		dateText.setText(Dates.differenceSmart(now, tweet.date));
 		TextView text = (TextView) ret.findViewById(R.id.tweet_text);
 		text.setText(tweet.text);
 		Linkify.addLinks(text, Linkify.WEB_URLS);

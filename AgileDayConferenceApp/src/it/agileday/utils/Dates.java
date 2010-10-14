@@ -7,7 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Dates {
-	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static final DateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static final DateFormat tweeterDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss ZZZZ");
 
 	public static Date newDate(int year, int month, int day) {
 		return newDate(year, month, day, 0);
@@ -58,18 +59,71 @@ public class Dates {
 
 	public static Date fromDbString(String date) {
 		try {
-			return dateFormat.parse(date);
+			return sqlDateFormat.parse(date);
 		} catch (ParseException e) {
 			throw new RuntimeException(String.format("Cannot parse '%s' as date", date), e);
 		}
 	}
 
 	public static String toDbString(Date date) {
-		return dateFormat.format(date);
+		return sqlDateFormat.format(date);
 	}
 
 	public static String toString(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
+	}
+
+	public static Date fromTweeterString(String date) {
+		try {
+			return tweeterDateFormat.parse(date);
+		} catch (ParseException e) {
+			throw new RuntimeException(String.format("Cannot parse '%s' as tweeterdate", date), e);
+		}
+	}
+
+	public static String differenceSmart(Date d1, Date d2) {
+		int dayDiff = differenceDays(d1, d2);
+		int hourDiff = differenceHours(d1, d2);
+		int minDiff = differenceMinutes(d1, d2);
+
+		String smartDescription = "";
+		int whichIsSmartValue = 0;
+
+		if (dayDiff != 0) {
+			smartDescription = "day";
+			whichIsSmartValue = dayDiff;
+		} else if (hourDiff != 0) {
+			smartDescription = "hour";
+			whichIsSmartValue = hourDiff;
+		} else if (minDiff != 0) {
+			smartDescription = "minute";
+			whichIsSmartValue = minDiff;
+		} else {
+			smartDescription = "now";
+			whichIsSmartValue = 0;
+		}
+
+		if (Math.abs(whichIsSmartValue) > 1) {
+			smartDescription = Math.abs(whichIsSmartValue) + " " + smartDescription + "s";
+		} else if (Math.abs(whichIsSmartValue) == 1) {
+			smartDescription = "one " + smartDescription;
+		}
+
+		if (whichIsSmartValue > 0) {
+			smartDescription = smartDescription + " ago";
+		} else if (whichIsSmartValue < 0) {
+			smartDescription = smartDescription + " from now";
+		}
+
+		return smartDescription;
+	}
+
+	public static int differenceDays(Date d1, Date d2) {
+		return differenceSeconds(d1, d2) / 86400;
+	}
+
+	public static int differenceHours(Date d1, Date d2) {
+		return differenceSeconds(d1, d2) / 3600;
 	}
 
 	public static int differenceMinutes(Date d1, Date d2) {
@@ -81,6 +135,6 @@ public class Dates {
 		c1.setTime(d1);
 		Calendar c2 = Calendar.getInstance();
 		c2.setTime(d2);
-		return (int) ((c2.getTimeInMillis() - c1.getTimeInMillis()) / 1000);
+		return (int) ((c1.getTimeInMillis() - c2.getTimeInMillis()) / 1000);
 	}
 }

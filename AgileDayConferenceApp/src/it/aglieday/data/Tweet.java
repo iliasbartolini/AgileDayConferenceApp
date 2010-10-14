@@ -16,6 +16,8 @@
 
 package it.aglieday.data;
 
+import java.util.Date;
+
 import android.graphics.Bitmap;
 
 public class Tweet {
@@ -23,4 +25,5 @@ public class Tweet {
 	public String text;
 	public String fromUser;
 	public Bitmap profileImage;
+	public Date date;
 }
