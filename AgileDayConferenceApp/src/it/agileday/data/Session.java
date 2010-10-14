@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-package it.aglieday.data;
+package it.agileday.data;
 
 import it.agileday.utils.Dates;
 import java.util.Date;

@@ -1,7 +1,7 @@
 package it.agileday.data;
 
 import it.agileday.utils.Dates;
-import it.aglieday.data.Session;
+import it.agileday.data.Session;
 
 import java.util.Date;
 

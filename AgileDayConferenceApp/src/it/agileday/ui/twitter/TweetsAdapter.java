@@ -18,7 +18,7 @@ package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.agileday.utils.Dates;
-import it.aglieday.data.Tweet;
+import it.agileday.data.Tweet;
 
 import java.util.ArrayList;
 import java.util.Calendar;

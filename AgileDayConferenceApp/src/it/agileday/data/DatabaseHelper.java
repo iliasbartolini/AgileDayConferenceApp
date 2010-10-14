@@ -1,4 +1,4 @@
-package it.aglieday.data;
+package it.agileday.data;
 
 import it.agileday.R;
 

@@ -1,4 +1,4 @@
-package it.aglieday.data;
+package it.agileday.data;
 
 import java.util.ArrayList;
 import java.util.List;

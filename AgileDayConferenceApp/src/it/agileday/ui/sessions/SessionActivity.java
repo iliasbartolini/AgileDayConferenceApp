@@ -20,10 +20,10 @@ import it.agileday.R;
 import it.agileday.utils.Dates;
 import it.agileday.utils.FlingViewGestureListener;
 import it.agileday.utils.HookableViewAnimator;
-import it.aglieday.data.DatabaseHelper;
-import it.aglieday.data.Session;
-import it.aglieday.data.Track;
-import it.aglieday.data.TrackRepository;
+import it.agileday.data.DatabaseHelper;
+import it.agileday.data.Session;
+import it.agileday.data.Track;
+import it.agileday.data.TrackRepository;
 
 import java.util.Collection;
 
