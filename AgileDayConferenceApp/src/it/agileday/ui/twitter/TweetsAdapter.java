@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 import android.content.Context;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,14 +92,15 @@ class TweetsAdapter extends BaseAdapter {
 
 	private View getTweetView(Tweet tweet, View convertView, ViewGroup parent) {
 		View ret = convertView;
-		if (ret == null || ret.getId() != R.id.item_twitter) {
+		if (ret == null || ret.getId() != R.id.twitter_item) {
 			ret = getLayoutInflater().inflate(R.layout.twitter_item, parent, false);
 		}
-		TextView text = (TextView) ret.findViewById(R.id.text);
+		TextView user = (TextView) ret.findViewById(R.id.tweet_user);
+		user.setText("@"+tweet.fromUser);
+		TextView text = (TextView) ret.findViewById(R.id.tweet_text);
 		text.setText(tweet.text);
-		// TODO use Html.fromHtml()
-		// TODO use http://developer.android.com/reference/android/text/util/Linkify.html
-		ImageView image = (ImageView) ret.findViewById(R.id.image);
+		Linkify.addLinks(text, Linkify.WEB_URLS);
+		ImageView image = (ImageView) ret.findViewById(R.id.tweet_image);
 		image.setImageBitmap(tweet.profileImage);
 		return ret;
 	}

@@ -15,5 +15,5 @@
    limitations under the License.
  -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/background">
-	<ListView android:id="@android:id/list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:dividerHeight="10dip" android:divider="@null" android:cacheColorHint="@color/background" />
+	<ListView android:id="@android:id/list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:dividerHeight="2dip" android:divider="@color/divider" android:cacheColorHint="@color/background" />
 </LinearLayout>

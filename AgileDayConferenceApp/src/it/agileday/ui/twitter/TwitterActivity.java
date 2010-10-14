@@ -98,7 +98,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 			adapter.removeLoadingRow();
 			if (exception != null) {
 				Log.w(TAG, exception);
-				Toast.makeText(getContext(), "Impossibile caricare i tweets", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), "Impossibile caricare i tweets\nSicuro di essere connesso ad Internet?", Toast.LENGTH_SHORT).show();
 				finish();
 			} else {
 				adapter.addTweets(result);
