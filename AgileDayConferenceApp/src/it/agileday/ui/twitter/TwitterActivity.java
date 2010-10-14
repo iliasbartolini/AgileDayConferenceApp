@@ -18,7 +18,9 @@ package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.agileday.utils.BitmapCache;
+import it.aglieday.data.DataException;
 import it.aglieday.data.Tweet;
+import it.aglieday.data.TweetList;
 import it.aglieday.data.TweetsRepository;
 
 import java.util.List;
@@ -83,21 +85,24 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 
 		@Override
 		protected List<Tweet> doInBackground(Void... params) {
+			TweetList ret = null;
 			try {
-				return repository.getNextPage();
+				ret = repository.getNextPage();
 			} catch (Exception e) {
 				exception = e;
-				return null;
 			}
+			return ret;
 		}
 
 		@Override
 		protected void onPostExecute(List<Tweet> result) {
 			adapter.removeLoadingRow();
-			if (exception != null) {
+			if (exception instanceof DataException) {
 				Log.w(TAG, exception);
-				Toast.makeText(getContext(), "Problemi di connessione", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), "Impossibile caricare i tweets", Toast.LENGTH_SHORT).show();
 				finish();
+			} else if (exception != null) {
+				throw new RuntimeException(exception);
 			} else {
 				adapter.addTweets(result);
 			}

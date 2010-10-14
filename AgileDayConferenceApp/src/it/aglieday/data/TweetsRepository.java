@@ -41,7 +41,12 @@ public class TweetsRepository {
 		if (!hasNextPage())
 			return TweetList.Empty();
 
-		JSONObject json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
+		JSONObject json;
+		try {
+			json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
+		} catch (Exception e) {
+			throw new DataException(e);
+		}
 
 		if (!json.has("next_page")) {
 			nextPageUrl = null;
