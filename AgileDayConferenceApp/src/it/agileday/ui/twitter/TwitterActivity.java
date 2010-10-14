@@ -64,6 +64,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 			if (task == null) {
 				task = new GetTweetsTask();
 				adapter.addLoadingRow();
+				adapter.notifyDataSetChanged();
 				task.execute();
 			}
 		}
@@ -100,6 +101,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 			} else {
 				adapter.addTweets(result);
 			}
+			adapter.notifyDataSetChanged();
 			task = null;
 		}
 
