@@ -28,11 +28,11 @@ import org.json.JSONObject;
 public class TweetsRepository {
 	private static final String URL = "http://search.twitter.com/search.json";
 
-	private String nextPageUrl;
+	private String nextPageQueryString;
 	private final BitmapCache bitmapCache;
 
 	public TweetsRepository(String hashTag, BitmapCache bitmapCache) {
-		this.nextPageUrl = String.format("%s?q=%s&result_type=recent&rpp=10", URL, URLEncoder.encode(hashTag));
+		this.nextPageQueryString = "result_type=recent&rpp=10&q=" + URLEncoder.encode(hashTag);
 		this.bitmapCache = bitmapCache;
 	}
 
@@ -41,13 +41,9 @@ public class TweetsRepository {
 		if (!hasNextPage())
 			return TweetList.Empty();
 
-		JSONObject json = HttpRestUtil.httpGetJsonObject(nextPageUrl);
-		
-		if (!json.has("next_page")) {
-			nextPageUrl = null;
-		} else {
-			nextPageUrl = URL + json.optString("next_page");
-		}
+		JSONObject json = HttpRestUtil.httpGetJsonObject(String.format("%s?%s", URL, nextPageQueryString));
+
+		nextPageQueryString = json.optString("next_page", null);
 
 		try {
 			return fromJson(json.getJSONArray("results"));
@@ -57,7 +53,7 @@ public class TweetsRepository {
 	}
 
 	public boolean hasNextPage() {
-		return nextPageUrl != null;
+		return nextPageQueryString != null;
 	}
 
 	private TweetList fromJson(JSONArray ary) throws Exception {
