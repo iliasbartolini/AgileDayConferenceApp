@@ -14,7 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  -->
-<LinearLayout a:id="@+id/item_twitter" xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content">
-	<ImageView a:id="@+id/image" a:layout_width="58dip" a:layout_height="48dip" a:paddingRight="10dip" />
-	<TextView a:id="@+id/text" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:textColor="@color/text" />
+<LinearLayout a:id="@+id/twitter_item" xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingLeft="4dip" a:paddingRight="4dip">
+	<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingTop="2dip" a:gravity="center">
+		<TextView a:id="@+id/tweet_user" a:singleLine="true" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="left" a:layout_weight="0.5" a:textStyle="bold" a:textColor="@color/tweeter_user" />
+		<TextView a:id="@+id/tweet_date" a:singleLine="true" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="right" a:layout_weight="0.5" a:textSize="12sp" a:textColor="@color/light_text" />
+	</LinearLayout>
+	<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingBottom="4dip">
+		<ImageView a:id="@+id/tweet_image" a:layout_width="58dip" a:layout_height="48dip" a:paddingRight="6dip" a:paddingTop="4dip" />
+		<TextView a:id="@+id/tweet_text" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:textColor="@color/text" />
+	</LinearLayout>
 </LinearLayout>

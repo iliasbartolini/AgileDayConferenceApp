@@ -2,8 +2,8 @@ package it.agileday.ui.sessions;
 
 import it.agileday.R;
 import it.agileday.utils.Dates;
-import it.aglieday.data.Session;
-import it.aglieday.data.Track;
+import it.agileday.data.Session;
+import it.agileday.data.Track;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

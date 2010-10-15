@@ -2,9 +2,9 @@ package it.agileday.ui.speakers;
 
 import it.agileday.R;
 import it.agileday.utils.FlingViewGestureListener;
-import it.aglieday.data.DatabaseHelper;
-import it.aglieday.data.Speaker;
-import it.aglieday.data.SpeakerRepository;
+import it.agileday.data.DatabaseHelper;
+import it.agileday.data.Speaker;
+import it.agileday.data.SpeakerRepository;
 
 import java.util.List;
 

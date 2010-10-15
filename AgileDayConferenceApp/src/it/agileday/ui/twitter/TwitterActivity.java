@@ -18,9 +18,9 @@ package it.agileday.ui.twitter;
 
 import it.agileday.R;
 import it.agileday.utils.BitmapCache;
-import it.aglieday.data.Tweet;
-import it.aglieday.data.TweetList;
-import it.aglieday.data.TweetsRepository;
+import it.agileday.data.Tweet;
+import it.agileday.data.TweetList;
+import it.agileday.data.TweetsRepository;
 
 import java.util.List;
 
@@ -98,7 +98,7 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 			adapter.removeLoadingRow();
 			if (exception != null) {
 				Log.w(TAG, exception);
-				Toast.makeText(getContext(), "Impossibile caricare i tweets", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), "Impossibile caricare i tweets\nSicuro di essere connesso ad Internet?", Toast.LENGTH_SHORT).show();
 				finish();
 			} else {
 				adapter.addTweets(result);

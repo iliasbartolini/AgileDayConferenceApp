@@ -1,4 +1,4 @@
-package it.aglieday.data;
+package it.agileday.data;
 
 import android.graphics.drawable.Drawable;
 

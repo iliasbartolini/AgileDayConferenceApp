@@ -14,18 +14,20 @@
    limitations under the License.
  */
 
-package it.aglieday.data;
+package it.agileday.data;
 
 import it.agileday.utils.BitmapCache;
+import it.agileday.utils.Dates;
 import it.agileday.utils.HttpRestUtil;
-
 import java.net.URLEncoder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 public class TweetsRepository {
+	private static final String TAG = TweetsRepository.class.getName();
 	private static final String URL = "http://search.twitter.com/search.json";
 
 	private String nextPageQueryString;
@@ -70,6 +72,7 @@ public class TweetsRepository {
 			ret.id = json.getLong("id");
 			ret.text = json.getString("text");
 			ret.fromUser = json.getString("from_user");
+			ret.date = Dates.fromTweeterString(json.getString("created_at"));
 			ret.profileImage = bitmapCache.get(json.getString("profile_image_url"));
 		} catch (JSONException e) {
 			throw new RuntimeException(e);

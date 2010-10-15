@@ -20,10 +20,10 @@ import it.agileday.R;
 import it.agileday.utils.Dates;
 import it.agileday.utils.FlingViewGestureListener;
 import it.agileday.utils.HookableViewAnimator;
-import it.aglieday.data.DatabaseHelper;
-import it.aglieday.data.Session;
-import it.aglieday.data.Track;
-import it.aglieday.data.TrackRepository;
+import it.agileday.data.DatabaseHelper;
+import it.agileday.data.Session;
+import it.agileday.data.Track;
+import it.agileday.data.TrackRepository;
 
 import java.util.Collection;
 
@@ -92,7 +92,7 @@ public class SessionActivity extends Activity {
 
 	private void setSessionViewHeight(View view, Session session) {
 		float scale = getResources().getDisplayMetrics().density;
-		int height = (int) (Dates.differenceMinutes(session.getStart(), session.getEnd()) * scale * DIP_PER_MINUTE);
+		int height = (int) (Dates.differenceMinutes(session.getEnd(), session.getStart()) * scale * DIP_PER_MINUTE);
 		view.getLayoutParams().height = height;
 	}
 

@@ -24,6 +24,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -37,6 +40,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		findViewById(R.id.button_twitter).setOnClickListener(this);
 		findViewById(R.id.button_speakers).setOnClickListener(this);
 		findViewById(R.id.button_www_agileday).setOnClickListener(this);
+		findViewById(R.id.button_donate).setOnClickListener(this);
 	}
 
 	@Override
@@ -52,12 +56,40 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
 		case R.id.button_www_agileday:
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri
-					.parse("http://www.agileday.it")));
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it")));
+			break;
+		case R.id.button_donate:
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
 			break;
 		default:
 			break;
 		}
 	}
-
+	
+	
+    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+	
+	@Override 
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId()) {
+		case R.id.about:
+			startActivity(new Intent(this, About.class));
+			break;
+		case R.id.settings:
+			//startActivity(new Intent(this,AgileDayConferenceAppSettings.class));
+			break;
+		default:
+			return false;
+		}
+		return true;
+	}
+    
 }
