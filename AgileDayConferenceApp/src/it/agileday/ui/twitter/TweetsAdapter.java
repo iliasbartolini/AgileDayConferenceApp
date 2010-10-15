@@ -17,8 +17,8 @@
 package it.agileday.ui.twitter;
 
 import it.agileday.R;
-import it.agileday.utils.Dates;
 import it.agileday.data.Tweet;
+import it.agileday.utils.Dates;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +27,12 @@ import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.TextAppearanceSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,12 +105,14 @@ class TweetsAdapter extends BaseAdapter {
 			ret = getLayoutInflater().inflate(R.layout.twitter_item, parent, false);
 		}
 		Date now = Calendar.getInstance().getTime();
-		TextView user = (TextView) ret.findViewById(R.id.tweet_user);
-		user.setText("@"+tweet.fromUser);
 		TextView dateText = (TextView) ret.findViewById(R.id.tweet_date);
 		dateText.setText(Dates.differenceSmart(now, tweet.date));
+
+		SpannableString ss = new SpannableString(String.format("%s: %s", tweet.fromUser, tweet.text));
+		ss.setSpan(new TextAppearanceSpan(context, R.style.TwitterUser), 0, tweet.fromUser.length()+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		TextView text = (TextView) ret.findViewById(R.id.tweet_text);
-		text.setText(tweet.text);
+		text.setText(ss);
+
 		Linkify.addLinks(text, Linkify.WEB_URLS);
 		ImageView image = (ImageView) ret.findViewById(R.id.tweet_image);
 		image.setImageBitmap(tweet.profileImage);

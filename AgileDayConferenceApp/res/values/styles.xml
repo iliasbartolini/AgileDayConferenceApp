@@ -15,4 +15,9 @@
     <style name="ApplicationTheme" parent="@android:style/Theme.Light">
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="TwitterUser">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ff009999</item>
+    </style>
 </resources>
