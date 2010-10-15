@@ -10,6 +10,7 @@
 		<activity android:name=".ui.sessions.SessionActivity" android:label="Sessioni" />
 		<activity android:name=".ui.twitter.TwitterActivity" android:label="Twitter" />
 		<activity android:name=".ui.speakers.SpeakersActivity" android:label="Speakers" android:screenOrientation="portrait" />
+		<activity android:name=".ui.About" android:label="Italian Agile Day Application" android:theme="@android:style/Theme.Dialog" />
 	</application>
 	<uses-sdk android:minSdkVersion="4" />
 	<uses-permission android:name="android.permission.INTERNET" />
