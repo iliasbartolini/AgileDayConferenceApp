@@ -14,9 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  -->
-<LinearLayout a:id="@+id/twitter_item" xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content">
+<LinearLayout a:id="@+id/twitter_item" xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingTop="2dip" >
 	<ImageView a:id="@+id/tweet_image" a:layout_width="58dip" a:layout_height="58dip" a:padding="5dip" />
-	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingTop="5dip" a:paddingBottom="5dip" a:paddingRight="5dip">
+	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingBottom="5dip" a:paddingRight="5dip">
 		<TextView a:id="@+id/tweet_text" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" />
 		<TextView a:id="@+id/tweet_date" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="right" style="@style/TwitterTime" />
 	</LinearLayout>
