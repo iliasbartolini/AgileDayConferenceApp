@@ -18,6 +18,6 @@
 	<ImageView a:id="@+id/tweet_image" a:layout_width="58dip" a:layout_height="58dip" a:padding="5dip" />
 	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingTop="5dip" a:paddingBottom="5dip" a:paddingRight="5dip">
 		<TextView a:id="@+id/tweet_text" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" />
-		<TextView a:id="@+id/tweet_date" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="right" a:textSize="12sp" a:textColor="@color/light_text" />
+		<TextView a:id="@+id/tweet_date" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="right" style="@style/TwitterTime" />
 	</LinearLayout>
 </LinearLayout>

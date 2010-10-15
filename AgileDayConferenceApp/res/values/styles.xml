@@ -20,4 +20,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#ff009999</item>
     </style>
+
+    <style name="TwitterTime">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#ff666666</item>
+    </style>
 </resources>
