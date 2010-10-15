@@ -19,14 +19,15 @@ package it.agileday.data;
 import it.agileday.utils.BitmapCache;
 import it.agileday.utils.Dates;
 import it.agileday.utils.HttpRestUtil;
+
 import java.net.URLEncoder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.util.Log;
 
 public class TweetsRepository {
+	@SuppressWarnings("unused")
 	private static final String TAG = TweetsRepository.class.getName();
 	private static final String URL = "http://search.twitter.com/search.json";
 
