@@ -27,11 +27,8 @@ import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.TextAppearanceSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
@@ -109,7 +106,7 @@ class TweetsAdapter extends BaseAdapter {
 		dateText.setText(Dates.differenceSmart(now, tweet.date));
 
 		SpannableString ss = new SpannableString(String.format("%s: %s", tweet.fromUser, tweet.text));
-		ss.setSpan(new TextAppearanceSpan(context, R.style.TwitterUser), 0, tweet.fromUser.length()+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		ss.setSpan(new TextAppearanceSpan(context, R.style.TwitterUser), 0, tweet.fromUser.length() + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		TextView text = (TextView) ret.findViewById(R.id.tweet_text);
 		text.setText(ss);
 
