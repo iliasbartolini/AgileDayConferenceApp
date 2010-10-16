@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="HomeButton">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="android:background">@null</item>
-    </style>
-    
-    <style name="ApplicationTheme" parent="@android:style/Theme.Light">
-        <item name="android:windowNoTitle">true</item>
-    </style>
+	<style name="HomeButton">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/text</item>
+		<item name="android:background">@null</item>
+	</style>
 
-    <style name="TwitterUser">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#ff009999</item>
-    </style>
+	<style name="ApplicationTheme" parent="@android:style/Theme.Light">
+		<item name="android:windowNoTitle">true</item>
+	</style>
 
-    <style name="TwitterTime">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#ff666666</item>
-    </style>
+	<style name="TwitterUser">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/color3</item>
+	</style>
+
+	<style name="TwitterTime">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textColor">@color/textLight</item>
+	</style>
+
+	<style name="TrackTitle">
+		<item name="android:background">@color/color1</item>
+		<item name="android:textColor">@color/textOnDarkBg</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:padding">5dip</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+	<style name="SessionTime">
+		<item name="android:textColor">@color/color3</item>
+	</style>
 </resources>

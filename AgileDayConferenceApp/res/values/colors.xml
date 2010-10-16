@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FFFFFFFF</color>
-    <color name="text">#ff333333</color>
-    <color name="divider">#ffd9d9d9</color>
+	<color name="background">#FFFFFF</color>
+	<color name="text">#000000</color>
+	<color name="textOnDarkBg">#FFFFFF</color>
+	<color name="textLight">#666666</color>
+<!-- Palette URL: http://colorschemedesigner.com/#3x31Hw0w0w0w0 -->
+	<color name="color1">#0B61A4</color>
+	<color name="color2">#FFAE00</color>
+	<color name="color3">#FF6C00</color>
+	<color name="color4">#033E6B</color>
 </resources>
