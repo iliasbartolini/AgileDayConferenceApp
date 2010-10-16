@@ -69,6 +69,7 @@ public class DatesTest extends TestCase {
 			assertEquals(2010-1900, tweetDate.getYear() );
 			assertEquals(Calendar.SUNDAY, tweetCalendar.get(Calendar.DAY_OF_WEEK) );
 			assertEquals(Calendar.OCTOBER, tweetCalendar.get(Calendar.MONTH ));
+			assertEquals(2, tweetCalendar.get(Calendar.ZONE_OFFSET));
 			assertEquals(20, tweetCalendar.get(Calendar.HOUR_OF_DAY));
 			assertEquals(56, tweetCalendar.get(Calendar.MINUTE ));
 		} catch (RuntimeException e) {
