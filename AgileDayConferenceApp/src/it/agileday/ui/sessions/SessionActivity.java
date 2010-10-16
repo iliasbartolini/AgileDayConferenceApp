@@ -17,13 +17,13 @@
 package it.agileday.ui.sessions;
 
 import it.agileday.R;
-import it.agileday.utils.Dates;
-import it.agileday.utils.FlingViewGestureListener;
-import it.agileday.utils.HookableViewAnimator;
 import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Session;
 import it.agileday.data.Track;
 import it.agileday.data.TrackRepository;
+import it.agileday.utils.Dates;
+import it.agileday.utils.FlingViewGestureListener;
+import it.agileday.utils.HookableViewAnimator;
 
 import java.util.Collection;
 
@@ -40,8 +40,8 @@ import android.widget.TextView;
 public class SessionActivity extends Activity {
 	@SuppressWarnings("unused")
 	private static final String TAG = SessionActivity.class.getName();
-	private static final String TIME_FORMAT = "H:mm";
-	private static final float DIP_PER_MINUTE = 1.0f;
+	private static final String TIME_FORMAT = "HH:mm";
+	private static final float DIP_PER_MINUTE = 2.5f;
 
 	private HookableViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
@@ -72,7 +72,10 @@ public class SessionActivity extends Activity {
 				setText(view, R.id.title, track.title);
 				ViewGroup sessionsViewGroup = (ViewGroup) view.findViewById(R.id.sessions);
 				for (Session session : track.getSessions()) {
-					sessionsViewGroup.addView(getSessionView(sessionsViewGroup, session));
+					sessionsViewGroup.addView(getSessionView(sessionsViewGroup, session, !track.hasNext(session)));
+					if (track.hasNext(session)) {
+						sessionsViewGroup.addView(buildView(R.layout.session_item_separator, sessionsViewGroup));
+					}
 				}
 				viewAnimator.addView(view);
 			}
@@ -81,12 +84,12 @@ public class SessionActivity extends Activity {
 		}
 	}
 
-	public View getSessionView(ViewGroup parent, Session session) {
+	public View getSessionView(ViewGroup parent, Session session, boolean last) {
 		View ret = buildView(R.layout.sessions_item, parent);
 		setSessionViewHeight(ret, session);
 		setText(ret, R.id.title, session.title);
 		setText(ret, R.id.start, Dates.toString(session.getStart(), TIME_FORMAT));
-		setText(ret, R.id.end, Dates.toString(session.getEnd(), TIME_FORMAT));
+		setText(ret, R.id.end, (last ? Dates.toString(session.getEnd(), TIME_FORMAT) : ""));
 		return ret;
 	}
 
@@ -118,29 +121,4 @@ public class SessionActivity extends Activity {
 		public void onChildDisplayedChanged(HookableViewAnimator sender, int newChild) {
 		}
 	}
-
-//	private class MyGestureListener extends GestureListener{
-//
-//		public MyGestureListener(Context context, ViewAnimator viewAnimator) {
-//			super(context, viewAnimator);
-//		}
-//
-//		@Override
-//		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//			boolean ret = super.onFling(e1, e2, velocityX, velocityY);
-//			if(ret) {
-//				View view = viewAnimator.getChildAt(viewAnimator.getDisplayedChild());
-//				
-//				ScrollView sv = null;
-//				
-//				sv.scrollTo(sv.getScrollX(), sv.getScrollY());
-//				sessionsViewGroup.getTop();
-//			}
-//			return ret;
-//		}
-//		
-//		
-//		
-//	}
-
 }
