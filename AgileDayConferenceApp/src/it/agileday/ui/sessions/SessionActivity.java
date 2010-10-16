@@ -110,15 +110,20 @@ public class SessionActivity extends Activity {
 
 	private class OnChildDisplayingListener implements HookableViewAnimator.OnChildDisplayingListener {
 		@Override
-		public boolean onChildDisplayedChanging(HookableViewAnimator sender, int newChild) {
-			ScrollView oldView = (ScrollView) sender.getChildAt(sender.getDisplayedChild()).findViewById(R.id.scroll);
-			ScrollView newView = (ScrollView) sender.getChildAt(newChild).findViewById(R.id.scroll);
-			newView.scrollTo(newView.getScrollX(), oldView.getScrollY());
+		public boolean onChildDisplayedChanging(HookableViewAnimator sender, View oldChild, View newChild) {
 			return true;
 		}
 
 		@Override
-		public void onChildDisplayedChanged(HookableViewAnimator sender, int newChild) {
+		public void onChildDisplayedChanged(HookableViewAnimator sender, View oldChild, View newChild) {
+			final ScrollView oldView = (ScrollView) oldChild.findViewById(R.id.scroll);
+			final ScrollView newView = (ScrollView) newChild.findViewById(R.id.scroll);
+			newView.post(new Runnable() {
+				@Override
+				public void run() {
+					newView.scrollTo(newView.getScrollX(), oldView.getScrollY());
+				}
+			});
 		}
 	}
 }

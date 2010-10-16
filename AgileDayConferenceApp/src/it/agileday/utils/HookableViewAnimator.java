@@ -2,6 +2,7 @@ package it.agileday.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ViewAnimator;
 
 public class HookableViewAnimator extends ViewAnimator {
@@ -17,12 +18,14 @@ public class HookableViewAnimator extends ViewAnimator {
 
 	@Override
 	public void setDisplayedChild(int whichChild) {
-		if (listener != null && !listener.onChildDisplayedChanging(this, whichChild)) {
+		View oldChild = getChildAt(getDisplayedChild());
+		View newChild = getChildAt(whichChild);
+		if (listener != null && !listener.onChildDisplayedChanging(this, oldChild, newChild)) {
 			return;
 		}
 		super.setDisplayedChild(whichChild);
 		if (listener != null) {
-			listener.onChildDisplayedChanged(this, whichChild);
+			listener.onChildDisplayedChanged(this, oldChild, newChild);
 		}
 	}
 
@@ -31,8 +34,8 @@ public class HookableViewAnimator extends ViewAnimator {
 	}
 
 	public interface OnChildDisplayingListener {
-		boolean onChildDisplayedChanging(HookableViewAnimator sender, int newChild);
+		boolean onChildDisplayedChanging(HookableViewAnimator sender, View oldChild, View newChild);
 
-		void onChildDisplayedChanged(HookableViewAnimator sender, int newChild);
+		void onChildDisplayedChanged(HookableViewAnimator sender, View oldChild, View newChild);
 	}
 }
