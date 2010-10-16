@@ -5,10 +5,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Dates {
-	private static final DateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private static final DateFormat tweeterDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss ZZZZ");
+	private static final DateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+	private static final DateFormat tweeterDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
 
 	public static Date newDate(int year, int month, int day) {
 		return newDate(year, month, day, 0);
