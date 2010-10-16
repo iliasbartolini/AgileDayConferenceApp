@@ -1,8 +1,6 @@
 package it.agileday.data;
 
 import it.agileday.utils.Dates;
-import it.agileday.data.Session;
-import it.agileday.data.Track;
 
 import java.util.Date;
 
@@ -43,5 +41,17 @@ public class TrackTest extends TestCase {
 				.addSession(new Session().setStart(d1).setEnd(d2))
 				.addSession(new Session().setStart(d2).setEnd(d3));
 		assertTrue(target.isValid());
+	}
+
+	public void test_hasNext_hasPrevious() {
+		Session first = new Session().setStart(d1).setEnd(d2);
+		Session last = new Session().setStart(d2).setEnd(d3);
+		Track target = new Track()
+				.addSession(first)
+				.addSession(last);
+		assertFalse(target.hasPrevious(first));
+		assertTrue(target.hasNext(first));
+		assertTrue(target.hasPrevious(last));
+		assertFalse(target.hasNext(last));
 	}
 }
