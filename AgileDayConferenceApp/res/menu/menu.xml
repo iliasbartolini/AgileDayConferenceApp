@@ -1,4 +1,4 @@
 <menu xmlns:a="http://schemas.android.com/apk/res/android">
-	<item a:id="@+id/about" a:title="About" />
-	<item a:id="@+id/settings" a:title="Settings" />
+	<item a:id="@+id/menu_about" a:title="About" />
+	<item a:id="@+id/menu_www_agileday_it" a:title="www.agileday.it" />
 </menu>

@@ -52,7 +52,7 @@ public class ConferenceAppTest extends
 		Button twitterButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_twitter);
 		assertNotNull(twitterButton);
 		
-		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_www_agileday);
+		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_map);
 		assertNotNull(agileDayButton);
 	}
 }

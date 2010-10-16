@@ -39,7 +39,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		findViewById(R.id.button_sessions).setOnClickListener(this);
 		findViewById(R.id.button_twitter).setOnClickListener(this);
 		findViewById(R.id.button_speakers).setOnClickListener(this);
-		findViewById(R.id.button_www_agileday).setOnClickListener(this);
+		findViewById(R.id.button_map).setOnClickListener(this);
 		findViewById(R.id.button_donate).setOnClickListener(this);
 	}
 
@@ -55,8 +55,8 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		case R.id.button_speakers:
 			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
-		case R.id.button_www_agileday:
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it")));
+		case R.id.button_map:
+			//startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it")));
 			break;
 		case R.id.button_donate:
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
@@ -80,11 +80,11 @@ public class ConferenceApp extends Activity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId()) {
-		case R.id.about:
+		case R.id.menu_about:
 			startActivity(new Intent(this, About.class));
 			break;
-		case R.id.settings:
-			//startActivity(new Intent(this,AgileDayConferenceAppSettings.class));
+		case R.id.menu_www_agileday_it:
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it")));
 			break;
 		default:
 			return false;
