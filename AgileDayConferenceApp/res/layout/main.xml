@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright 2010 Ilias Bartolini
+	Copyright 2010 Italian Agile Day
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
 
-         http://www.apache.org/licenses/LICENSE-2.0
+		http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
 	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_alt" a:adjustViewBounds="true" />
 	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1"><!-- a:background="@drawable/home" -->
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-        	<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Sessioni" a:drawableTop="@drawable/home_btn_sessions"/> 
-			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="Mappa" a:drawableTop="@drawable/home_btn_map"/>
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Sessioni" a:drawableTop="@drawable/home_btn_sessions" />
+			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="Mappa" a:drawableTop="@drawable/home_btn_map" />
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_speakers" style="@style/HomeButton" a:text="Speakers" a:drawableTop="@drawable/home_btn_speakers"/>
-			<Button a:id="@+id/button_twitter" style="@style/HomeButton" a:text="@string/hash_tag" a:drawableTop="@drawable/home_btn_twitter"/>
+			<Button a:id="@+id/button_speakers" style="@style/HomeButton" a:text="Speakers" a:drawableTop="@drawable/home_btn_speakers" />
+			<Button a:id="@+id/button_twitter" style="@style/HomeButton" a:text="@string/hash_tag" a:drawableTop="@drawable/home_btn_twitter" />
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_donate" style="@style/HomeButton" a:text="Donazioni" a:drawableTop="@drawable/home_btn_donate"/>
+			<Button a:id="@+id/button_donate" style="@style/HomeButton" a:text="Donazioni" a:drawableTop="@drawable/home_btn_donate" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
