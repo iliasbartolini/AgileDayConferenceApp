@@ -12,3 +12,6 @@ gen/
 
 # eclipse settings
 AgileDayConferenceApp/.settings/
+
+local.properties
+italianagileday.keystore
