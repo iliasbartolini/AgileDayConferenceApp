@@ -21,6 +21,7 @@ import it.agileday.ui.sessions.SessionActivity;
 import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			startActivity(new Intent(this, SpeakersActivity.class));
 			break;
 		case R.id.button_map:
-			//startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it")));
+			openMapActivity(44.416774, 8.853525, "Sheraton+Genova+Hotel+%26+Conference+Center+-+Via+Pionieri+ed+Aviatori+d%E2%80%99Italia,+44");
 			break;
 		case R.id.button_donate:
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
@@ -65,9 +66,7 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			break;
 		}
 	}
-	
-	
-    
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -75,10 +74,9 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		inflater.inflate(R.menu.menu, menu);
 		return true;
 	}
-	
-	@Override 
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_about:
 			startActivity(new Intent(this, About.class));
@@ -91,5 +89,13 @@ public class ConferenceApp extends Activity implements OnClickListener {
 		}
 		return true;
 	}
-    
+
+	private void openMapActivity(double latitude, double longitude, String query) {
+		try {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude + "?z=18&q=" + query)));
+		} catch (ActivityNotFoundException geoUrlNotSupported) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/?ll=" + latitude + "," + longitude + "&z=18&q=" + query)));
+		}
+	}
+
 }
