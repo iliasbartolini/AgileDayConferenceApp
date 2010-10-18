@@ -16,17 +16,17 @@
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
 	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_alt" a:adjustViewBounds="true" />
-	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1"><!-- a:background="@drawable/home" -->
+	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:background="@drawable/home">
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:text="Sessioni" a:drawableTop="@drawable/home_btn_sessions" />
-			<Button a:id="@+id/button_map" style="@style/HomeButton" a:text="Mappa" a:drawableTop="@drawable/home_btn_map" />
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton"/>
+			<Button a:id="@+id/button_map" style="@style/HomeButton"/>
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_speakers" style="@style/HomeButton" a:text="Speakers" a:drawableTop="@drawable/home_btn_speakers" />
-			<Button a:id="@+id/button_twitter" style="@style/HomeButton" a:text="@string/hash_tag" a:drawableTop="@drawable/home_btn_twitter" />
+			<Button a:id="@+id/button_speakers" style="@style/HomeButton"/>
+			<Button a:id="@+id/button_twitter" style="@style/HomeButton"/>
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_donate" style="@style/HomeButton" a:text="Donazioni" a:drawableTop="@drawable/home_btn_donate" />
+			<Button a:id="@+id/button_donate" style="@style/HomeButton"/>
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
