@@ -18,15 +18,15 @@
 	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_alt" a:adjustViewBounds="true" />
 	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:background="@drawable/home">
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_sessions" style="@style/HomeButton"/>
-			<Button a:id="@+id/button_map" style="@style/HomeButton"/>
+			<Button a:id="@+id/button_sessions" style="@style/HomeButton" a:onClick="onSessionsClick"/>
+			<Button a:id="@+id/button_map" style="@style/HomeButton" a:onClick="onMapClick"/>
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_speakers" style="@style/HomeButton"/>
-			<Button a:id="@+id/button_twitter" style="@style/HomeButton"/>
+			<Button a:id="@+id/button_speakers" style="@style/HomeButton" a:onClick="onSpeakersClick" />
+			<Button a:id="@+id/button_twitter" style="@style/HomeButton" a:onClick="onTwitterClick" />
 		</LinearLayout>
 		<LinearLayout a:orientation="horizontal" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1">
-			<Button a:id="@+id/button_donate" style="@style/HomeButton"/>
+			<Button a:id="@+id/button_donate" style="@style/HomeButton" a:onClick="onDonateClick" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

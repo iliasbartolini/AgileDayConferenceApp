@@ -29,41 +29,39 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 
-public class ConferenceApp extends Activity implements OnClickListener {
+public class ConferenceApp extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		findViewById(R.id.button_sessions).setOnClickListener(this);
-		findViewById(R.id.button_twitter).setOnClickListener(this);
-		findViewById(R.id.button_speakers).setOnClickListener(this);
-		findViewById(R.id.button_map).setOnClickListener(this);
-		findViewById(R.id.button_donate).setOnClickListener(this);
 	}
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.button_sessions:
-			startActivity(new Intent(this, SessionActivity.class));
-			break;
-		case R.id.button_twitter:
-			startActivity(new Intent(this, TwitterActivity.class));
-			break;
-		case R.id.button_speakers:
-			startActivity(new Intent(this, SpeakersActivity.class));
-			break;
-		case R.id.button_map:
-			openMapActivity(44.416774, 8.853525, "Sheraton+Genova+Hotel+%26+Conference+Center+-+Via+Pionieri+ed+Aviatori+d%E2%80%99Italia,+44");
-			break;
-		case R.id.button_donate:
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
-			break;
-		default:
-			break;
+	
+	public void onSessionsClick(View v){
+		startActivity(new Intent(this, SessionActivity.class));
+	}
+	
+	public void onTwitterClick(View v){
+		startActivity(new Intent(this, TwitterActivity.class));
+	}
+	
+	public void onSpeakersClick(View v){
+		startActivity(new Intent(this, SpeakersActivity.class));
+	}
+	
+	public void onMapClick(View v){
+		startMapActivity(44.416774, 8.853525, "Sheraton+Genova+Hotel+%26+Conference+Center+-+Via+Pionieri+ed+Aviatori+d%E2%80%99Italia,+44");
+	}
+	
+	public void onDonateClick(View v){
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
+	}
+	
+	private void startMapActivity(double latitude, double longitude, String query) {
+		try {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude + "?z=18&q=" + query)));
+		} catch (ActivityNotFoundException geoUrlNotSupported) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/?ll=" + latitude + "," + longitude + "&z=18&q=" + query)));
 		}
 	}
 
@@ -88,14 +86,6 @@ public class ConferenceApp extends Activity implements OnClickListener {
 			return false;
 		}
 		return true;
-	}
-
-	private void openMapActivity(double latitude, double longitude, String query) {
-		try {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude + "?z=18&q=" + query)));
-		} catch (ActivityNotFoundException geoUrlNotSupported) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/?ll=" + latitude + "," + longitude + "&z=18&q=" + query)));
-		}
 	}
 
 }
