@@ -1,5 +1,10 @@
 /*
-	Copyright 2010 Italian Agile Day
+	Copyright 2010 
+	
+	Author: Ilias Bartolini
+	Author: Gian Marco Gherardi
+	Author: Luigi Bozzo
+	Author: Andrea Chiarini
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
