@@ -36,7 +36,7 @@ public class TrackRepository {
 
 	public Collection<Track> getAll() {
 		Map<Integer, Track> ret = new HashMap<Integer, Track>();
-		String sql = new StringBuilder().append("SELECT track_id, ").append("  tracks.title AS track_title, ").append("  sessions.title AS session_title, ").append("  sessions.start AS session_start, ").append("  sessions.end AS session_end ").append("FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ").append("ORDER BY sessions.start ").toString();
+		String sql = "SELECT track_id, tracks.title AS track_title, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
 		Cursor cursor = db.rawQuery(sql, null);
 
 		while (cursor.moveToNext()) {
