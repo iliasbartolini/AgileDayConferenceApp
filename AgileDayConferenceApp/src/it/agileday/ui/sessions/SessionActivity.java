@@ -44,7 +44,7 @@ public class SessionActivity extends Activity {
 	@SuppressWarnings("unused")
 	private static final String TAG = SessionActivity.class.getName();
 	private static final String TIME_FORMAT = "HH:mm";
-	private static final float DIP_PER_MINUTE = 2.5f;
+	private static final float DIP_PER_MINUTE = 2.0f;
 
 	private HookableViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
