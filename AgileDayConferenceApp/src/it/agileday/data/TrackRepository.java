@@ -2,6 +2,7 @@
 	Copyright 2010 
 	
 	Author: Gian Marco Gherardi
+	Author: Ilias Bartolini
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,7 +21,8 @@ package it.agileday.data;
 
 import it.agileday.utils.Dates;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,15 +36,20 @@ public class TrackRepository {
 		this.db = db;
 	}
 
-	public Collection<Track> getAll() {
+	public ArrayList<Track> getAll() {
 		Map<Integer, Track> ret = new HashMap<Integer, Track>();
-		String sql = "SELECT track_id, tracks.title AS track_title, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
+		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
 		Cursor cursor = db.rawQuery(sql, null);
 
 		while (cursor.moveToNext()) {
 			getTrack(ret, cursor).addSession(buildSession(cursor));
 		}
-		return ret.values();
+		
+		ArrayList<Track> arrayList = new ArrayList<Track>(ret.size());
+		arrayList.addAll(ret.values());
+		Collections.sort(arrayList);
+				
+		return arrayList;
 	}
 
 	private Track getTrack(Map<Integer, Track> ret, Cursor cursor) {
@@ -56,6 +63,7 @@ public class TrackRepository {
 	private Track buildTrack(Cursor c) {
 		Track ret = new Track();
 		ret.title = c.getString(c.getColumnIndexOrThrow("track_title"));
+		ret.order = c.getInt(c.getColumnIndexOrThrow("track_order"));
 		return ret;
 	}
 

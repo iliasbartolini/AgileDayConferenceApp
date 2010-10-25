@@ -17,7 +17,7 @@
 	limitations under the License.
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="wrap_content" a:orientation="horizontal">
-	<LinearLayout a:layout_width="wrap_content" a:layout_height="fill_parent" a:orientation="vertical" a:paddingRight="10dip">
+	<LinearLayout a:layout_width="wrap_content" a:layout_height="fill_parent" a:orientation="vertical" a:paddingRight="8dip" a:paddingLeft="4dip">
 		<TextView a:id="@+id/start" a:layout_width="fill_parent" a:layout_height="wrap_content" a:gravity="right" style="@style/SessionTime" />
 		<TextView a:id="@+id/end" a:layout_width="fill_parent" a:layout_height="fill_parent" a:gravity="right|bottom" style="@style/SessionTime" />
 	</LinearLayout>

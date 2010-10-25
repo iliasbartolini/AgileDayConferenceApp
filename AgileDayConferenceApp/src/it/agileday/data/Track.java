@@ -2,6 +2,7 @@
 	Copyright 2010 
 	
 	Author: Gian Marco Gherardi
+	Author: Ilias Bartolini
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,8 +25,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Track {
+public class Track implements Comparable<Track>{
 	public String title;
+	public int order;
+	
 	private List<Session> sessions = new ArrayList<Session>();
 	private List<Session> unmodifiableSessions = Collections.unmodifiableList(sessions);
 
@@ -71,5 +74,10 @@ public class Track {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int compareTo(Track another) {
+		return this.order - another.order;
 	}
 }

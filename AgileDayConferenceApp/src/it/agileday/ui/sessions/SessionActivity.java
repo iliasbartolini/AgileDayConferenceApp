@@ -28,7 +28,7 @@ import it.agileday.utils.Dates;
 import it.agileday.utils.FlingViewGestureListener;
 import it.agileday.utils.HookableViewAnimator;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
@@ -75,7 +75,7 @@ public class SessionActivity extends Activity {
 	private void fillData() {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
 		try {
-			Collection<Track> tracks = new TrackRepository(database).getAll();
+			ArrayList<Track> tracks = new TrackRepository(database).getAll();
 			int i = 0;
 			for (Track track : tracks) {
 				if (!track.isValid()) {
