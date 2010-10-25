@@ -20,6 +20,7 @@ package it.agileday.ui.speakers;
 
 import it.agileday.R;
 import it.agileday.utils.FlingViewGestureListener;
+import it.agileday.utils.HookableViewAnimator;
 import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Speaker;
 import it.agileday.data.SpeakerRepository;
@@ -36,19 +37,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 
 public class SpeakersActivity extends Activity {
 	static final String TAG = SpeakersActivity.class.getName();
-	private ViewAnimator viewAnimator;
+	private HookableViewAnimator viewAnimator;
 	private GestureDetector gestureDetector;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speakers);
-		viewAnimator = (ViewAnimator) findViewById(R.id.flipper);
-		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(this, viewAnimator));
+		viewAnimator = (HookableViewAnimator) findViewById(R.id.flipper);
+		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(viewAnimator));
 		fillData();
 	}
 

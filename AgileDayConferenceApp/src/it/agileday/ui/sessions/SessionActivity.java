@@ -37,6 +37,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -54,7 +55,7 @@ public class SessionActivity extends Activity {
 		setContentView(R.layout.sessions);
 		viewAnimator = (HookableViewAnimator) findViewById(R.id.flipper);
 		viewAnimator.setOnChildDisplayingListener(new OnChildDisplayingListener());
-		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(this, viewAnimator));
+		gestureDetector = new GestureDetector(this, new FlingViewGestureListener(viewAnimator));
 		fillData();
 	}
 
@@ -63,16 +64,28 @@ public class SessionActivity extends Activity {
 		return gestureDetector.onTouchEvent(ev) || super.dispatchTouchEvent(ev);
 	}
 
+	public void onLeftArrowClick(View v) {
+		viewAnimator.goToLeft();
+	}
+
+	public void onRightArrowClick(View v) {
+		viewAnimator.goToRight();
+	}
+
 	private void fillData() {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
 		try {
 			Collection<Track> tracks = new TrackRepository(database).getAll();
+			int i = 0;
 			for (Track track : tracks) {
 				if (!track.isValid()) {
 					throw new RuntimeException(track.validationMessage());
 				}
 				View view = buildView(R.layout.track, viewAnimator);
 				setText(view, R.id.title, track.title);
+				updateLeftRightTrackButton(view, R.id.previous_session, i);
+				updateLeftRightTrackButton(view, R.id.next_session, tracks.size() - (i + 1));
+
 				ViewGroup sessionsViewGroup = (ViewGroup) view.findViewById(R.id.sessions);
 				for (Session session : track.getSessions()) {
 					sessionsViewGroup.addView(getSessionView(sessionsViewGroup, session, !track.hasNext(session)));
@@ -81,19 +94,31 @@ public class SessionActivity extends Activity {
 					}
 				}
 				viewAnimator.addView(view);
+				i++;
 			}
 		} finally {
 			database.close();
 		}
 	}
 
+	private void updateLeftRightTrackButton(View view, int button_id, int howManyRamining) {
+		if (howManyRamining > 0) {
+			String buttonText = "";
+			for (int j = 0; j < howManyRamining; j++)
+				buttonText = buttonText.concat("o");
+			((Button) view.findViewById(button_id)).setText(buttonText);
+		} else {
+			((Button) view.findViewById(button_id)).setVisibility(View.INVISIBLE);
+		}
+	}
+
 	public View getSessionView(ViewGroup parent, Session session, boolean last) {
-		View ret = buildView(R.layout.sessions_item, parent);
-		setSessionViewHeight(ret, session);
-		setText(ret, R.id.title, session.title);
-		setText(ret, R.id.start, Dates.toString(session.getStart(), TIME_FORMAT));
-		setText(ret, R.id.end, (last ? Dates.toString(session.getEnd(), TIME_FORMAT) : ""));
-		return ret;
+		View view = buildView(R.layout.sessions_item, parent);
+		setSessionViewHeight(view, session);
+		setText(view, R.id.title, session.title);
+		setText(view, R.id.start, Dates.toString(session.getStart(), TIME_FORMAT));
+		setText(view, R.id.end, (last ? Dates.toString(session.getEnd(), TIME_FORMAT) : ""));
+		return view;
 	}
 
 	private void setSessionViewHeight(View view, Session session) {

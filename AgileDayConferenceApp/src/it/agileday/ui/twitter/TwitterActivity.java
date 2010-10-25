@@ -50,7 +50,6 @@ public class TwitterActivity extends ListActivity implements OnScrollListener {
 		adapter = new TweetsAdapter(this);
 		setListAdapter(adapter);
 		getListView().setOnScrollListener(this);
-
 		loadTweets();
 	}
 

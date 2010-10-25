@@ -49,7 +49,7 @@
 		<item name="android:textColor">@color/textOnDarkBg</item>
 		<item name="android:textSize">18sp</item>
 		<item name="android:textStyle">bold</item>
-		<item name="android:padding">5dip</item>
+		<item name="android:padding">4dip</item>
 		<item name="android:gravity">center</item>
 	</style>
 

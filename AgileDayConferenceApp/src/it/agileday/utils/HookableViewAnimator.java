@@ -16,12 +16,13 @@
 
 package it.agileday.utils;
 
+import it.agileday.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ViewAnimator;
 
-public class HookableViewAnimator extends ViewAnimator {
+public class HookableViewAnimator extends ViewAnimator implements ILeftRightAction  {
 	private OnChildDisplayingListener listener = null;
 
 	public HookableViewAnimator(Context context, AttributeSet attrs) {
@@ -45,6 +46,27 @@ public class HookableViewAnimator extends ViewAnimator {
 		}
 	}
 
+
+	public void goToLeft() {
+		int currentItem = getDisplayedChild();
+		boolean hasPrevItem = (currentItem > 0);
+
+		if (hasPrevItem) {
+			setOutAnimation(getContext(), R.anim.slideout_toright);
+			setInAnimation(getContext(), R.anim.slidein_fromleft);
+			setDisplayedChild(currentItem - 1);
+		}
+	}
+	public void goToRight() {
+		int currentItem = getDisplayedChild();
+		boolean hasNextItem = (getChildCount() - 1 > currentItem);
+		if (hasNextItem) {
+			setOutAnimation(getContext(), R.anim.slideout_toleft);
+			setInAnimation(getContext(), R.anim.slidein_fromright);
+			setDisplayedChild(currentItem + 1);
+		}
+	}
+	
 	public void setOnChildDisplayingListener(OnChildDisplayingListener l) {
 		this.listener = l;
 	}
