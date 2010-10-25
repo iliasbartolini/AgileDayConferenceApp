@@ -56,4 +56,16 @@
 	<style name="SessionTime">
 		<item name="android:textColor">@color/color3</item>
 	</style>
+	
+	<style name="LeftRightButton">
+		<item name="android:singleLine">true</item>
+		<item name="android:textColor">@color/color2</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_weight">0.15</item>
+		<item name="android:background">@null</item>
+	</style>
+	
 </resources>

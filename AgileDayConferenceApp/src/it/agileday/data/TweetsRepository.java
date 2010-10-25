@@ -30,8 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 public class TweetsRepository {
 	@SuppressWarnings("unused")
 	private static final String TAG = TweetsRepository.class.getName();
@@ -50,11 +48,9 @@ public class TweetsRepository {
 		if (!hasNextPage())
 			return TweetList.Empty();
 
-		Log.d(TAG, nextPageQueryString);
 		JSONObject json = HttpRestUtil.httpGetJsonObject(String.format("%s%s", URL, nextPageQueryString));
 
 		nextPageQueryString = json.optString("next_page", null);
-		Log.d(TAG, nextPageQueryString);
 
 		try {
 			return fromJson(json.getJSONArray("results"));
