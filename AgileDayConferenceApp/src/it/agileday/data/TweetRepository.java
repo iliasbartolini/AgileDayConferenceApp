@@ -30,15 +30,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class TweetsRepository {
+public class TweetRepository {
 	@SuppressWarnings("unused")
-	private static final String TAG = TweetsRepository.class.getName();
+	private static final String TAG = TweetRepository.class.getName();
 	private static final String URL = "http://search.twitter.com/search.json";
 
 	private String nextPageQueryString;
 	private final BitmapCache bitmapCache;
 
-	public TweetsRepository(String hashTag, BitmapCache bitmapCache) {
+	public TweetRepository(String hashTag, BitmapCache bitmapCache) {
 		this.nextPageQueryString = "?result_type=recent&rpp=10&q=" + URLEncoder.encode(hashTag);
 		this.bitmapCache = bitmapCache;
 	}

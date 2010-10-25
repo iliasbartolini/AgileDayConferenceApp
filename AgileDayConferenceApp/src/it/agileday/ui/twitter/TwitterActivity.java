@@ -24,7 +24,7 @@ import it.agileday.R;
 import it.agileday.utils.BitmapCache;
 import it.agileday.data.Tweet;
 import it.agileday.data.TweetList;
-import it.agileday.data.TweetsRepository;
+import it.agileday.data.TweetRepository;
 
 import java.util.List;
 
@@ -39,14 +39,14 @@ import android.widget.Toast;
 
 public class TwitterActivity extends ListActivity implements OnScrollListener {
 	private static final String TAG = TwitterActivity.class.getName();
-	private TweetsRepository repository;
+	private TweetRepository repository;
 	private TweetsAdapter adapter;
 	private GetTweetsTask task;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.twitter);
-		repository = new TweetsRepository(getResources().getString(R.string.hash_tag), new BitmapCache());
+		repository = new TweetRepository(getResources().getString(R.string.hash_tag), new BitmapCache());
 		adapter = new TweetsAdapter(this);
 		setListAdapter(adapter);
 		getListView().setOnScrollListener(this);
