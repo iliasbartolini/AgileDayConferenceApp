@@ -59,7 +59,7 @@ public class ConferenceApp extends Activity {
 	}
 	
 	public void onDonateClick(View v){
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.agileday.it/front/sponsor/")));
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=donazioni%40agileday%2eit&no_shipping=2&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8")));
 	}
 	
 	private void startMapActivity(double latitude, double longitude, String query) {
