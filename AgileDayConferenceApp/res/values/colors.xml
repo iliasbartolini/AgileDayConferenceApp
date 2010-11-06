@@ -22,6 +22,7 @@
 	<color name="text">#000000</color>
 	<color name="textOnDarkBg">#FFFFFF</color>
 	<color name="textLight">#666666</color>
+	<color name="btn_session_color_background">#FF0F91D4</color>
 <!-- Palette URL: http://colorschemedesigner.com/#3x31Hw0w0w0w0 -->
 	<color name="color1">#0B61A4</color>
 	<color name="color2">#FFAE00</color>

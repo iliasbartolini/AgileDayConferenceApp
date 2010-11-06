@@ -79,4 +79,9 @@ public class Session {
 	public long getId() {
 		return id;
 	}
+
+	public boolean IsStarred() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

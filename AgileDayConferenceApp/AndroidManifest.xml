@@ -7,6 +7,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".ui.sessions.SessionActivityWithBlocksLayout" android:label="Sessioni" android:screenOrientation="portrait" />
 		<activity android:name=".ui.sessions.SessionActivity" android:label="Sessioni" android:screenOrientation="portrait" />
 		<activity android:name=".ui.twitter.TwitterActivity" android:label="Twitter" android:screenOrientation="portrait" />
 		<activity android:name=".ui.speakers.SpeakersActivity" android:label="Speakers" android:screenOrientation="portrait" />
