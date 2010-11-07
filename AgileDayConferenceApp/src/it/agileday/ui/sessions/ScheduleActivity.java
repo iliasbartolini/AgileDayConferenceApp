@@ -170,12 +170,11 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
+        if (v instanceof BlockView) {
+            final long blockId = ((BlockView) v).getBlockId();
+            Intent intent = new Intent(this, SessionActivity.class);
+            intent.putExtra(SessionActivity.INTENT_EXTRA_KEY_SESSION_ID, blockId);
+			startActivity(intent);
+        }
 	}
-
-	// private View buildView(int id, ViewGroup parent) {
-	// return getLayoutInflater().inflate(id, parent, false);
-	// }
-
 }
