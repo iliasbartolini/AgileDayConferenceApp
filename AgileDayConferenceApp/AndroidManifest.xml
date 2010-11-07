@@ -8,7 +8,6 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".ui.sessions.SessionActivityWithBlocksLayout" android:label="Sessioni" />
-		<activity android:name=".ui.sessions.SessionActivity" android:label="Sessioni" android:screenOrientation="portrait" />
 		<activity android:name=".ui.twitter.TwitterActivity" android:label="Twitter" android:screenOrientation="portrait" />
 		<activity android:name=".ui.speakers.SpeakersActivity" android:label="Speakers" android:screenOrientation="portrait" />
 		<activity android:name=".ui.About" android:label="Italian Agile Day Application" android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait" />

@@ -22,7 +22,6 @@
 package it.agileday.ui;
 
 import it.agileday.R;
-import it.agileday.ui.sessions.SessionActivity;
 import it.agileday.ui.sessions.SessionActivityWithBlocksLayout;
 import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;
@@ -45,7 +44,6 @@ public class ConferenceApp extends Activity {
 	
 	public void onSessionsClick(View v){
 		startActivity(new Intent(this, SessionActivityWithBlocksLayout.class));
-		//startActivity(new Intent(this, SessionActivity.class));
 	}
 	
 	public void onTwitterClick(View v){
