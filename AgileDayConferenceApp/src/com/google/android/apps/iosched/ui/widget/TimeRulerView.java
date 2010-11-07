@@ -44,7 +44,8 @@ public class TimeRulerView extends View {
 	private int mLabelTextSize = 20;
 	private int mLabelPaddingLeft = 8;
 	private int mLabelColor = Color.BLACK;
-	private int mDividerColor = Color.LTGRAY;
+	private int mDividerColor = Color.GRAY;
+	private int mBackgroundColor = Color.LTGRAY;
 	private int mStartHour = 0;
 	private int mEndHour = 23;
 
@@ -70,6 +71,7 @@ public class TimeRulerView extends View {
 		mLabelPaddingLeft = a.getDimensionPixelSize(R.styleable.TimeRulerView_labelPaddingLeft, mLabelPaddingLeft);
 		mLabelColor = a.getColor(R.styleable.TimeRulerView_labelColor, mLabelColor);
 		mDividerColor = a.getColor(R.styleable.TimeRulerView_dividerColor, mDividerColor);
+		mBackgroundColor = a.getColor(R.styleable.TimeRulerView_backgroundColor, mBackgroundColor);
 		mStartHour = a.getInt(R.styleable.TimeRulerView_startHour, mStartHour);
 		mEndHour = a.getInt(R.styleable.TimeRulerView_endHour, mEndHour);
 
@@ -98,7 +100,8 @@ public class TimeRulerView extends View {
 	}
 
 	private Paint mDividerPaint = new Paint();
-	private Paint mLabelPaint = new Paint();
+	private Paint mLabelPaint = new Paint();	
+	private Paint mBackgroundPaint = new Paint();
 
 	@Override
 	protected synchronized void onDraw(Canvas canvas) {
@@ -110,6 +113,10 @@ public class TimeRulerView extends View {
 		dividerPaint.setColor(mDividerColor);
 		dividerPaint.setStyle(Style.FILL);
 
+		final Paint backgroundPaint = mBackgroundPaint;
+		backgroundPaint.setColor(mBackgroundColor);
+		backgroundPaint.setStyle(Style.FILL);
+
 		final Paint labelPaint = mLabelPaint;
 		labelPaint.setColor(mLabelColor);
 		labelPaint.setTextSize(mLabelTextSize);
@@ -118,7 +125,8 @@ public class TimeRulerView extends View {
 
 		final FontMetricsInt metrics = labelPaint.getFontMetricsInt();
 		final int labelHeight = Math.abs(metrics.ascent);
-		final int labelOffset = labelHeight + ((hourHeight - labelHeight) / 2);
+		final int labelTopPadding = 2;
+		final int labelOffset = labelHeight + labelTopPadding;//centered: + ((hourHeight - labelHeight) / 2);
 
 		final int right = getRight();
 
@@ -127,15 +135,12 @@ public class TimeRulerView extends View {
 		for (int i = 0; i < hours; i++) {
 			final int dividerY = hourHeight * i;
 			final int nextDividerY = hourHeight * (i + 1);
+
+			canvas.drawRect(0, dividerY, mHeaderWidth, nextDividerY, backgroundPaint);
 			canvas.drawLine(0, dividerY, right, dividerY, dividerPaint);
 
-			// draw text title for timestamp
-			canvas.drawRect(0, dividerY, mHeaderWidth, nextDividerY, dividerPaint);
-
 			String label = getFormattedLabel(i);
-
 			final float labelWidth = labelPaint.measureText(label);
-
 			canvas.drawText(label, 0, label.length(), mHeaderWidth - labelWidth - mLabelPaddingLeft, dividerY + labelOffset, labelPaint);
 		}
 	}

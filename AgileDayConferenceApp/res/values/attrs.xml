@@ -28,6 +28,7 @@
         <attr name="labelPaddingLeft" format="dimension" />
         <attr name="labelColor" format="color" />
         <attr name="dividerColor" format="color" />
+        <attr name="backgroundColor" format="color" />
         <attr name="startHour" format="integer" />
         <attr name="endHour" format="integer" />
     </declare-styleable>

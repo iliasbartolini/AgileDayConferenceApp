@@ -37,7 +37,8 @@
             iosched:labelTextSize="12sp"
             iosched:labelPaddingLeft="4dip"
             iosched:labelColor="#FFFFFF"
-            iosched:dividerColor="#39759C"
+            iosched:backgroundColor="#39759C"
+            iosched:dividerColor="#A6A6A6"
             iosched:startHour="8"
             iosched:endHour="19" />
         <View
