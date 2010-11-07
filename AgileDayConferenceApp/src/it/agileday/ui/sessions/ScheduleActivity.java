@@ -1,3 +1,22 @@
+/*
+	Copyright 2010
+
+	Author: Google Inc.
+	Author: Ilias Bartolini
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+ 	
+ 		http://www.apache.org/licenses/LICENSE-2.0
+ 
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
+
 package it.agileday.ui.sessions;
 
 import it.agileday.R;
@@ -29,7 +48,7 @@ import android.widget.ScrollView;
 public class ScheduleActivity extends Activity implements View.OnClickListener {
 	private static final String TAG = ScheduleActivity.class.getName();
 
-	private static final int DISABLED_BLOCK_ALPHA = 80;
+	private static final int DISABLED_BLOCK_ALPHA = 160;
 
 	private ScrollView mScrollView;
 	private BlocksLayout mBlocks;
@@ -121,7 +140,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 
 				for (Session session : track.getSessions()) {
 					final Integer column = i;
-					final String blockId = "track"+track.order+session.toString(); // TODO:Fix
+					final long blockId = session.getId();
 					final String title = session.title;
 					final long start = session.getStart().getTime();
 					final long end = session.getEnd().getTime();

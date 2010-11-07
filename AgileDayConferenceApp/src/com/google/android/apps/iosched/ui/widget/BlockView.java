@@ -1,17 +1,20 @@
 /*
- * Copyright 2010 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+	Copyright 2010
+
+	Author: Google Inc.
+	Author: Ilias Bartolini
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+ 	
+ 		http://www.apache.org/licenses/LICENSE-2.0
+ 
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
  */
 
 package com.google.android.apps.iosched.ui.widget;
@@ -30,14 +33,14 @@ import android.widget.Button;
  * Usually organized automatically by {@link BlocksLayout} to match up against a {@link TimeRulerView} instance.
  */
 public class BlockView extends Button {
-	private final String mBlockId;
+	private final long mBlockId;
 	private final String mTitle;
 	private final long mStartTime;
 	private final long mEndTime;
 	private final boolean mContainsStarred;
 	private final int mColumn;
 
-	public BlockView(Context context, String blockId, String title, long startTime, long endTime, boolean containsStarred, int column) {
+	public BlockView(Context context, long blockId, String title, long startTime, long endTime, boolean containsStarred, int column) {
 		super(context);
 
 		mBlockId = blockId;
@@ -86,11 +89,10 @@ public class BlockView extends Button {
 
 		setTextColor(textColor);
 		setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
-		setPadding(0, 0, 0, 0);
 		setBackgroundDrawable(buttonDrawable);
 	}
 
-	public String getBlockId() {
+	public long getBlockId() {
 		return mBlockId;
 	}
 
