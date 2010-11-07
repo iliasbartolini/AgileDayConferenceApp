@@ -22,6 +22,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.util.TypedValue;
 import android.widget.Button;
 
 /**
@@ -79,6 +80,8 @@ public class BlockView extends Button {
 		buttonDrawable.getDrawable(1).setAlpha(mContainsStarred ? 255 : 0);
 
 		setTextColor(textColor);
+		setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+		setPadding(0, 0, 0, 0);
 		setBackgroundDrawable(buttonDrawable);
 	}
 

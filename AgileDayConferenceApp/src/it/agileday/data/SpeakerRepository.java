@@ -21,19 +21,22 @@ package it.agileday.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class SpeakerRepository {
 	static final String TAG = SpeakerRepository.class.getName();
 	private SQLiteDatabase db;
-	private final Context context;
+	private final Resources resources;
+	private final Activity activity;
 
-	public SpeakerRepository(SQLiteDatabase database, Context context) {
+	public SpeakerRepository(SQLiteDatabase database, Resources imageResources, Activity activityToManageCursorLifeCicle) {
 		this.db = database;
-		this.context = context;
+		this.resources = imageResources;
+		this.activity = activityToManageCursorLifeCicle;
 	}
 
 	public long createNote(String title, String body) {
@@ -47,6 +50,10 @@ public class SpeakerRepository {
 	public List<Speaker> getAll() {
 		List<Speaker> ret = new ArrayList<Speaker>();
 		Cursor cursor = db.query("speakers", new String[] { "_id", "name", "bio", "image" }, null, null, null, null, null);
+		if (activity != null)
+		{
+			activity.startManagingCursor(cursor);
+		}
 		while (cursor.moveToNext()) {
 			ret.add(buildSpeaker(cursor));
 		}
@@ -57,8 +64,10 @@ public class SpeakerRepository {
 		Speaker ret = new Speaker();
 		ret.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 		ret.bio = cursor.getString(cursor.getColumnIndexOrThrow("bio"));
-		int resourceId = context.getResources().getIdentifier(cursor.getString(cursor.getColumnIndexOrThrow("image")), "drawable", "it.agileday");
-		ret.image = context.getResources().getDrawable(resourceId);
+		String imageName = cursor.getString(cursor.getColumnIndexOrThrow("image"));
+		int resourceId = resources.getIdentifier(imageName, "drawable", "it.agileday");
+		//TODO: manage missing resource
+		ret.image = resources.getDrawable(resourceId);
 		return ret;
 	}
 }

@@ -26,24 +26,32 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class TrackRepository {
 	private final SQLiteDatabase db;
+	private Activity activity;
 
-	public TrackRepository(SQLiteDatabase db) {
+	public TrackRepository(SQLiteDatabase db, Activity activityToManageCursorLifeCicle) {
 		this.db = db;
+		this.activity = activityToManageCursorLifeCicle;
 	}
 
 	public ArrayList<Track> getAll() {
 		Map<Integer, Track> ret = new HashMap<Integer, Track>();
 		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
 		Cursor cursor = db.rawQuery(sql, null);
+		if (activity != null)
+		{
+			activity.startManagingCursor(cursor);
+		}
 
 		while (cursor.moveToNext()) {
 			getTrack(ret, cursor).addSession(buildSession(cursor));
 		}
+		cursor.close();
 		
 		ArrayList<Track> arrayList = new ArrayList<Track>(ret.size());
 		arrayList.addAll(ret.values());

@@ -60,7 +60,7 @@ public class SpeakersActivity extends Activity {
 	private void fillData() {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
 		try {
-			SpeakerRepository repo = new SpeakerRepository(database, this);
+			SpeakerRepository repo = new SpeakerRepository(database, this.getResources(), this);
 			List<Speaker> speakers = repo.getAll();
 			for (Speaker speaker : speakers) {
 				View view = getLayoutInflater().inflate(R.layout.speakers_item, viewAnimator, false);

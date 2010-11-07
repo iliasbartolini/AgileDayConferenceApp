@@ -44,8 +44,8 @@ public class ConferenceApp extends Activity {
 	}
 	
 	public void onSessionsClick(View v){
-		//startActivity(new Intent(this, SessionActivityWithBlocksLayout.class));
-		startActivity(new Intent(this, SessionActivity.class));
+		startActivity(new Intent(this, SessionActivityWithBlocksLayout.class));
+		//startActivity(new Intent(this, SessionActivity.class));
 	}
 	
 	public void onTwitterClick(View v){

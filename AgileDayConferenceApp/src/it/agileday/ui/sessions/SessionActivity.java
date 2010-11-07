@@ -75,7 +75,7 @@ public class SessionActivity extends Activity {
 	private void fillData() {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
 		try {
-			ArrayList<Track> tracks = new TrackRepository(database).getAll();
+			ArrayList<Track> tracks = new TrackRepository(database, this).getAll();
 			int i = 0;
 			for (Track track : tracks) {
 				if (!track.isValid()) {
