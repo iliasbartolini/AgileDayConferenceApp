@@ -29,7 +29,7 @@ import android.widget.ScrollView;
 public class ScheduleActivity extends Activity implements View.OnClickListener {
 	private static final String TAG = ScheduleActivity.class.getName();
 
-	private static final int DISABLED_BLOCK_ALPHA = 100;
+	private static final int DISABLED_BLOCK_ALPHA = 80;
 
 	private ScrollView mScrollView;
 	private BlocksLayout mBlocks;
@@ -119,21 +119,9 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 					throw new RuntimeException(track.validationMessage());
 				}
 
-
-//				final Integer column = i;
-//				final String blockId = "someid" + i;
-//				final String title = "Titolo!";
-//				final long start = Dates.newDate(2010, 11, 19, 12+i).getTime();
-//				final long end = Dates.newDate(2010, 11, 19, 14+i).getTime();
-//				final boolean isStarred = true;
-//
-//				final BlockView blockView = new BlockView(this, blockId, title, start, end, isStarred, column);
-//				blockView.setOnClickListener(this);
-//				mBlocks.addBlock(blockView);				
-				int j = 0;
 				for (Session session : track.getSessions()) {
-					final Integer column = i; // sTypeColumnMap.get()
-					final String blockId = "session_"+track.order+"_"+j; // TODO:Fix
+					final Integer column = i;
+					final String blockId = "track"+track.order+session.toString(); // TODO:Fix
 					final String title = session.title;
 					final long start = session.getStart().getTime();
 					final long end = session.getEnd().getTime();
@@ -141,7 +129,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 
 					final BlockView blockView = new BlockView(this, blockId, title, start, end, isStarred, column);
 
-					if (!session.title.contains("break")) {
+					if (!session.type.equals("extra")) {
 						blockView.setOnClickListener(this);
 					} else {
 						blockView.setFocusable(false);
@@ -152,22 +140,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 					}
 
 					mBlocks.addBlock(blockView);
-					j++;
 				}
-
-				// View view = buildView(R.layout.track, viewAnimator);
-				// setText(view, R.id.title, track.title);
-				// updateLeftRightTrackButton(view, R.id.previous_session, i);
-				// updateLeftRightTrackButton(view, R.id.next_session, tracks.size() - (i + 1));
-				//
-				// ViewGroup sessionsViewGroup = (ViewGroup) view.findViewById(R.id.sessions);
-				// for (Session session : track.getSessions()) {
-				// sessionsViewGroup.addView(getSessionView(sessionsViewGroup, session, !track.hasNext(session)));
-				// if (track.hasNext(session)) {
-				// sessionsViewGroup.addView(buildView(R.layout.session_item_separator, sessionsViewGroup));
-				// }
-				// }
-				// viewAnimator.addView(view);
 				i++;
 			}
 

@@ -28,6 +28,7 @@ public class Session {
 	private static final String TAG = Session.class.getSimpleName();
 
 	private int id;
+	public String type;
 	public String title;
 	public String description;
 	public String speakers;
