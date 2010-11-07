@@ -68,7 +68,7 @@ public class Session {
 
 	@Override
 	public String toString() {
-		return String.format("%s#%s", TAG, id);
+		return String.format("%s_%s", TAG.toLowerCase(), id);
 	}
 
 	public Session setId(int id) {
@@ -82,6 +82,6 @@ public class Session {
 
 	public boolean IsStarred() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 }

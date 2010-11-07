@@ -37,7 +37,7 @@ public class TrackTest extends TestCase {
 	public void test_track_with_invalid_session_is_invalid() {
 		Track target = new Track()
 				.addSession(new Session().setId(1).setStart(d2).setEnd(d1));
-		assertEquals("Session#1: End date must be greater than start date", target.validationMessage());
+		assertEquals("session_1: End date must be greater than start date", target.validationMessage());
 	}
 
 	public void test_track_with_overlapping_session_is_invalid() {

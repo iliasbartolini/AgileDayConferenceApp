@@ -35,7 +35,7 @@ public class SessionTest extends TestCase {
 	}
 
 	public void test_toString() {
-		assertEquals("Session#123", new Session().setId(123).toString());
-		assertEquals("Session#0", new Session().toString());
+		assertEquals("session_123", new Session().setId(123).toString());
+		assertEquals("session_0", new Session().toString());
 	}
 }
