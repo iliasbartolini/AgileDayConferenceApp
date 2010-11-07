@@ -22,7 +22,7 @@
 package it.agileday.ui;
 
 import it.agileday.R;
-import it.agileday.ui.sessions.SessionActivityWithBlocksLayout;
+import it.agileday.ui.sessions.ScheduleActivity;
 import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;
 import android.app.Activity;
@@ -43,7 +43,7 @@ public class ConferenceApp extends Activity {
 	}
 	
 	public void onSessionsClick(View v){
-		startActivity(new Intent(this, SessionActivityWithBlocksLayout.class));
+		startActivity(new Intent(this, ScheduleActivity.class));
 	}
 	
 	public void onTwitterClick(View v){

@@ -26,8 +26,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 
-public class SessionActivityWithBlocksLayout extends Activity implements View.OnClickListener {
-	private static final String TAG = SessionActivityWithBlocksLayout.class.getName();
+public class ScheduleActivity extends Activity implements View.OnClickListener {
+	private static final String TAG = ScheduleActivity.class.getName();
 
 	private static final int DISABLED_BLOCK_ALPHA = 100;
 
