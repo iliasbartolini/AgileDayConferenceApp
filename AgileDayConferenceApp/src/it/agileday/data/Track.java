@@ -69,8 +69,8 @@ public class Track implements Comparable<Track>{
 			if (!session.isValid()) {
 				return String.format("%s: %s", session, session.validationMessage());
 			}
-			if (i > 0 && !Dates.equal(sessions.get(i - 1).getEnd(), session.getStart())) {
-				return "Session overlap/bad order/hole detected";
+			if (i > 0 && !Dates.beforeOrEqual(sessions.get(i - 1).getEnd(), session.getStart())) {
+				return "Session overlap or bad order detected";
 			}
 		}
 		return null;

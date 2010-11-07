@@ -44,14 +44,14 @@ public class TrackTest extends TestCase {
 		Track target = new Track()
 				.addSession(new Session().setStart(d1).setEnd(d3))
 				.addSession(new Session().setStart(d2).setEnd(d4));
-		assertEquals("Session overlap/bad order/hole detected", target.validationMessage());
+		assertEquals("Session overlap or bad order detected", target.validationMessage());
 	}
 
-	public void test_track_with_hole_is_invalid() {
+	public void test_track_with_hole_is_valid() {
 		Track target = new Track()
 				.addSession(new Session().setStart(d1).setEnd(d2))
 				.addSession(new Session().setStart(d4).setEnd(d5));
-		assertEquals("Session overlap/bad order/hole detected", target.validationMessage());
+		assertNull(target.validationMessage());
 	}
 
 	public void test_valid_track_cases() {
