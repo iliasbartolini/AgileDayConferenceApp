@@ -67,7 +67,8 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_blocks_content);
+		setContentView(R.layout.schedule);
+		//setContentView(R.layout.activity_blocks_content);
 
 		mTimeStart = Dates.newDate(2010, 11, 19, 8).getTime();
 		mTimeEnd = Dates.newDate(2010, 11, 19, 19).getTime();
