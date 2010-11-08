@@ -19,6 +19,7 @@
 package it.agileday.ui.speakers;
 
 import it.agileday.R;
+import it.agileday.ui.TextViewUtil;
 import it.agileday.utils.FlingViewGestureListener;
 import it.agileday.utils.HookableViewAnimator;
 import it.agileday.data.DatabaseHelper;
@@ -30,8 +31,6 @@ import java.util.List;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,7 +66,7 @@ public class SpeakersActivity extends Activity {
 				TextView name = (TextView) view.findViewById(R.id.name);
 				name.setText(speaker.name);
 				TextView bio = (TextView) view.findViewById(R.id.bio);
-				setHtmlText(speaker, bio);
+				TextViewUtil.setHtmlText(speaker.bio, bio);
 				ImageView image = (ImageView) view.findViewById(R.id.image);
 				image.setImageDrawable(speaker.image);
 				viewAnimator.addView(view);
@@ -75,14 +74,5 @@ public class SpeakersActivity extends Activity {
 		} finally {
 			database.close();
 		}
-	}
-
-	private void setHtmlText(Speaker speaker, TextView bio) {
-		bio.setMovementMethod(LinkMovementMethod.getInstance()); // http://code.google.com/p/android/issues/detail?id=2219
-		bio.setClickable(true);
-		bio.setFocusable(false);
-		bio.setFocusableInTouchMode(false);
-		bio.setLongClickable(false);
-		bio.setText(Html.fromHtml(speaker.bio));
 	}
 }

@@ -41,7 +41,7 @@ public class TrackRepository {
 
 	public ArrayList<Track> getAll() {
 		Map<Integer, Track> ret = new HashMap<Integer, Track>();
-		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions.session_type AS session_type, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
+		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions._id AS session_id, sessions.session_type AS session_type, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
 		Cursor cursor = db.rawQuery(sql, null);
 		if (activity != null)
 		{
@@ -77,6 +77,7 @@ public class TrackRepository {
 
 	private Session buildSession(Cursor c) {
 		Session ret = new Session();
+		ret.setId(c.getInt(c.getColumnIndexOrThrow("session_id")));
 		ret.type = c.getString(c.getColumnIndexOrThrow("session_type"));
 		ret.title = c.getString(c.getColumnIndexOrThrow("session_title"));
 		ret.setStart(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_start"))));

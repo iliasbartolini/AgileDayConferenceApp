@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2010 
+	
+	Author: Ilias Bartolini
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
+	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_small" a:adjustViewBounds="true" />
+	<TextView a:id="@+id/session_title" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="18sp" a:textStyle="bold" a:padding="15dip" a:textColor="@color/text" />
+	<TextView a:id="@+id/session_speaker" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:textStyle="bold" a:padding="10dip" a:paddingLeft="10dip" a:textColor="@color/text" />
+	<TextView a:id="@+id/session_track" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
+	<TextView a:id="@+id/session_start_time" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
+	<TextView a:id="@+id/session_end_time" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
+	<ScrollView xmlns:a="http://schemas.android.com/apk/res/android" a:fillViewport="true" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
+		<TextView a:id="@+id/session_description" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:padding="10dip"/>
+	</ScrollView>
+</LinearLayout>
