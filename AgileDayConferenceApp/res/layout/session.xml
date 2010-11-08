@@ -18,12 +18,11 @@
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
 	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_small" a:adjustViewBounds="true" />
-	<TextView a:id="@+id/session_title" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="18sp" a:textStyle="bold" a:padding="15dip" a:textColor="@color/text" />
-	<TextView a:id="@+id/session_speaker" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:textStyle="bold" a:padding="10dip" a:paddingLeft="10dip" a:textColor="@color/text" />
-	<TextView a:id="@+id/session_track" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
-	<TextView a:id="@+id/session_start_time" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
-	<TextView a:id="@+id/session_end_time" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:paddingLeft="10dip" />
+	<TextView a:id="@+id/session_title" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="18sp" a:textStyle="bold" a:paddingTop="15dip" a:paddingLeft="15dip" a:textColor="@color/text" />
+	<TextView a:id="@+id/session_speaker" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="16sp" a:textStyle="bold" a:paddingLeft="15dip" a:textColor="@color/text" />
+	<TextView a:id="@+id/session_track" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:textColor="@color/text" a:paddingLeft="15dip" a:paddingTop="10dip" />
+	<TextView a:id="@+id/session_time" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:textColor="@color/text" a:paddingLeft="15dip" />
 	<ScrollView xmlns:a="http://schemas.android.com/apk/res/android" a:fillViewport="true" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
-		<TextView a:id="@+id/session_description" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:padding="10dip"/>
+		<TextView a:id="@+id/session_description" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textColor="@color/text" a:textSize="14sp" a:padding="10dip"/>
 	</ScrollView>
 </LinearLayout>

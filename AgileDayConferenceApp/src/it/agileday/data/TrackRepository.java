@@ -39,7 +39,7 @@ public class TrackRepository {
 
 	public ArrayList<Track> getAll() {
 		Map<Integer, Track> ret = new HashMap<Integer, Track>();
-		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions._id AS session_id, sessions.session_type AS session_type, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
+		String sql = "SELECT track_id, tracks.title AS track_title, tracks.track_order AS track_order, sessions._id AS session_id, sessions.session_type AS session_type, sessions.title AS session_title, sessions.speakers AS session_speakers, sessions.start AS session_start, sessions.end AS session_end FROM sessions JOIN tracks ON(sessions.track_id = tracks._id) ORDER BY track_id, sessions.start";
 		Cursor cursor = db.rawQuery(sql, null);
 		if (activity != null)
 		{

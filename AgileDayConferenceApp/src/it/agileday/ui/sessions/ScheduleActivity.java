@@ -142,7 +142,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 				for (Session session : track.getSessions()) {
 					final Integer column = i;
 					final long blockId = session.getId();
-					final String title = session.title;
+					final String title = session.title + ((!session.speakers.equals("")) ? " - "+ session.speakers : "");
 					final long start = session.getStart().getTime();
 					final long end = session.getEnd().getTime();
 					final boolean isStarred = session.IsStarred();

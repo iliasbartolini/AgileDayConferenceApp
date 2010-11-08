@@ -23,6 +23,7 @@ import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Session;
 import it.agileday.data.SessionRepository;
 import it.agileday.ui.TextViewUtil;
+import it.agileday.utils.Dates;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 public class SessionActivity extends Activity {
 
 	public final static String INTENT_EXTRA_KEY_SESSION_ID = "session_id";
+	private static final String TIME_FORMAT = "HH:mm";
 	
 	private long sessionId = 0;
 	private Session session;
@@ -47,10 +49,8 @@ public class SessionActivity extends Activity {
 		title.setText(session.title);
 		TextView speaker = (TextView) findViewById(R.id.session_speaker);
 		speaker.setText(session.speakers);
-		TextView startTime = (TextView) findViewById(R.id.session_start_time);
-		startTime.setText(session.getStart().toString());
-		TextView endTime = (TextView) findViewById(R.id.session_end_time);
-		endTime.setText(session.getEnd().toString());
+		TextView time = (TextView) findViewById(R.id.session_time);
+		time.setText(Dates.toString(session.getStart(), TIME_FORMAT) + " - " + Dates.toString(session.getEnd(), TIME_FORMAT));
 		TextView description = (TextView) findViewById(R.id.session_description);
 		TextViewUtil.setHtmlText(session.description, description);
 		

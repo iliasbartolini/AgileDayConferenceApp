@@ -35,7 +35,7 @@ public class SessionRepository {
 
 	public Session getSessionFromId(long sessionId) {
 
-		String sql = "SELECT sessions._id AS session_id, sessions.session_type AS session_type, sessions.title AS session_title, sessions.start AS session_start, sessions.end AS session_end FROM sessions WHERE sessions._id = " + sessionId;
+		String sql = "SELECT sessions._id AS session_id, sessions.session_type AS session_type, sessions.title AS session_title, sessions.speakers AS session_speakers, sessions.start AS session_start, sessions.end AS session_end , sessions.description AS session_description FROM sessions WHERE sessions._id = " + sessionId;
 		Cursor cursor = db.rawQuery(sql, null);
 		if (activity != null)
 		{
@@ -56,29 +56,14 @@ public class SessionRepository {
 		ret.setId(c.getInt(c.getColumnIndexOrThrow("session_id")));
 		ret.type = c.getString(c.getColumnIndexOrThrow("session_type"));
 		ret.title = c.getString(c.getColumnIndexOrThrow("session_title"));
+		ret.speakers = c.getString(c.getColumnIndexOrThrow("session_speakers"));
 		ret.setStart(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_start"))));
 		ret.setEnd(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_end"))));
-		ret.speakers = "Pinco Pallino & Gertrude";
-		ret.description = 
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-			"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>";
+		
+		int descriptionColumnIndex = c.getColumnIndex("session_description");
+		if ( descriptionColumnIndex != -1)
+			ret.description = c.getString(descriptionColumnIndex);
+		
 		return ret;
 	}	
 	
