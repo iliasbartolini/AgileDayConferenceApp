@@ -36,6 +36,13 @@ public class Session {
 	private Date end;
 
 	public Session() {
+		id = 0;
+		type = "";
+		title = "";
+		description = "";
+		speakers = "";
+		start = Dates.newDate(1900, 1, 1);
+		end = Dates.newDate(1900, 1, 1);
 	}
 
 	public Session setStart(Date start) {

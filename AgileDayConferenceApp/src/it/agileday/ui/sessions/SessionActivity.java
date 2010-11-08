@@ -19,10 +19,12 @@
 package it.agileday.ui.sessions;
 
 import it.agileday.R;
+import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Session;
+import it.agileday.data.SessionRepository;
 import it.agileday.ui.TextViewUtil;
-import it.agileday.utils.Dates;
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -55,34 +57,9 @@ public class SessionActivity extends Activity {
 	}
 
 	private void loadSession() {
-		session = new Session();
-		
-		session.description = 
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>" +
-		"Bla Bla Bla ... solo minchiate <b>in grassetto</b><a href=\"http://www.example.com\">link</a><br><br>";
-		
-		session.title = "Sta Ceppa! "+ sessionId;
-		session.type = "session";
-		session.speakers = "Pinco Pallino & Gertrude";
-		session.setStart(Dates.newDate(2010, 11, 19, 14, 25));
-		session.setEnd(Dates.newDate(2010, 11, 19, 15, 30));
+		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
+		SessionRepository repository = new SessionRepository(database, this);
+		session = repository.getSessionFromId(sessionId);
 	}
 	
 	

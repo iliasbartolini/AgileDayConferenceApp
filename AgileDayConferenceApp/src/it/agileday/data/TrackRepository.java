@@ -19,8 +19,6 @@
 
 package it.agileday.data;
 
-import it.agileday.utils.Dates;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,7 +30,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class TrackRepository {
 	private final SQLiteDatabase db;
-	private Activity activity;
+	private final Activity activity;
 
 	public TrackRepository(SQLiteDatabase db, Activity activityToManageCursorLifeCicle) {
 		this.db = db;
@@ -49,7 +47,7 @@ public class TrackRepository {
 		}
 
 		while (cursor.moveToNext()) {
-			getTrack(ret, cursor).addSession(buildSession(cursor));
+			getTrack(ret, cursor).addSession(SessionRepository.buildSession(cursor));
 		}
 		cursor.close();
 		
@@ -72,16 +70,6 @@ public class TrackRepository {
 		Track ret = new Track();
 		ret.title = c.getString(c.getColumnIndexOrThrow("track_title"));
 		ret.order = c.getInt(c.getColumnIndexOrThrow("track_order"));
-		return ret;
-	}
-
-	private Session buildSession(Cursor c) {
-		Session ret = new Session();
-		ret.setId(c.getInt(c.getColumnIndexOrThrow("session_id")));
-		ret.type = c.getString(c.getColumnIndexOrThrow("session_type"));
-		ret.title = c.getString(c.getColumnIndexOrThrow("session_title"));
-		ret.setStart(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_start"))));
-		ret.setEnd(Dates.fromDbString(c.getString(c.getColumnIndexOrThrow("session_end"))));
 		return ret;
 	}
 }
