@@ -7,9 +7,12 @@ conference visitors by giving uptodate information about sessions,
 and facilitate communication with other conference participants.
 
 ### Release build instructions to build .apk package for Android Market:
+
 * copy italianagileday.keystore in AgileDayConferenceApp/ (you should have it)
 * android update project --path AgileDayConferenceApp
+
 ### Build process:
+
 * Run tests (and check that they are all green :P)
 * Update AndroidManifest.xml
   * Increase android:versionCode
