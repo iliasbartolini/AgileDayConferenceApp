@@ -49,7 +49,7 @@ public class SpeakerRepository {
 
 	public List<Speaker> getAll() {
 		List<Speaker> ret = new ArrayList<Speaker>();
-		Cursor cursor = db.query("speakers", new String[] { "_id", "name", "bio", "image" }, null, null, null, null, null);
+		Cursor cursor = db.query("speakers", new String[] { "_id", "name", "bio", "image" }, null, null, null, null, "Name");
 		if (activity != null)
 		{
 			activity.startManagingCursor(cursor);
@@ -65,7 +65,7 @@ public class SpeakerRepository {
 		ret.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 		ret.bio = cursor.getString(cursor.getColumnIndexOrThrow("bio"));
 		String imageName = cursor.getString(cursor.getColumnIndexOrThrow("image"));
-		int resourceId = resources.getIdentifier(imageName, "drawable", "it.agileday");
+		int resourceId = resources.getIdentifier("speaker_"+imageName, "drawable", "it.agileday");
 		//TODO: manage missing resource
 		ret.image = resources.getDrawable(resourceId);
 		return ret;

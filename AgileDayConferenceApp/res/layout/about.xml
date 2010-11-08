@@ -19,6 +19,6 @@
 <ScrollView xmlns:a="http://schemas.android.com/apk/res/android" a:layout_width="fill_parent" a:layout_height="fill_parent">
 	<LinearLayout a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="wrap_content" a:paddingLeft="18dp" a:paddingRight="18dp" a:paddingBottom="18dp">
 		<TextView a:id="@+id/about_license" a:textColorLink="#ffdddddd" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:gravity="center" a:text="Apache License\nVersion 2.0, January 2004\nhttp://www.apache.org/licenses\n\nhttps://github.com/iliasbartolini/AgileDayConferenceApp" />
-		<TextView a:id="@+id/about_content" a:textColorLink="#ffdddddd" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:paddingTop="18dp" a:text="Built with contributions of:\n * Gian Marco Gherardi\n * Ilias Bartolini\n * Luigi Bozzo\n * Andrea Chiarini\n * Ettore Pancini" />
+		<TextView a:id="@+id/about_content" a:textColorLink="#ffdddddd" a:layout_width="fill_parent" a:layout_height="wrap_content" a:textSize="14sp" a:paddingTop="18dp" a:text="Built with contributions of:\n * Ilias Bartolini\n * Luigi Bozzo\n * Andrea Chiarini\n * Gian Marco Gherardi\n * Ettore Pancini\n\n\nPortions originally based on 'Google I/O Schedule App for Android'" />
 	</LinearLayout>
 </ScrollView>
