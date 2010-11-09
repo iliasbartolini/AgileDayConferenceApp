@@ -19,5 +19,6 @@
 -->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android" a:orientation="vertical" a:layout_width="fill_parent" a:layout_height="fill_parent" a:background="@color/background">
 	<ImageView a:layout_width="fill_parent" a:layout_height="wrap_content" a:src="@drawable/banner_small" a:adjustViewBounds="true" />
-	<it.agileday.utils.HookableViewAnimator a:id="@+id/flipper" a:layout_width="fill_parent" a:layout_height="fill_parent" />
+	<ViewAnimator a:id="@+id/flipper" a:layout_width="fill_parent" a:layout_height="wrap_content" a:layout_weight="1" a:inAnimation="@anim/speakers_fadein" a:outAnimation="@anim/speakers_fadeout" />
+	<Gallery a:id="@+id/gallery" a:layout_width="fill_parent" a:layout_height="wrap_content" />
 </LinearLayout>
