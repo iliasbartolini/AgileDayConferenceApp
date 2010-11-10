@@ -22,7 +22,12 @@
 	<color name="text">#000000</color>
 	<color name="textOnDarkBg">#FFFFFF</color>
 	<color name="textLight">#666666</color>
-	<color name="btn_session_color_background">#FF0F91D4</color>
+	<color name="schedule_block_color_background">#FF0F91D4</color>
+	<color name="schedule_block_color_green">#FF00A549</color>
+	<color name="schedule_block_color_orange">#FFFF6C00</color>
+	<color name="schedule_block_color_blue">#FF18B6E6</color>
+	<color name="schedule_block_color_red">#FFDF1831</color>
+	<color name="schedule_block_color_gray">#FFC9C9C9</color>
 <!-- Palette URL: http://colorschemedesigner.com/#3x31Hw0w0w0w0 -->
 	<color name="color1">#0B61A4</color>
 	<color name="color2">#FFAE00</color>

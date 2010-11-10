@@ -22,7 +22,6 @@ package com.google.android.apps.iosched.ui.widget;
 import it.agileday.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
@@ -40,7 +39,7 @@ public class BlockView extends Button {
 	private final boolean mContainsStarred;
 	private final int mColumn;
 
-	public BlockView(Context context, long blockId, String title, long startTime, long endTime, boolean containsStarred, int column) {
+	public BlockView(Context context, long blockId, String title, long startTime, long endTime, boolean containsStarred, int column, int buttonColor, int textColor) {
 		super(context);
 
 		mBlockId = blockId;
@@ -51,40 +50,8 @@ public class BlockView extends Button {
 		mColumn = column;
 
 		setText(mTitle);
-
-		// TODO: turn into color state list with layers?
-		int textColor = -1;
-		int accentColor = -1;
-		switch (mColumn) {
-		case 0:
-			// green
-			textColor = Color.WHITE;
-			accentColor = Color.parseColor("#00a549");
-			break;
-		case 1:
-			// orange
-			textColor = Color.WHITE;
-			accentColor = Color.parseColor("#FF6C00");
-			break;
-		case 2:
-			// blue
-			textColor = Color.WHITE;
-			accentColor = Color.parseColor("#18b6e6");
-			break;
-		case 3:
-			// red
-			textColor = Color.WHITE;
-			accentColor = Color.parseColor("#df1831");
-			break;
-		default:
-			// gray
-			textColor = Color.WHITE;
-			accentColor = Color.parseColor("#c9c9c9");
-			break;
-		}
-
 		LayerDrawable buttonDrawable = (LayerDrawable) context.getResources().getDrawable(R.drawable.btn_block);
-		buttonDrawable.getDrawable(0).setColorFilter(accentColor, PorterDuff.Mode.SRC_ATOP);
+		buttonDrawable.getDrawable(0).setColorFilter(buttonColor, PorterDuff.Mode.SRC_ATOP);
 		buttonDrawable.getDrawable(1).setAlpha(mContainsStarred ? 255 : 0);
 
 		setTextColor(textColor);

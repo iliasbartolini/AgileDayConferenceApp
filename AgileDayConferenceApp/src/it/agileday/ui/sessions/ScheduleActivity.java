@@ -37,6 +37,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -68,7 +69,6 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.schedule);
-		//setContentView(R.layout.activity_blocks_content);
 
 		mTimeStart = Dates.newDate(2010, 11, 19, 8).getTime();
 		mTimeEnd = Dates.newDate(2010, 11, 19, 19).getTime();
@@ -131,7 +131,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 		SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();
 		try {
 			ArrayList<Track> tracks = new TrackRepository(database, this).getAll();
-			int i = 0;
+			int trackIndex = 0;
 			mBlocks.removeAllBlocks();
 
 			for (Track track : tracks) {
@@ -140,28 +140,10 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 				}
 
 				for (Session session : track.getSessions()) {
-					final Integer column = i;
-					final long blockId = session.getId();
-					final String title = session.title + ((!session.speakers.equals("")) ? " - "+ session.speakers : "");
-					final long start = session.getStart().getTime();
-					final long end = session.getEnd().getTime();
-					final boolean isStarred = session.IsStarred();
-
-					final BlockView blockView = new BlockView(this, blockId, title, start, end, isStarred, column);
-
-					if (!session.type.equals("extra")) {
-						blockView.setOnClickListener(this);
-					} else {
-						blockView.setFocusable(false);
-						blockView.setEnabled(false);
-						LayerDrawable buttonDrawable = (LayerDrawable) blockView.getBackground();
-						buttonDrawable.getDrawable(0).setAlpha(DISABLED_BLOCK_ALPHA);
-						buttonDrawable.getDrawable(2).setAlpha(DISABLED_BLOCK_ALPHA);
-					}
-
+					final BlockView blockView = buildBlockView(trackIndex, session);
 					mBlocks.addBlock(blockView);
 				}
-				i++;
+				trackIndex++;
 			}
 
 		} finally {
@@ -169,13 +151,55 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
+	private BlockView buildBlockView(int trackIndex, Session session) {
+		final Integer column = trackIndex;
+		final long blockId = session.getId();
+		final String title = session.title + ((!session.speakers.equals("")) ? " - " + session.speakers : "");
+		final long start = session.getStart().getTime();
+		final long end = session.getEnd().getTime();
+		final boolean isStarred = session.IsStarred();
+
+		int textColor = Color.WHITE;
+		int buttonColor = -1;
+		switch (column) {
+		case 0:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_green);
+			break;
+		case 1:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_orange);
+			break;
+		case 2:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_blue);
+			break;
+		case 3:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_red);
+			break;
+		default:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_gray);
+			break;
+		}
+
+		final BlockView blockView = new BlockView(this, blockId, title, start, end, isStarred, column, buttonColor, textColor);
+
+		if (!session.type.equals("extra")) {
+			blockView.setOnClickListener(this);
+		} else {
+			blockView.setFocusable(false);
+			blockView.setEnabled(false);
+			LayerDrawable buttonDrawable = (LayerDrawable) blockView.getBackground();
+			buttonDrawable.getDrawable(0).setAlpha(DISABLED_BLOCK_ALPHA);
+			buttonDrawable.getDrawable(2).setAlpha(DISABLED_BLOCK_ALPHA);
+		}
+		return blockView;
+	}
+
 	@Override
 	public void onClick(View v) {
-        if (v instanceof BlockView) {
-            final long blockId = ((BlockView) v).getBlockId();
-            Intent intent = new Intent(this, SessionActivity.class);
-            intent.putExtra(SessionActivity.INTENT_EXTRA_KEY_SESSION_ID, blockId);
+		if (v instanceof BlockView) {
+			final long blockId = ((BlockView) v).getBlockId();
+			Intent intent = new Intent(this, SessionActivity.class);
+			intent.putExtra(SessionActivity.INTENT_EXTRA_KEY_SESSION_ID, blockId);
 			startActivity(intent);
-        }
+		}
 	}
 }

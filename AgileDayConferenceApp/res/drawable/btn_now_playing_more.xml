@@ -18,5 +18,5 @@
     <item android:state_enabled="true" android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/btn_bg_pressed"/>
     <item android:state_enabled="true" android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/btn_bg_pressed"/>
     <item android:state_enabled="true" android:state_focused="true" android:drawable="@drawable/btn_bg_selected"/>
-    <item android:state_focused="false" android:state_pressed="false" android:drawable="@color/btn_session_color_background"/>
+    <item android:state_focused="false" android:state_pressed="false" android:drawable="@color/schedule_block_color_background"/>
 </selector>
