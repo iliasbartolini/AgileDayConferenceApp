@@ -67,12 +67,6 @@ public class SpeakersActivity extends Activity {
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
 		});
-//		gallery.setOnItemClickListener(new OnItemClickListener() {
-//			@Override
-//			public void onItemClick(AdapterView parent, View v, int position, long id) {
-//				viewAnimator.setDisplayedChild(position);
-//			}
-//		});
 
 		fillData(speakers);
 	}
