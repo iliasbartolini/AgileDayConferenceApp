@@ -17,19 +17,18 @@
 	limitations under the License.
  */
 
-package it.agileday.tests;
+package it.agileday;
 
 import it.agileday.ui.ConferenceApp;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
-public class ConferenceAppTest extends
-		ActivityInstrumentationTestCase2<ConferenceApp> {
+public class ConferenceAppTest extends ActivityInstrumentationTestCase2<ConferenceApp> {
 
 	private ConferenceApp homeActivity;
-	
+
 	public ConferenceAppTest() {
-		super("it.agileday",ConferenceApp.class);
+		super("it.agileday", ConferenceApp.class);
 	}
 
 	@Override
@@ -38,23 +37,23 @@ public class ConferenceAppTest extends
 		homeActivity = this.getActivity();
 	}
 
-	public void preconditionsTest() {
-		assertNotNull(homeActivity);		
+	public void test_a_oncreate_activity() {
+		assertNotNull(homeActivity);
 	}
 
-	public void checkButtonsOnHomeActivity() {
+	public void test_check_buttons_on_home_activity() {
 		Button sessionButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_sessions);
 		assertNotNull(sessionButton);
-		
+
 		Button donateButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_donate);
 		assertNotNull(donateButton);
-		
+
 		Button speakersButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_speakers);
 		assertNotNull(speakersButton);
-		
+
 		Button twitterButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_twitter);
 		assertNotNull(twitterButton);
-		
+
 		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_map);
 		assertNotNull(agileDayButton);
 	}
