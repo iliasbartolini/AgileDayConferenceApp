@@ -22,3 +22,9 @@ and facilitate communication with other conference participants.
 * Update build target build.properties adding target=android-8 (note: tests and build must run successfully also on the default supported target-4) 
 * ant -buildfile AgileDayConferenceApp\build.xml release
 * enter passwords (you should have it)
+
+### After build steps
+
+* In AndroidManifest.xml, REMOVE android:installLocation="auto" in "manifest" element
+* Revert build.properties file
+* Commit updated AndroidManifest.xml
