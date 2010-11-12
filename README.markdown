@@ -18,7 +18,7 @@ and facilitate communication with other conference participants.
   * Increase android:versionCode
   * Increase android:versionName
   * Remove android:debuggable
-  * Add android:installLocation="auto" in <manifest> element (http://developer.android.com/guide/appendix/install-location.html#Compatiblity)
+  * Add android:installLocation="auto" in "manifest" element (http://developer.android.com/guide/appendix/install-location.html#Compatiblity)
 * Update build target build.properties adding target=android-8 (note: tests and build must run successfully also on the default supported target-4) 
 * ant -buildfile AgileDayConferenceApp\build.xml release
 * enter passwords (you should have it)
