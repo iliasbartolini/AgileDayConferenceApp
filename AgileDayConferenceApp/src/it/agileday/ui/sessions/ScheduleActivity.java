@@ -101,7 +101,7 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 
 		mNowView.post(new Runnable() {
 			public void run() {
-				updateNowView(true);
+				updateNowView(false);
 			}
 		});
 	}
