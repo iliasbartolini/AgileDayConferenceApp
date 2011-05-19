@@ -30,15 +30,21 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 public class ConferenceApp extends Activity {
+	private static boolean DEVELOPER_MODE = true;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		if (DEVELOPER_MODE) {
+			StrictMode.enableDefaults();
+	    }		
+	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	}
 	
