@@ -23,36 +23,34 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.test.ActivityInstrumentationTestCase2;
 
-public class ActivityInstrumentationOrientedScreenTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T>{
+public class ActivityInstrumentationOrientedScreenTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T> {
 
 	private Configuration oldResourcesConfiguration;
 	private final int configurationOrientation;
 
-	public ActivityInstrumentationOrientedScreenTestCase(String name, Class<T> type, int configurationOrientation) 
-	{
+	public ActivityInstrumentationOrientedScreenTestCase(String name, Class<T> type, int configurationOrientation) {
 		super(name, type);
 		this.configurationOrientation = configurationOrientation;
 	}
 
-
 	@Override
 	protected void setUp() throws Exception {
-        setupOrientation();
+		setupOrientation();
 		super.setUp();
 	}
 
 	@Override
-	protected void tearDown() throws Exception{
-        super.tearDown();
-        restoreOrietation();
+	protected void tearDown() throws Exception {
+		super.tearDown();
+		restoreOrietation();
 	}
 
 	private void setupOrientation() {
 		Resources res = getInstrumentation().getTargetContext().getResources();
 		oldResourcesConfiguration = res.getConfiguration();
-        Configuration newConfiguration = new Configuration(oldResourcesConfiguration);
-        newConfiguration.orientation = configurationOrientation;
-        res.updateConfiguration(newConfiguration, res.getDisplayMetrics());
+		Configuration newConfiguration = new Configuration(oldResourcesConfiguration);
+		newConfiguration.orientation = configurationOrientation;
+		res.updateConfiguration(newConfiguration, res.getDisplayMetrics());
 	}
 
 	private void restoreOrietation() {

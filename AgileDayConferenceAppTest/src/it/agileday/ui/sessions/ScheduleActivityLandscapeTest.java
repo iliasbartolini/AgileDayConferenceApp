@@ -29,7 +29,6 @@ public class ScheduleActivityLandscapeTest extends ActivityInstrumentationOrient
 		super("it.agileday.ui.sessions", ScheduleActivity.class, Configuration.ORIENTATION_LANDSCAPE);
 	}
 
-
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
