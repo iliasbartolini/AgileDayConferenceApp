@@ -20,4 +20,5 @@
 <resources>
     <string name="app_name">Italian Agile Day</string>
     <string name="hash_tag">#iad10</string>
+	<string name="crash_toast_text">This application crashed, but a report has been sent to the developers to help them fix the issue!</string>
 </resources>

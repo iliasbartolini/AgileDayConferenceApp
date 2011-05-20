@@ -29,21 +29,23 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Config;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 public class ConferenceApp extends Activity {
-	private static boolean DEVELOPER_MODE = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		if (DEVELOPER_MODE) {
+		if (Config.DEBUG && VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
 			StrictMode.enableDefaults();
-	    }		
+	    }
 	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	}
@@ -98,5 +100,4 @@ public class ConferenceApp extends Activity {
 		}
 		return true;
 	}
-
 }
