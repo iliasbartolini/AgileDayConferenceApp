@@ -63,7 +63,7 @@ public class ConferenceApp extends Activity {
 	}
 	
 	public void onMapClick(View v){
-		startMapActivity(44.416774, 8.853525, "Sheraton+Genova+Hotel+%26+Conference+Center+-+Via+Pionieri+ed+Aviatori+d%E2%80%99Italia,+44");
+		startMapActivity(41.855852,12.468753, "Via della Vasca Navale, 79, 00146 Roma, Italia");
 	}
 	
 	public void onDonateClick(View v){
@@ -72,9 +72,9 @@ public class ConferenceApp extends Activity {
 	
 	private void startMapActivity(double latitude, double longitude, String query) {
 		try {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude + "?z=18&q=" + query)));
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latitude + "," + longitude + "?z=16&q=" + query)));
 		} catch (ActivityNotFoundException geoUrlNotSupported) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/?ll=" + latitude + "," + longitude + "&z=18&q=" + query)));
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/?ll=" + latitude + "," + longitude + "&z=16&q=" + query)));
 		}
 	}
 
