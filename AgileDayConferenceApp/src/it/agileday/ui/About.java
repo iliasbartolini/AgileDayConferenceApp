@@ -18,7 +18,7 @@
 
 package it.agileday.ui;
 
-import it.agileday.R;
+import it.agileday2011.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.util.Linkify;

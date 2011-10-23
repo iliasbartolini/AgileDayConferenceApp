@@ -18,6 +18,8 @@
 
 package it.agileday.data;
 
+import it.agileday2011.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +66,7 @@ public class SpeakerRepository {
 		ret.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 		ret.bio = cursor.getString(cursor.getColumnIndexOrThrow("bio"));
 		String imageName = "speaker_" + cursor.getString(cursor.getColumnIndexOrThrow("image"));
-		int resourceId = resources.getIdentifier(imageName, "drawable", "it.agileday");
+		int resourceId = resources.getIdentifier(imageName, "drawable", R.class.getPackage().getName());
 		if (resourceId == 0) {
 			throw new RuntimeException("Speaker image not found: " + imageName);
 		}

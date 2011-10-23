@@ -18,7 +18,7 @@
 
 package it.agileday.data;
 
-import it.agileday.R;
+import it.agileday2011.R;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;

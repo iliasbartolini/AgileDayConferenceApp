@@ -16,7 +16,7 @@
 
 package com.google.android.apps.iosched.ui.widget;
 
-import it.agileday.R;
+import it.agileday2011.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

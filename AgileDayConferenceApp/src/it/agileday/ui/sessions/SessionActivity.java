@@ -18,7 +18,7 @@
 
 package it.agileday.ui.sessions;
 
-import it.agileday.R;
+import it.agileday2011.R;
 import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Session;
 import it.agileday.data.SessionRepository;

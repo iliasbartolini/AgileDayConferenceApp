@@ -18,7 +18,7 @@
 
 package it.agileday.ui.speakers;
 
-import it.agileday.R;
+import it.agileday2011.R;
 import it.agileday.data.DatabaseHelper;
 import it.agileday.data.Speaker;
 import it.agileday.data.SpeakerRepository;

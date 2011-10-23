@@ -1,4 +1,4 @@
-package it.agileday;
+package it.agileday2011;
 
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;

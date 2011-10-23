@@ -20,7 +20,7 @@
 
 package it.agileday.ui.twitter;
 
-import it.agileday.R;
+import it.agileday2011.R;
 import it.agileday.data.Tweet;
 import it.agileday.utils.Dates;
 

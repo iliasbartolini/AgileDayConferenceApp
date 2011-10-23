@@ -21,7 +21,7 @@
 
 package it.agileday.ui;
 
-import it.agileday.R;
+import it.agileday2011.R;
 import it.agileday.ui.sessions.ScheduleActivity;
 import it.agileday.ui.speakers.SpeakersActivity;
 import it.agileday.ui.twitter.TwitterActivity;

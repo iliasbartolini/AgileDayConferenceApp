@@ -17,7 +17,7 @@
 	limitations under the License.
  */
 
-package it.agileday;
+package it.agileday2011;
 
 import it.agileday.ui.ConferenceApp;
 import android.test.ActivityInstrumentationTestCase2;
@@ -28,7 +28,7 @@ public class ConferenceAppTest extends ActivityInstrumentationTestCase2<Conferen
 	private ConferenceApp homeActivity;
 
 	public ConferenceAppTest() {
-		super("it.agileday", ConferenceApp.class);
+		super("it.agileday2011", ConferenceApp.class);
 	}
 
 	@Override
@@ -42,19 +42,19 @@ public class ConferenceAppTest extends ActivityInstrumentationTestCase2<Conferen
 	}
 
 	public void test_check_buttons_on_home_activity() {
-		Button sessionButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_sessions);
+		Button sessionButton = (Button) homeActivity.findViewById(it.agileday2011.R.id.button_sessions);
 		assertNotNull(sessionButton);
 
-		Button donateButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_donate);
+		Button donateButton = (Button) homeActivity.findViewById(it.agileday2011.R.id.button_donate);
 		assertNotNull(donateButton);
 
-		Button speakersButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_speakers);
+		Button speakersButton = (Button) homeActivity.findViewById(it.agileday2011.R.id.button_speakers);
 		assertNotNull(speakersButton);
 
-		Button twitterButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_twitter);
+		Button twitterButton = (Button) homeActivity.findViewById(it.agileday2011.R.id.button_twitter);
 		assertNotNull(twitterButton);
 
-		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday.R.id.button_map);
+		Button agileDayButton = (Button) homeActivity.findViewById(it.agileday2011.R.id.button_map);
 		assertNotNull(agileDayButton);
 	}
 }

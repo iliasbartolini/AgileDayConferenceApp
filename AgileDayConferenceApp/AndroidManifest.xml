@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.agileday" android:versionCode="7" android:versionName="1.0.3" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.agileday2011" android:versionCode="7" android:versionName="1.0.3" >
 	<application android:icon="@drawable/icon" android:name="AgileDayApplication" android:label="@string/app_name" android:theme="@style/ApplicationTheme" android:debuggable="true">
-		<activity android:name=".ui.ConferenceApp" android:label="@string/app_name" android:screenOrientation="portrait">
+		<activity android:name="it.agileday.ui.ConferenceApp" android:label="@string/app_name" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".ui.sessions.ScheduleActivity" android:label="Schedule" />
-		<activity android:name=".ui.sessions.SessionActivity" android:label="Session Detail" />
-		<activity android:name=".ui.twitter.TwitterActivity" android:label="Twitter" android:screenOrientation="portrait" />
-		<activity android:name=".ui.speakers.SpeakersActivity" android:label="Speakers" android:screenOrientation="portrait" />
-		<activity android:name=".ui.About" android:label="Italian Agile Day Application" android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait" />
+		<activity android:name="it.agileday.ui.sessions.ScheduleActivity" android:label="Schedule" />
+		<activity android:name="it.agileday.ui.sessions.SessionActivity" android:label="Session Detail" />
+		<activity android:name="it.agileday.ui.twitter.TwitterActivity" android:label="Twitter" android:screenOrientation="portrait" />
+		<activity android:name="it.agileday.ui.speakers.SpeakersActivity" android:label="Speakers" android:screenOrientation="portrait" />
+		<activity android:name="it.agileday.ui.About" android:label="Italian Agile Day Application" android:theme="@android:style/Theme.Dialog" android:screenOrientation="portrait" />
 	    <activity android:name="org.acra.CrashReportDialog" android:theme="@android:style/Theme.Dialog" android:launchMode="singleInstance" android:excludeFromRecents="true" android:finishOnTaskLaunch="true" />
    	</application>
 	<supports-screens android:xlargeScreens="false" />

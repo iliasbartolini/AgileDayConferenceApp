@@ -16,11 +16,11 @@
 -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:iosched="http://schemas.android.com/apk/res/it.agileday"
+    xmlns:iosched="http://schemas.android.com/apk/res/it.agileday2011"
     android:id="@+id/blocks_scroll"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <view
+     <view
         class="com.google.android.apps.iosched.ui.widget.BlocksLayout"
         android:id="@+id/blocks"
         android:layout_width="fill_parent"
