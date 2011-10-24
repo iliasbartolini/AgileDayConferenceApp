@@ -25,14 +25,14 @@
         android:id="@+id/blocks"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        iosched:columns="4">
+        iosched:columns="5">
         <view
             class="com.google.android.apps.iosched.ui.widget.TimeRulerView"
             android:id="@+id/blocks_ruler"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             iosched:headerWidth="40dip"
-            iosched:hourHeight="60dip"
+            iosched:hourHeight="70dip"
             iosched:horizontalDivider="true"
             iosched:labelTextSize="12sp"
             iosched:labelPaddingLeft="4dip"

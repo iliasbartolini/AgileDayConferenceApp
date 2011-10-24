@@ -29,7 +29,7 @@ import android.view.ViewGroup;
  * Also positions current "now" divider using {@link R.id#blocks_now} view when applicable.
  */
 public class BlocksLayout extends ViewGroup {
-	private int mColumns = 4;
+	private int mColumns = 5;
 
 	private TimeRulerView mRulerView;
 	private View mNowView;

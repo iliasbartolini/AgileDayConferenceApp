@@ -70,8 +70,8 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.schedule);
 
-		mTimeStart = Dates.newDate(2010, 11, 19, 8).getTime();
-		mTimeEnd = Dates.newDate(2010, 11, 19, 19).getTime();
+		mTimeStart = Dates.newDate(2011, 11, 19, 8).getTime();
+		mTimeEnd = Dates.newDate(2011, 11, 19, 19).getTime();
 
 		mScrollView = (ScrollView) findViewById(R.id.blocks_scroll);
 		mBlocks = (BlocksLayout) findViewById(R.id.blocks);
@@ -173,6 +173,9 @@ public class ScheduleActivity extends Activity implements View.OnClickListener {
 			break;
 		case 3:
 			buttonColor = getResources().getColor(R.color.schedule_block_color_red);
+			break;
+		case 4:
+			buttonColor = getResources().getColor(R.color.schedule_block_color_yellow);
 			break;
 		default:
 			buttonColor = getResources().getColor(R.color.schedule_block_color_gray);

@@ -33,7 +33,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String TAG = DatabaseHelper.class.getName();
 	private static final String DATABASE_NAME = "data.db";
-	private static final int DATABASE_VERSION = 78;
+	private static final int DATABASE_VERSION = 80;
 	private final Context context;
 
 	public DatabaseHelper(Context context) {
