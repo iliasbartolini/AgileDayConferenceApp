@@ -21,8 +21,6 @@ and facilitate communication with other conference participants.
   * adding target=android-8 (note: tests and build must run successfully also on the minimum 
 supported target-4) 
 * Update AndroidManifest.xml
-  * Increase android:versionCode
-  * Increase android:versionName
   * Remove android:debuggable
   * Add android:installLocation="auto" in "manifest" element (http://developer.android.com/guide/appendix/install-location.html#Compatiblity)
 * android update project --path AgileDayConferenceApp
@@ -35,4 +33,6 @@ supported target-4)
 
 * Revert build.properties file
 * In AndroidManifest.xml, REMOVE android:installLocation="auto" in "manifest" element
+* Increase android:versionCode for next release
+* Increase android:versionName for next release
 * Commit updated AndroidManifest.xml (the only changes should be in android:versionCode and android:versionName)
