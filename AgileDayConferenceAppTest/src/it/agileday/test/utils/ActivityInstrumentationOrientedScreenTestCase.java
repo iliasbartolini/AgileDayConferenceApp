@@ -42,7 +42,7 @@ public class ActivityInstrumentationOrientedScreenTestCase<T extends Activity> e
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
-		restoreOrietation();
+		restoreOrientation();
 	}
 
 	private void setupOrientation() {
@@ -53,7 +53,7 @@ public class ActivityInstrumentationOrientedScreenTestCase<T extends Activity> e
 		res.updateConfiguration(newConfiguration, res.getDisplayMetrics());
 	}
 
-	private void restoreOrietation() {
+	private void restoreOrientation() {
 		Resources res = getInstrumentation().getTargetContext().getResources();
 		res.updateConfiguration(oldResourcesConfiguration, res.getDisplayMetrics());
 	}
